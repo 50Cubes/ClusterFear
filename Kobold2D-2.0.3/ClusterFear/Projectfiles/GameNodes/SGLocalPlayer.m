@@ -24,6 +24,11 @@
 }
 
 
+-(BOOL)isEnemy
+{
+    return NO;
+}
+
 
 -(void)initializeWeapon:(SGWeapon *)newWeapon{
     weapon = newWeapon;

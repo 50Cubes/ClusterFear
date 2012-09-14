@@ -13,13 +13,27 @@
 #import "SGLocalPlayer.h"
 #import "SGWeapon.h"
 
+#import "SGProjectile.h"
+
+@interface SGGameCoordinator ()
+{
+    NSMutableArray *_moverList;
+}
+
+@end
+
 @implementation SGGameCoordinator
+
+@synthesize enemyCount = _enemyCount;
+@synthesize moverList = _moverList;
 
 -(id)init
 {
     self = [super init];
     if( self != nil )
     {
+        _moverList = [NSMutableArray new];
+        
         TileMapLayer *tileMapLayer = [TileMapLayer node];
         
         [tileMapLayer setDelegate:self];
@@ -49,21 +63,49 @@
 
 -(void)spawnEnemies
 {
-    SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
+    if( _enemyCount < 10 )
+    {
+        _enemyCount++;
+        
+        SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
+        
+        
+        
+        CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 768.0f, CCRANDOM_0_1() * 1024.0f );
+        
+        [testBug setPosition:spawnPoint];
+        
+        [self addMover:testBug];
+    }
+}
+
+-(void)addMover:(SGMover *)newMover
+{
+    [_moverList addObject:newMover];
     
+    [newMover setOwner:self];
     
-    
-    CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 768.0f, CCRANDOM_0_1() * 1024.0f );
-    
-    [testBug setPosition:spawnPoint];
-    
-    [self addChild:testBug];
+    [self addChild:newMover];
 }
 
 
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
     [localPlayer moveToPoint:touchPoint];
+}
+
+#pragma mark - Mover Delegate Methods
+
+-(void)moverPerished:(SGMover *)mover
+{
+    if( [mover isEnemy] )
+        _enemyCount--;
+}
+
+-(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile
+{
+    [self addChild:projectile];
+    [projectile fired];
 }
 
 @end

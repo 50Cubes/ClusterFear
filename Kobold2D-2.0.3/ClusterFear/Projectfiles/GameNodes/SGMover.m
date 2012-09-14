@@ -21,6 +21,13 @@
 {
     return 50.0f;
 }
+
+-(BOOL)isEnemy
+{
+    return YES;
+}
+
+
 //-(void)setPosition:(CGPoint)position
 //{
 //    float xDirection = position.x;
@@ -51,6 +58,11 @@
 //    }
 //}
 
+-(void)fireProjectile:(SGProjectile *)projectile
+{
+    [[self owner] mover:self firedProjectile:projectile];
+}
+
 -(void)getHitFromWeapon:(SGWeapon *)weapon{
     health -= [weapon damageInflicted];
     if(health <= 0){
@@ -59,13 +71,34 @@
 }
 
 -(void)die{
+    [self stopAllActions];
     
+    [[self owner] moverPerished:self];
+    
+    CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:1.0f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
+    [self runAction:dieSequence];
 }
 
 
 -(void)facePoint:(CGPoint)pointToFace
 {
+    float xDirection = pointToFace.x;
+    float yDirection = pointToFace.y;
     
+    xDirection -= position_.x;
+    yDirection -= position_.y;
+    
+#ifdef DEBUG
+    if( isnan(xDirection) || isnan(yDirection) )
+        NSLog(@"Invalid position");
+#endif
+    
+    float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
+    
+    xDirection /= magnitude;
+    yDirection /= magnitude;
+    
+    [self faceRelativePoint:(CGPoint){.x=xDirection,.y=yDirection}];
 }
 
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection
@@ -82,21 +115,7 @@
 
 -(void)moveToPoint:(CGPoint)targetPoint
 {
-    float xDirection = targetPoint.x;
-    float yDirection = targetPoint.y;
-    
-    xDirection -= position_.x;
-    yDirection -= position_.y;
-    
-    if( isnan(xDirection) || isnan(yDirection) )
-        NSLog(@"Invalid position");
-    
-    float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
-    
-    xDirection /= magnitude;
-    yDirection /= magnitude;
-    
-    [self faceRelativePoint:CGPointMake(xDirection, yDirection)];
+    [self facePoint:targetPoint];
     
     [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
 }
@@ -113,6 +132,9 @@
     health = newHealth;
 }
 
-
+-(void)removeFromParentAndDoCleanup
+{
+    [self removeFromParentAndCleanup:YES];
+}
 
 @end
