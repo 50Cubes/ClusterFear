@@ -59,6 +59,27 @@
     [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
 }
 
+-(void)turnTowardPoint:(CGPoint)targetPoint{
+    float xDirection = targetPoint.x;
+    float yDirection = targetPoint.y;
+    
+    xDirection -= position_.x;
+    yDirection -= position_.y;
+    
+    if( isnan(xDirection) || isnan(yDirection) )
+        NSLog(@"Invalid position");
+    
+    float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
+    
+    xDirection /= magnitude;
+    yDirection /= magnitude;
+    
+    float rotation = atan2f(yDirection,xDirection);
+    
+    [self runAction:[CCRotateBy actionWithDuration:0.2 angle:CC_RADIANS_TO_DEGREES(rotation)]];
+}
+
+
 #pragma mark initialization
 
 +(id)moverWithFile:(NSString *)file andHealth:(int)startingHealth{
