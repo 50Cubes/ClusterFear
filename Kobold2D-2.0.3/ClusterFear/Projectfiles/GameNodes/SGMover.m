@@ -17,6 +17,10 @@
 
 @implementation SGMover
 
++(float)speed
+{
+    return 50.0f;
+}
 //-(void)setPosition:(CGPoint)position
 //{
 //    float xDirection = position.x;

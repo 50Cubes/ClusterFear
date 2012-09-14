@@ -10,9 +10,8 @@
 
 @interface SGBug : SGMover
 {
-    float speed_;
 }
 
-@property (nonatomic, assign)float speed;
+//@property (nonatomic, assign)float speed;
 
 @end

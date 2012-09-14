@@ -14,6 +14,8 @@
     int health;
 }
 
++(float)speed;
+
 +(id)moverWithFile:(NSString *)file andHealth:(int)startingHealth;
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon;
