@@ -18,6 +18,10 @@
 		C11713291603886600208448 /* SGLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713281603886600208448 /* SGLocalPlayer.m */; };
 		C117132C160393A200208448 /* SGGameCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132B160393A200208448 /* SGGameCoordinator.m */; };
 		C117133C1603B98F00208448 /* SGProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = C117133B1603B98F00208448 /* SGProjectile.m */; };
+		C11713531603DB4D00208448 /* SGEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713521603DB4D00208448 /* SGEnemy.m */; };
+		C11713571603DBF900208448 /* SGBat.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713561603DBF900208448 /* SGBat.m */; };
+		C117135A1603DC3A00208448 /* SGObstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713591603DC3A00208448 /* SGObstacle.m */; };
+		C117135D1603DC8000208448 /* SGDestroyable.m in Sources */ = {isa = PBXBuildFile; fileRef = C117135C1603DC8000208448 /* SGDestroyable.m */; };
 		C18411D01602D906007F06A6 /* FoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* FoeCluster.m */; };
 		DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */; };
 		DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615013A969B600A7AC53 /* libbox2d-ios.a */; };
@@ -73,6 +77,14 @@
 		C117132B160393A200208448 /* SGGameCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGGameCoordinator.m; path = Gameplay/SGGameCoordinator.m; sourceTree = "<group>"; };
 		C117133A1603B98E00208448 /* SGProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGProjectile.h; path = GameNodes/SGProjectile.h; sourceTree = "<group>"; };
 		C117133B1603B98F00208448 /* SGProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGProjectile.m; path = GameNodes/SGProjectile.m; sourceTree = "<group>"; };
+		C11713511603DB4D00208448 /* SGEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGEnemy.h; path = GameNodes/SGEnemy.h; sourceTree = "<group>"; };
+		C11713521603DB4D00208448 /* SGEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGEnemy.m; path = GameNodes/SGEnemy.m; sourceTree = "<group>"; };
+		C11713551603DBF800208448 /* SGBat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBat.h; path = GameNodes/SGBat.h; sourceTree = "<group>"; };
+		C11713561603DBF900208448 /* SGBat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBat.m; path = GameNodes/SGBat.m; sourceTree = "<group>"; };
+		C11713581603DC3A00208448 /* SGObstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGObstacle.h; path = GameNodes/SGObstacle.h; sourceTree = "<group>"; };
+		C11713591603DC3A00208448 /* SGObstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGObstacle.m; path = GameNodes/SGObstacle.m; sourceTree = "<group>"; };
+		C117135B1603DC8000208448 /* SGDestroyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDestroyable.h; path = GameNodes/SGDestroyable.h; sourceTree = "<group>"; };
+		C117135C1603DC8000208448 /* SGDestroyable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDestroyable.m; path = GameNodes/SGDestroyable.m; sourceTree = "<group>"; };
 		C18411CE1602D906007F06A6 /* FoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoeCluster.h; sourceTree = "<group>"; };
 		C18411CF1602D906007F06A6 /* FoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoeCluster.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +203,10 @@
 				C117133B1603B98F00208448 /* SGProjectile.m */,
 				DFD528B71603B9E8001D09D3 /* SGRunActivator.h */,
 				DFD528B81603B9E8001D09D3 /* SGRunActivator.m */,
+				C11713581603DC3A00208448 /* SGObstacle.h */,
+				C11713591603DC3A00208448 /* SGObstacle.m */,
+				C117135B1603DC8000208448 /* SGDestroyable.h */,
+				C117135C1603DC8000208448 /* SGDestroyable.m */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -204,6 +220,10 @@
 				C11713281603886600208448 /* SGLocalPlayer.m */,
 				4C5CDB391603CC4A005E91DF /* SGBugCluster.h */,
 				4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */,
+				C11713511603DB4D00208448 /* SGEnemy.h */,
+				C11713521603DB4D00208448 /* SGEnemy.m */,
+				C11713551603DBF800208448 /* SGBat.h */,
+				C11713561603DBF900208448 /* SGBat.m */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -426,6 +446,10 @@
 				C117133C1603B98F00208448 /* SGProjectile.m in Sources */,
 				DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */,
 				4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */,
+				C11713531603DB4D00208448 /* SGEnemy.m in Sources */,
+				C11713571603DBF900208448 /* SGBat.m in Sources */,
+				C117135A1603DC3A00208448 /* SGObstacle.m in Sources */,
+				C117135D1603DC8000208448 /* SGDestroyable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

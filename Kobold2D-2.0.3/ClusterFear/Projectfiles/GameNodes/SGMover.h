@@ -6,7 +6,7 @@
 //
 //
 
-#import "CCSprite.h"
+#import "SGDestroyable.h"
 
 @class SGWeapon;
 
@@ -22,9 +22,7 @@
 
 @end
 
-@interface SGMover : CCSprite{
-    int health;
-}
+@interface SGMover : SGDestroyable
 
 +(float)speed;
 
@@ -34,9 +32,6 @@
 @property(nonatomic, unsafe_unretained)NSObject <SGMoverOwner> *owner;
 
 -(void)fireProjectile:(SGProjectile *)projectile;
-
--(void)getHitFromWeapon:(SGWeapon *)weapon;
--(void)die;
 
 -(void)facePoint:(CGPoint)pointToFace;
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection;

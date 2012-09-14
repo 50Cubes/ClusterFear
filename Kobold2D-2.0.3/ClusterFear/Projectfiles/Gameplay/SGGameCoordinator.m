@@ -8,6 +8,8 @@
 
 #import "SGGameCoordinator.h"
 
+#import "SGRandomization.h"
+
 #import "SGBug.h"
 #import "TileMapLayer.h"
 #import "SGLocalPlayer.h"
@@ -16,9 +18,15 @@
 
 #import "SGProjectile.h"
 
+#import "SGObstacle.h"
+
+#import "SGBat.h"
+
 @interface SGGameCoordinator ()
 {
     NSMutableArray *_moverList;
+    
+    CCArray *_enemyTypes;
 }
 
 @end
@@ -33,6 +41,12 @@
     self = [super init];
     if( self != nil )
     {
+        _enemyTypes = [CCArray arrayWithCapacity:2];
+        [_enemyTypes addObject:[SGBat class]];
+        [_enemyTypes addObject:[SGBug class]];
+        
+        [self generateRandomObstacles];
+        
         _moverList = [NSMutableArray new];
         
         TileMapLayer *tileMapLayer = [TileMapLayer node];
@@ -69,13 +83,27 @@
     NSLog(@"Entering");
 }
 
+#define numObstacles 10
+-(void)generateRandomObstacles
+{
+    for( int count = 0; count < numObstacles; count++ )
+    {
+        SGObstacle *newObstacle = [SGObstacle obstacle];
+        
+        [newObstacle setPosition:SGRandomScreenPoint()];
+        
+        [self addChild:newObstacle];
+    }
+}
+
 -(void)spawnEnemies
 {
     if( _enemyCount < 10 )
     {
         _enemyCount++;
         
-        SGBug *testBug = [SGBug spriteWithFile:@"spider.png"];
+        Class enemyClass = [_enemyTypes randomObject];
+        SGBug *testBug = [enemyClass enemy];
         
         
         

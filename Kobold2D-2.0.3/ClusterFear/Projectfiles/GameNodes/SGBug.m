@@ -18,25 +18,13 @@
 
 @implementation SGBug
 
++(NSString *)imagePath
+{
+    return @"spider.png";
+}
+
 //@synthesize speed = speed_;
 
--(id)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated
-{
-    self = [super initWithTexture:texture rect:rect rotated:rotated];
-    if( self != nil )
-    {
-//        actionManager_ = [[CCActionManager alloc] init];
-//        speed_ = 50.0f;
-        
-        [self setOpacity:0];
-        
-        [self runAction:[CCFadeIn actionWithDuration:1.0f]];
-        [self scheduleOnce:@selector(crawl) delay:1.0f];
-        
-        [self scheduleOnce:@selector(die) delay:15.0f];
-    }
-    return self;
-}
 
 -(void)crawl
 {
