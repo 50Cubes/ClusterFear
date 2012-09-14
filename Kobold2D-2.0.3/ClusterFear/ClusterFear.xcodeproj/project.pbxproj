@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C117131F1603786A00208448 /* SGMover.m in Sources */ = {isa = PBXBuildFile; fileRef = C117131E1603786A00208448 /* SGMover.m */; };
+		C117132416037C7C00208448 /* SGBug.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132316037C7C00208448 /* SGBug.m */; };
+		C11713291603886600208448 /* SGLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713281603886600208448 /* SGLocalPlayer.m */; };
+		C117132C160393A200208448 /* SGGameCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132B160393A200208448 /* SGGameCoordinator.m */; };
+		C18411D01602D906007F06A6 /* FoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* FoeCluster.m */; };
 		DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */; };
 		DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615013A969B600A7AC53 /* libbox2d-ios.a */; };
 		DC65615D13A969B600A7AC53 /* libchipmunk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615113A969B600A7AC53 /* libchipmunk-ios.a */; };
@@ -41,6 +46,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C117131D1603786A00208448 /* SGMover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMover.h; path = GameNodes/SGMover.h; sourceTree = "<group>"; };
+		C117131E1603786A00208448 /* SGMover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMover.m; path = GameNodes/SGMover.m; sourceTree = "<group>"; };
+		C117132216037C7C00208448 /* SGBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBug.h; path = GameNodes/SGBug.h; sourceTree = "<group>"; };
+		C117132316037C7C00208448 /* SGBug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBug.m; path = GameNodes/SGBug.m; sourceTree = "<group>"; };
+		C117132616037E8400208448 /* SGRandomization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SGRandomization.h; path = Utils/SGRandomization.h; sourceTree = "<group>"; };
+		C11713271603886600208448 /* SGLocalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGLocalPlayer.h; path = GameNodes/SGLocalPlayer.h; sourceTree = "<group>"; };
+		C11713281603886600208448 /* SGLocalPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGLocalPlayer.m; path = GameNodes/SGLocalPlayer.m; sourceTree = "<group>"; };
+		C117132A160393A200208448 /* SGGameCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGGameCoordinator.h; path = Gameplay/SGGameCoordinator.h; sourceTree = "<group>"; };
+		C117132B160393A200208448 /* SGGameCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGGameCoordinator.m; path = Gameplay/SGGameCoordinator.m; sourceTree = "<group>"; };
+		C18411CE1602D906007F06A6 /* FoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoeCluster.h; sourceTree = "<group>"; };
+		C18411CF1602D906007F06A6 /* FoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoeCluster.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-hd.png"; path = "Resources/fps_images-hd.png"; sourceTree = "<group>"; };
 		DC65615013A969B600A7AC53 /* libbox2d-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +119,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C117131B1603755E00208448 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				C117132116037C6000208448 /* SubClasses */,
+				C117132016037C5700208448 /* BaseClasses */,
+			);
+			name = GameObjects;
+			sourceTree = "<group>";
+		};
+		C117132016037C5700208448 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				C117131D1603786A00208448 /* SGMover.h */,
+				C117131E1603786A00208448 /* SGMover.m */,
+				C117132A160393A200208448 /* SGGameCoordinator.h */,
+				C117132B160393A200208448 /* SGGameCoordinator.m */,
+			);
+			name = BaseClasses;
+			sourceTree = "<group>";
+		};
+		C117132116037C6000208448 /* SubClasses */ = {
+			isa = PBXGroup;
+			children = (
+				C117132216037C7C00208448 /* SGBug.h */,
+				C117132316037C7C00208448 /* SGBug.m */,
+				C11713271603886600208448 /* SGLocalPlayer.h */,
+				C11713281603886600208448 /* SGLocalPlayer.m */,
+			);
+			name = SubClasses;
+			sourceTree = "<group>";
+		};
+		C117132516037E7200208448 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C117132616037E8400208448 /* SGRandomization.h */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		DC81EAAC141281CE00735365 /* David Gervais Tilesets */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,12 +223,16 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				C117132516037E7200208448 /* Utils */,
+				C117131B1603755E00208448 /* GameObjects */,
 				DC81EAA7141280D400735365 /* TileMapLayer.h */,
 				DC81EAA8141280D400735365 /* TileMapLayer.m */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
+				C18411CE1602D906007F06A6 /* FoeCluster.h */,
+				C18411CF1602D906007F06A6 /* FoeCluster.m */,
 			);
 			path = Projectfiles;
 			sourceTree = "<group>";
@@ -292,6 +351,11 @@
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				DC81EAA9141280D400735365 /* TileMapLayer.m in Sources */,
+				C18411D01602D906007F06A6 /* FoeCluster.m in Sources */,
+				C117131F1603786A00208448 /* SGMover.m in Sources */,
+				C117132416037C7C00208448 /* SGBug.m in Sources */,
+				C11713291603886600208448 /* SGLocalPlayer.m in Sources */,
+				C117132C160393A200208448 /* SGGameCoordinator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,12 +365,20 @@
 		DCC1A0DD13A94EC0005BD75D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jack Wu (27G8KUK9T6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jack Wu (27G8KUK9T6)";
+				PROVISIONING_PROFILE = "C08E6CEE-201B-4283-947D-055213FEA103";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C08E6CEE-201B-4283-947D-055213FEA103";
 			};
 			name = Debug;
 		};
 		DCC1A0DE13A94EC0005BD75D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jack Wu (27G8KUK9T6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jack Wu (27G8KUK9T6)";
+				PROVISIONING_PROFILE = "C08E6CEE-201B-4283-947D-055213FEA103";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C08E6CEE-201B-4283-947D-055213FEA103";
 			};
 			name = Release;
 		};
