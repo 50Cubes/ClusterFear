@@ -7,6 +7,7 @@
 //
 
 #import "SGBatCluster.h"
+#import "SGBat.h"
 
 SGFoeStats * batStats=nil;
 
@@ -28,6 +29,9 @@ SGFoeStats * batStats=nil;
         health=batStats.stats.maxHealth;
         center.x=0;
         center.y=0;
+        for (int i=0; i<batStats.stats.maxCritters; ++i) {
+            [self addChild:[SGBat enemy]];
+        }
     }
     return self;
 }

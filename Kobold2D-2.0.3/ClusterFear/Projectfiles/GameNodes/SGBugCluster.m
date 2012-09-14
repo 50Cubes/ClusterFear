@@ -7,6 +7,7 @@
 //
 
 #import "SGBugCluster.h"
+#import "SGBug.h"
 
 SGFoeStats * bugStats=nil;
 
@@ -28,6 +29,9 @@ SGFoeStats * bugStats=nil;
         health=bugStats.stats.maxHealth;
         center.x=0;
         center.y=0;
+        for (int x=0; x<bugStats.stats.maxCritters; ++x) {
+            [self addChild:[SGBug enemy]];
+        }
     }
     return self;
 }
