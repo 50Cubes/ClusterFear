@@ -9,9 +9,10 @@
 #import "SGMover.h"
 #import "SGWeapon.h"
 
+#import "SGProjectile.h"
+
 @interface SGMover ()
 
--(void)initializeHealth:(int)newHealth;
 
 @end
 
@@ -60,6 +61,9 @@
 
 -(void)fireProjectile:(SGProjectile *)projectile
 {
+    [projectile setPosition:position_];
+    [projectile setRotation:rotation_];
+    
     [[self owner] mover:self firedProjectile:projectile];
 }
 
@@ -105,6 +109,17 @@
     [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
 }
 
+-(void)die
+{
+    [[self owner] moverPerished:self];
+    
+    [super die];
+}
+
+-(void)didDestroy:(SGDestroyable *)destroyable
+{
+    //yay i killed something
+}
 
 #pragma mark initialization
 
@@ -112,15 +127,6 @@
     SGMover *m = [self spriteWithFile:file];
     [m initializeHealth:startingHealth];
     return m;
-}
-
--(void)initializeHealth:(int)newHealth{
-    health = newHealth;
-}
-
--(void)removeFromParentAndDoCleanup
-{
-    [self removeFromParentAndCleanup:YES];
 }
 
 @end

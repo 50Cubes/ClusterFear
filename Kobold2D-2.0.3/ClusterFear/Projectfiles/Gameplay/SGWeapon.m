@@ -47,4 +47,9 @@
     
 }
 
+-(void)didDestroy:(SGDestroyable *)destroyable
+{
+    [[self owner] didDestroy:destroyable];
+}
+
 @end

@@ -8,6 +8,8 @@
 
 #import "SGEnemy.h"
 
+#import "SGRandomization.h"
+
 @implementation SGEnemy
 
 +(NSString *)imagePath
@@ -34,9 +36,29 @@
         [self runAction:[CCFadeIn actionWithDuration:1.0f]];
         [self scheduleOnce:@selector(crawl) delay:1.0f];
         
-        [self scheduleOnce:@selector(die) delay:15.0f];
+        [self scheduleOnce:@selector(die) delay:12.0f];
     }
     return self;
+}
+
+
+
+-(void)crawl
+{
+    CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
+    [self runAction:sequencedAction];
+}
+
+-(CCFiniteTimeAction *)nextAction
+{
+    float randomDirection = 2 * PI * CCRANDOM_0_1();
+    
+    float speed = [[self class] speed];
+    CGPoint moveDirection = CGPointMake(speed * sinf(randomDirection), speed * cosf(randomDirection));
+    
+    [self faceRelativePoint:moveDirection];
+    
+    return [CCMoveBy actionWithDuration:1.25f position:moveDirection];
 }
 
 @end

@@ -13,4 +13,7 @@
 +(SGEnemy *)enemy;
 +(NSString *)imagePath;
 
+
+-(CCFiniteTimeAction *)nextAction;
+
 @end

@@ -7,33 +7,44 @@
 //
 
 #import "SGDestroyable.h"
+#import "SGWeapon.h"
 
 @implementation SGDestroyable
 
-+(NSString *)filePath
++(NSString *)imagePath
 {
     return @"rock.png";
 }
 
 +(SGDestroyable *)destroyable
 {
-    return [self spriteWithFile:[self filePath]];
+    return [self spriteWithFile:[self imagePath]];
 }
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon{
-    health -= [weapon damageInflicted];
-    if(health <= 0){
+    health_ -= [weapon damageInflicted];
+    if(health_ <= 0){
+        [weapon didDestroy:self];
         [self die];
     }
+}
+
+
+-(void)initializeHealth:(int)newHealth{
+    health_ = newHealth;
 }
 
 -(void)die{
     [self stopAllActions];
     
-    [[self owner] moverPerished:self];
-    
-    CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:1.0f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
+    CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:0.5f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
     [self runAction:dieSequence];
+}
+
+
+-(void)removeFromParentAndDoCleanup
+{
+    [self removeFromParentAndCleanup:YES];
 }
 
 @end

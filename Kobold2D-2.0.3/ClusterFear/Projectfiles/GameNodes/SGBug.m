@@ -26,22 +26,4 @@
 //@synthesize speed = speed_;
 
 
--(void)crawl
-{
-    CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
-    [self runAction:sequencedAction];
-}
-
--(CCFiniteTimeAction *)nextAction
-{
-    float randomDirection = 2 * PI * CCRANDOM_0_1();
-    
-    float speed = [[self class] speed];
-    CGPoint moveDirection = CGPointMake(speed * sinf(randomDirection), speed * cosf(randomDirection));
-    
-    [self faceRelativePoint:moveDirection];
-    
-    return [CCMoveBy actionWithDuration:2.0f position:moveDirection];
-}
-
 @end

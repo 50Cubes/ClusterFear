@@ -10,6 +10,10 @@
 
 @implementation SGProjectile
 
++(float)range
+{
+    return 400.0f;
+}
 
 +(NSString *)projectileAsset
 {
@@ -28,6 +32,8 @@
 -(void)fired
 {
     
+    
+//    CCSequence *fireSequence = [CCSequence actionOne:[CCMoveBy] two:<#(CCFiniteTimeAction *)#>]
 }
 
 @end

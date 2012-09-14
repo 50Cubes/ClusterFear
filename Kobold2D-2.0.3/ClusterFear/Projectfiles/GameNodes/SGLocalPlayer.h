@@ -16,5 +16,6 @@
 
 +(id)playerWithFile:(NSString *)file health:(int)startingHealth andWeapon:(SGWeapon *)weapon;
 
+-(void)fireWeapon;
 
 @end

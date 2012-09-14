@@ -15,7 +15,10 @@
     int health_;
 }
 
++(NSString *)imagePath;
 +(SGDestroyable *)destroyable;
+
+-(void)initializeHealth:(int)health;
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon;
 -(void)die;

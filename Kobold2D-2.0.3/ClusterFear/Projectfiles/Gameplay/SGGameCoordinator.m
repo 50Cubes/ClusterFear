@@ -41,11 +41,6 @@
     self = [super init];
     if( self != nil )
     {
-        _enemyTypes = [CCArray arrayWithCapacity:2];
-        [_enemyTypes addObject:[SGBat class]];
-        [_enemyTypes addObject:[SGBug class]];
-        
-        [self generateRandomObstacles];
         
         _moverList = [NSMutableArray new];
         
@@ -70,6 +65,13 @@
         //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
         [self addChild:runActivator];
         
+        
+        _enemyTypes = [CCArray arrayWithCapacity:2];
+        [_enemyTypes addObject:[SGBat class]];
+        [_enemyTypes addObject:[SGBug class]];
+        
+        [self generateRandomObstacles];
+        [self schedule:@selector(spawnEnemies) interval:1.0f];
     }
     return self;
 }
@@ -83,7 +85,7 @@
     NSLog(@"Entering");
 }
 
-#define numObstacles 10
+#define numObstacles 25
 -(void)generateRandomObstacles
 {
     for( int count = 0; count < numObstacles; count++ )
@@ -103,11 +105,9 @@
         _enemyCount++;
         
         Class enemyClass = [_enemyTypes randomObject];
-        SGBug *testBug = [enemyClass enemy];
+        SGEnemy *testBug = [enemyClass enemy];
         
-        
-        
-        CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 768.0f, CCRANDOM_0_1() * 1024.0f );
+        CGPoint spawnPoint = SGRandomScreenPoint();
         
         [testBug setPosition:spawnPoint];
         
@@ -130,7 +130,8 @@
     if([runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
     }else{
-        [localPlayer turnToPoint:touchPoint];
+        [localPlayer facePoint:touchPoint];
+        [localPlayer fireWeapon];
     }
 }
 

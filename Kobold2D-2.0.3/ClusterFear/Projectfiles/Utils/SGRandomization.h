@@ -39,7 +39,7 @@ static float SGRandNormalized(void)
 
 static CGPoint SGRandomScreenPoint(void)
 {
-    return (CGPoint){.x=SGRandNormalized() * 768.0f, .y=SGRandNormalized() * 1024.0f};
+    return (CGPoint){.x=SGRandNormalized() * 1024.0f, .y=SGRandNormalized() * 768.0f};
 }
 
 #endif

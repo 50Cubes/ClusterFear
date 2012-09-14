@@ -10,9 +10,14 @@
 
 @implementation SGBat
 
-+(NSString *)filePath
++(NSString *)imagePath
 {
     return @"bat_large.png";
+}
+
++(float)speed
+{
+    return 100.0f;
 }
 
 @end
