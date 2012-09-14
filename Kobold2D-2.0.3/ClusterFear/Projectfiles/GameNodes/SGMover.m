@@ -27,9 +27,8 @@
     
     [super setPosition:position];
     
-    rotation *= 360.0f;
     if( rotation != rotation_ )
-        [self setRotation:rotation];
+        [self setRotation:CC_RADIANS_TO_DEGREES(rotation)];
 }
 
 @end

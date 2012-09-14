@@ -25,7 +25,7 @@
     self = [super initWithTexture:texture rect:rect rotated:rotated];
     if( self != nil )
     {
-        actionManager_ = [[CCActionManager alloc] init];
+//        actionManager_ = [[CCActionManager alloc] init];
         speed_ = 50.0f;
         
         [self scheduleOnce:@selector(crawl) delay:1.0f];
@@ -35,8 +35,8 @@
 
 -(void)crawl
 {
-//    CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
-    [self runAction:[self nextAction]];
+    CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
+    [self runAction:sequencedAction];
 }
 
 -(CCFiniteTimeAction *)nextAction
