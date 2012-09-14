@@ -29,6 +29,9 @@
     CCArray *_enemyTypes;
 }
 
+-(void)physicsSetup;
+-(void)physicsTick;
+
 @end
 
 @implementation SGGameCoordinator
@@ -131,6 +134,7 @@
         [localPlayer moveToPoint:touchPoint];
     }else{
         [localPlayer facePoint:touchPoint];
+
         [localPlayer fireWeapon];
     }
 }
@@ -147,6 +151,17 @@
 {
     [self addChild:projectile];
     [projectile fired];
+}
+
+#pragma mark physics
+
+-(void)physicsSetup{
+    physicalSpace = cpSpaceNew();
+    [self schedule:@selector(physicsTick)];
+}
+
+-(void)physicsTick{
+    cpSpaceStep(physicalSpace, [[CCDirector sharedDirector] secondsPerFrame]);
 }
 
 @end

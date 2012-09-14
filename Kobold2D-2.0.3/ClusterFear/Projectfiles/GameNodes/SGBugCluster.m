@@ -20,7 +20,7 @@ SGFoeStats * bugStats=nil;
 -(id)init{
     // Static init
     if (nil==bugStats) {
-        bugStats=[FoeCluster getStatsByClassName:@"SGBugCluster"];
+        bugStats=[SGFoeCluster getStatsByClassName:@"SGBugCluster"];
     }
     // Return nil if stats not found in LUA (maxHealth==0)
     self = bugStats.stats.maxHealth ? [super init] : nil;

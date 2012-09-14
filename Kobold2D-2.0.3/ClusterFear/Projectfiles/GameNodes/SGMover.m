@@ -13,7 +13,6 @@
 
 @interface SGMover ()
 
-
 @end
 
 @implementation SGMover
@@ -27,7 +26,6 @@
 {
     return YES;
 }
-
 
 //-(void)setPosition:(CGPoint)position
 //{

@@ -28,7 +28,7 @@
 		C11713571603DBF900208448 /* SGBat.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713561603DBF900208448 /* SGBat.m */; };
 		C117135A1603DC3A00208448 /* SGObstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713591603DC3A00208448 /* SGObstacle.m */; };
 		C117135D1603DC8000208448 /* SGDestroyable.m in Sources */ = {isa = PBXBuildFile; fileRef = C117135C1603DC8000208448 /* SGDestroyable.m */; };
-		C18411D01602D906007F06A6 /* FoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* FoeCluster.m */; };
+		C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* SGFoeCluster.m */; };
 		DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */; };
 		DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615013A969B600A7AC53 /* libbox2d-ios.a */; };
 		DC65615D13A969B600A7AC53 /* libchipmunk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615113A969B600A7AC53 /* libchipmunk-ios.a */; };
@@ -99,8 +99,8 @@
 		C11713591603DC3A00208448 /* SGObstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGObstacle.m; path = GameNodes/SGObstacle.m; sourceTree = "<group>"; };
 		C117135B1603DC8000208448 /* SGDestroyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDestroyable.h; path = GameNodes/SGDestroyable.h; sourceTree = "<group>"; };
 		C117135C1603DC8000208448 /* SGDestroyable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDestroyable.m; path = GameNodes/SGDestroyable.m; sourceTree = "<group>"; };
-		C18411CE1602D906007F06A6 /* FoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoeCluster.h; sourceTree = "<group>"; };
-		C18411CF1602D906007F06A6 /* FoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoeCluster.m; sourceTree = "<group>"; };
+		C18411CE1602D906007F06A6 /* SGFoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFoeCluster.h; sourceTree = "<group>"; };
+		C18411CF1602D906007F06A6 /* SGFoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFoeCluster.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-hd.png"; path = "Resources/fps_images-hd.png"; sourceTree = "<group>"; };
 		DC65615013A969B600A7AC53 /* libbox2d-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +218,8 @@
 		C117132016037C5700208448 /* BaseClasses */ = {
 			isa = PBXGroup;
 			children = (
+				C18411CE1602D906007F06A6 /* SGFoeCluster.h */,
+				C18411CF1602D906007F06A6 /* SGFoeCluster.m */,
 				C117131D1603786A00208448 /* SGMover.h */,
 				C117131E1603786A00208448 /* SGMover.m */,
 				C117132A160393A200208448 /* SGGameCoordinator.h */,
@@ -338,8 +340,6 @@
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
-				C18411CE1602D906007F06A6 /* FoeCluster.h */,
-				C18411CF1602D906007F06A6 /* FoeCluster.m */,
 			);
 			path = Projectfiles;
 			sourceTree = "<group>";
@@ -471,7 +471,7 @@
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				DC81EAA9141280D400735365 /* TileMapLayer.m in Sources */,
-				C18411D01602D906007F06A6 /* FoeCluster.m in Sources */,
+				C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */,
 				C117131F1603786A00208448 /* SGMover.m in Sources */,
 				C117132416037C7C00208448 /* SGBug.m in Sources */,
 				C11713291603886600208448 /* SGLocalPlayer.m in Sources */,
