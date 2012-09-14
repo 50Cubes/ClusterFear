@@ -57,7 +57,7 @@
 
 -(void)spawnEnemies
 {
-    SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
+    SGBug *testBug = [SGBug spriteWithFile:@"spider.png"];
     
     
     
