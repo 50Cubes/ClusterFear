@@ -21,7 +21,7 @@ typedef struct {
 -(id)init:(SGFoeStats_ const *)stat;
 @end
 
-@interface FoeCluster : CCNode
+@interface SGFoeCluster : CCNode
 
 @property(nonatomic, readonly)CGPoint center;
 

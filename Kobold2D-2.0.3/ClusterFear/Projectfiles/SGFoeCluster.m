@@ -6,11 +6,11 @@
 //
 //
 
-#import "FoeCluster.h"
+#import "SGFoeCluster.h"
 #define EXPECTED_NUM_CLUSTER_TYPES 5
 static NSMutableDictionary *statDict=nil;
 
-@implementation FoeCluster
+@implementation SGFoeCluster
 +(SGFoeStats*)getStatsByClassName:(NSString *)name{
     if(nil == statDict){
         statDict = [NSMutableDictionary dictionaryWithCapacity:EXPECTED_NUM_CLUSTER_TYPES];
