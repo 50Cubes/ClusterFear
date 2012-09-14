@@ -47,6 +47,7 @@
 		DCC1A3AD13A94F1A005BD75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A39113A94F1A005BD75D /* main.m */; };
 		DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
 		DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528AB16039BBA001D09D3 /* SGWeapon.m */; };
+		DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528B81603B9E8001D09D3 /* SGRunActivator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,8 @@
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
 		DFD528AA16039BBA001D09D3 /* SGWeapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGWeapon.h; path = Gameplay/SGWeapon.h; sourceTree = "<group>"; };
 		DFD528AB16039BBA001D09D3 /* SGWeapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGWeapon.m; path = Gameplay/SGWeapon.m; sourceTree = "<group>"; };
+		DFD528B71603B9E8001D09D3 /* SGRunActivator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGRunActivator.h; path = Gameplay/SGRunActivator.h; sourceTree = "<group>"; };
+		DFD528B81603B9E8001D09D3 /* SGRunActivator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGRunActivator.m; path = Gameplay/SGRunActivator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				DFD528AB16039BBA001D09D3 /* SGWeapon.m */,
 				C117133A1603B98E00208448 /* SGProjectile.h */,
 				C117133B1603B98F00208448 /* SGProjectile.m */,
+				DFD528B71603B9E8001D09D3 /* SGRunActivator.h */,
+				DFD528B81603B9E8001D09D3 /* SGRunActivator.m */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				C117132C160393A200208448 /* SGGameCoordinator.m in Sources */,
 				DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */,
 				C117133C1603B98F00208448 /* SGProjectile.m in Sources */,
+				DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

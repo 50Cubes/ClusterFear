@@ -108,8 +108,9 @@
     rotation = CC_RADIANS_TO_DEGREES(rotation);
     if( rotation != rotation_ )
     {
-        [self setRotation:rotation];
+        //[self setRotation:rotation];
         //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
+        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:rotation]];
     }
 }
 
@@ -119,6 +120,7 @@
     
     [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
 }
+
 
 #pragma mark initialization
 
