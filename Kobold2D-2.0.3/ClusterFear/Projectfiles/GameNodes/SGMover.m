@@ -25,12 +25,15 @@
     xDirection -= position_.x;
     yDirection -= position_.y;
     
+    if( isnan(xDirection) || isnan(yDirection) )
+        NSLog(@"Invalid position");
+    
     float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
     
     xDirection /= magnitude;
     yDirection /= magnitude;
     
-    float rotation = atanf((xDirection == 0) ? 0.0f : yDirection/xDirection);
+    float rotation = atan2f(yDirection,xDirection);
     
     CCLOG(@"rotation is: %f", rotation);
     
