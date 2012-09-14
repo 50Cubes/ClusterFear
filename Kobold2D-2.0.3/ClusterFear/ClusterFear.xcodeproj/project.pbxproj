@@ -43,6 +43,8 @@
 		DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A38E13A94F1A005BD75D /* AppDelegate.m */; };
 		DCC1A3AD13A94F1A005BD75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A39113A94F1A005BD75D /* main.m */; };
 		DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
+		DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528AB16039BBA001D09D3 /* SGWeapon.m */; };
+		DFD528B21603AC4E001D09D3 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD528B11603AC4E001D09D3 /* soldier.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,10 +95,12 @@
 		DCC1A38E13A94F1A005BD75D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DCC1A39113A94F1A005BD75D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCC1A39213A94F1A005BD75D /* Prefix-iOS.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefix-iOS.pch"; sourceTree = "<group>"; };
-		DCC1A39313A94F1A005BD75D /* Prefix-Mac.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefix-Mac.pch"; sourceTree = "<group>"; };
 		DCC1A39513A94F1A005BD75D /* config.lua */ = {isa = PBXFileReference; explicitFileType = sourcecode.applescript; fileEncoding = 4; path = config.lua; sourceTree = "<group>"; };
 		DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
+		DFD528AA16039BBA001D09D3 /* SGWeapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGWeapon.h; path = Gameplay/SGWeapon.h; sourceTree = "<group>"; };
+		DFD528AB16039BBA001D09D3 /* SGWeapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGWeapon.m; path = Gameplay/SGWeapon.m; sourceTree = "<group>"; };
+		DFD528B11603AC4E001D09D3 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,8 @@
 				C117131E1603786A00208448 /* SGMover.m */,
 				C117132A160393A200208448 /* SGGameCoordinator.h */,
 				C117132B160393A200208448 /* SGGameCoordinator.m */,
+				DFD528AA16039BBA001D09D3 /* SGWeapon.h */,
+				DFD528AB16039BBA001D09D3 /* SGWeapon.m */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -241,6 +247,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DFD528B11603AC4E001D09D3 /* soldier.png */,
 				DC81EAAB141281CE00735365 /* alien-sfx.caf */,
 				DC81EAB0141281CE00735365 /* game-events.png */,
 				DC81EAB1141281CE00735365 /* orthogonal.tmx */,
@@ -256,7 +263,6 @@
 			children = (
 				DCC1A39113A94F1A005BD75D /* main.m */,
 				DCC1A39213A94F1A005BD75D /* Prefix-iOS.pch */,
-				DCC1A39313A94F1A005BD75D /* Prefix-Mac.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 				DC81EAC5141281CE00735365 /* fx-explosion.plist in Resources */,
 				DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */,
 				DC65618F15114CB400E59F8A /* fps_images-ipadhd.png in Resources */,
+				DFD528B21603AC4E001D09D3 /* soldier.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +365,7 @@
 				C117132416037C7C00208448 /* SGBug.m in Sources */,
 				C11713291603886600208448 /* SGLocalPlayer.m in Sources */,
 				C117132C160393A200208448 /* SGGameCoordinator.m in Sources */,
+				DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

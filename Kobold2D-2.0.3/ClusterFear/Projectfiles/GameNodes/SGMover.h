@@ -8,6 +8,17 @@
 
 #import "CCSprite.h"
 
-@interface SGMover : CCSprite
+@class SGWeapon;
+
+@interface SGMover : CCSprite{
+    int health;
+}
+
++(id)moverWithFile:(NSString *)file andHealth:(int)startingHealth;
+
+-(void)getHitFromWeapon:(SGWeapon *)weapon;
+-(void)die;
+
+-(void)moveToPoint:(CGPoint)targetPoint;
 
 @end

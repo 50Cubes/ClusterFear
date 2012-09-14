@@ -34,11 +34,11 @@
 		//tileMap.position = CGPointMake(-160, -120);
 
 		// hide the event layer, we only need this information for code, not to display it
-		CCTMXLayer* eventLayer = [tileMap layerNamed:@"GameEventLayer"];
-		eventLayer.visible = NO;
+		//CCTMXLayer* eventLayer = [tileMap layerNamed:@"GameEventLayer"];
+		//eventLayer.visible = NO;
 
-		CCTMXLayer* winterLayer = [tileMap layerNamed:@"WinterLayer"];
-		winterLayer.visible = NO;
+		//CCTMXLayer* winterLayer = [tileMap layerNamed:@"WinterLayer"];
+		//winterLayer.visible = NO;
 
 #if KK_PLATFORM_IOS
 		self.isTouchEnabled = YES;
@@ -64,7 +64,7 @@
 	pos.x = (int)(pos.x / scaledWidth);
 	pos.y = (int)((tileMap.mapSize.height * tileMap.tileSize.height - pos.y) / scaledHeight);
 	
-	CCLOG(@"touch at (%.0f, %.0f) is at tileCoord (%i, %i)", location.x, location.y, (int)pos.x, (int)pos.y);
+	//CCLOG(@"touch at (%.0f, %.0f) is at tileCoord (%i, %i)", location.x, location.y, (int)pos.x, (int)pos.y);
 	
 	// make sure coordinates are within bounds
 	pos.x = fminf(fmaxf(pos.x, 0), tileMap.mapSize.width - 1);
@@ -72,37 +72,6 @@
 	
 	return pos;
 }
-
-/*
--(void) centerTileMapOnTileCoord:(CGPoint)tilePos tileMap:(CCTMXTiledMap*)tileMap
-{
-	// center tilemap on the given tile pos
-	CGSize screenSize = [[CCDirector sharedDirector] winSize];
-	CGPoint screenCenter = CGPointMake(screenSize.width * 0.5f, screenSize.height * 0.5f);
-	
-	// tile coordinates are counted from upper left corner, this maps coordinates to lower left corner
-	tilePos.y = (tileMap.mapSize.height - 1) - tilePos.y;
-	
-	// point is now at lower left corner of the screen
-	CGPoint scrollPosition = CGPointMake(-(tilePos.x * tileMap.tileSize.width), 
-										  -(tilePos.y * tileMap.tileSize.height));
-	
-	// offset point to center of screen and center of tile
-	scrollPosition.x += screenCenter.x - tileMap.tileSize.width * 0.5f;
-	scrollPosition.y += screenCenter.y - tileMap.tileSize.height * 0.5f;
-
-	// make sure tilemap scrolling stops at the tilemap borders
-	scrollPosition.x = MIN(scrollPosition.x, 0);
-	scrollPosition.x = MAX(scrollPosition.x, -screenSize.width);
-	scrollPosition.y = MIN(scrollPosition.y, 0);
-	scrollPosition.y = MAX(scrollPosition.y, -screenSize.height);
-	
-	CCLOG(@"tilePos: (%i, %i) moveTo: (%.0f, %.0f)", (int)tilePos.x, (int)tilePos.y, scrollPosition.x, scrollPosition.y);
-	
-	CCAction* move = [CCMoveTo actionWithDuration:0.2f position:scrollPosition];
-	[tileMap stopAllActions];
-	[tileMap runAction:move];
-}//*/
 
 -(CGRect) getRectFromObjectProperties:(NSDictionary*)dict tileMap:(CCTMXTiledMap*)tileMap
 {
@@ -143,53 +112,8 @@
 		}
 	}
 	
-	// Check if the touch was within one of the rectangle objects
-	CCTMXObjectGroup* objectLayer = [tileMap objectGroupNamed:@"ObjectLayer"];
-	NSAssert([objectLayer isKindOfClass:[CCTMXObjectGroup class]], @"ObjectLayer not found or not a CCTMXObjectGroup");
-	
-	bool isTouchInRectangle = NO;
-	NSUInteger numObjects = [[objectLayer objects] count];
-	for (NSUInteger i = 0; i < numObjects; i++)
-	{
-		NSDictionary* properties = [[objectLayer objects] objectAtIndex:i];
-		CGRect rect = [self getRectFromObjectProperties:properties tileMap:tileMap];
-		
-		if (CGRectContainsPoint(rect, location))
-		{
-			isTouchInRectangle = YES;
-			break;
-		}
-	}
-	
-	// decide what to do depending on where the touch was ...
-	if (isTouchOnWater)
-	{
-		[[SimpleAudioEngine sharedEngine] playEffect:@"alien-sfx.caf"];
-	}
-	else if (isTouchInRectangle)
-	{
-		CCParticleSystem* system = [CCParticleSystemQuad particleWithFile:@"fx-explosion.plist"];
-		system.autoRemoveOnFinish = YES;
-		system.position = location;
-		[self addChild:system z:1];
-	}
-	else
-	{
-		/*
-		// get the winter layer and toggle its visibility
-		CCTMXLayer* winterLayer = [tileMap layerNamed:@"WinterLayer"];
-		winterLayer.visible = !winterLayer.visible;
-		
-		// remove the touched tile
-		[winterLayer removeTileAt:tilePos];
-		
-		// adds a given tile
-		tileGID = [winterLayer tileGIDAt:CGPointMake(0, 19)];
-		[winterLayer setTileGID:tileGID at:tilePos];
-		*/
-	}
-    
     [[self delegate] touchAtPoint:location inTile:tilePos];
+
 }
 
 
@@ -219,7 +143,7 @@
 
 #endif
 
-
+/*
 
 #ifdef DEBUG
 -(void) drawRect:(CGRect)rect
@@ -261,6 +185,6 @@
 	CGPoint center = CGPointMake(screenSize.width * 0.5f, screenSize.height * 0.5f);
 	ccDrawCircle(center, 10, 0, 8, NO);
 }
-#endif
+#endif//*/
 
 @end

@@ -26,22 +26,7 @@
    <property name="Chapter" value="10"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztlk1OwzAQhb1iEZYtRe6S8lOJBctIrQotS4R6ASR6CCQKNwAhKiFxCW6JLb2nvk7HDgdg8SmJk3g+jz1OmhBCk5iBBkzkvJVz5SJxkvhMfICnxDngc3OwALeJB4M6WJdNIT7b6fEOhxE8Rs476rGoeEzk3PbRmiOfoQdj8+jlwubE8yjRCnauGsk/sQ6eB7EeYyf/On7NVes8U0Jj9oWax1jep9MkbNeLzYu3Vkpj74d9j77j8QUPXRfMA3OhOekae82BHgPH41tcmBfGHoCZaVffiL57hbh/9bgEB0DnyKtlEuHRE7ocBvBoCh55jecaPMW1ejwKXA/RxCfMn3ppe83jLXEmDjo3S4z5OfGDtql4TGReyKCAzovnkfehEWAuDsESecgOr/BZiYetH7p0rY/SvBCtmzyGY7hMEX+F+8PE3R89jkCXh46f9RrhEcFUzumQuTceC8flKOy61Dy4P0SJwbU2hAeveT9WPOxcWI+543EFNjLWIa41bk/aY9iv465cqIf3nbO1R48Ydvd1zovWtO6x1sNzqHkwH4yjMXOs67D/f6L7vvVYVOLzvueR+8r1yLpsw/bbRQ+FHvZfRddGKQe1/6Ace514EdYgx70xMLbWLPumg90vrIP3X/jPPzV+Ae3mr3I=
-  </data>
- </layer>
- <layer name="WinterLayer" width="34" height="24" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJztk81Kw0AUhbNykW1AyNbfQh8gEOkLdOPKmprGRQV/pn0QV4LgS/iW3oFz8HBNBOG668BHZybTOV/uTMqiKEpjAUrQSr+RfgTXxc+mDt7lbWKfqfm/MOXRSt//p3G/Y2siPKZoBH9W0R6zkTrr+2utmpE1kR4zeU6ntvi+L74uEXfFt3d46JmzDqyF1uS/zuVDXFgXZh+DhZtX3zrIYw6OgJ7R2LdManhUgR4XxqVxhrF63Au8DzXySYTHq3EuDno2L3jnzvjE3JWRkL9BP8LjxDgFrMUtyB5bOHRg6zxugjzmQq5Fb6yMR5BdBuMB5Oy9sQz2WAk9SHBIYJA+HZZYE+mh+czgHdzDg2M+3wV7PINe3nWHseZWMp+QTyI8Kgc9ktSJ2ZrP+SiPJ8Cc3vU3zscT5ZH36gTdnx6Kfx7lkbPXxp2wBjl3cHiHKI9DO7Tf2heL/lkM
-  </data>
- </layer>
- <objectgroup name="ObjectLayer" width="34" height="24">
-  <object x="283" y="317" width="103" height="71"/>
-  <object x="-3" y="287" width="130" height="127"/>
-  <object x="0" y="571" width="538" height="68"/>
- </objectgroup>
- <layer name="GameEventLayer" width="34" height="24" visible="0" opacity="0.62">
-  <data encoding="base64" compression="zlib">
-   eJztk0EOgDAIBPv/t7S+0YsmpMJCKfRg2ISbdka6tlapyLkOMAYZ5JHpMtrXg/PJ9JgdLPvw+PRnJOaOh8Wlk7HykcOOB+Ks8CM86F60ZPSDeiBmZk9pLyI9OIY275mZHvN70n+BeuHx4L5VY2vd9Hhwz6I7sSRiH6tMq8fplEPlz7kBZ+uPLg==
+   eJztwwEJAAAMBKHrX+OLLsdAwVVTVVV98AAUOwev
   </data>
  </layer>
 </map>

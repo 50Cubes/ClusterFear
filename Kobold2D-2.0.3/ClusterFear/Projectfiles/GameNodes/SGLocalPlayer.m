@@ -7,12 +7,26 @@
 //
 
 #import "SGLocalPlayer.h"
+#import "SGWeapon.h"
+
+@interface SGLocalPlayer ()
+
+-(void)initializeWeapon:(SGWeapon *)newWeapon;
+
+@end
 
 @implementation SGLocalPlayer
 
--(void)moveToPoint:(CGPoint)targetPoint
-{
-    [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
++(id)playerWithFile:(NSString *)file health:(int)startingHealth andWeapon:(SGWeapon *)weapon{
+    SGLocalPlayer *p = [self moverWithFile:file andHealth:startingHealth];
+    [p initializeWeapon:weapon];
+    return p;
+}
+
+
+
+-(void)initializeWeapon:(SGWeapon *)newWeapon{
+    weapon = newWeapon;
 }
 
 @end
