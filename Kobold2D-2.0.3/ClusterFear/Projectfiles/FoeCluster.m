@@ -11,8 +11,8 @@
 
 
 @implementation FoeCluster
-+(SGFoeStats)getStatsByClassName:(NSString *)name{
-    SGFoeStats ret; // TODO Cache by name instead of re-fetching every time
++(SGFoeStats*)getStatsByClassName:(NSString *)name{
+    SGFoeStats_ ret; // TODO Cache by name instead of re-fetching every time
     // Build path string
     NSString* configPath = [NSString stringWithFormat:@"%@%@",@"SGFoeStats.",name];
     // Set the config lookup path
@@ -27,6 +27,19 @@
         ret.damage = -1;
         ret.maxHealth = 0;
     }
-    return ret;
+    return [[SGFoeStats alloc]init:&ret];
 }
+@end
+
+@implementation SGFoeStats
+
+@synthesize stats;
+
+-(id)init:(SGFoeStats_ const *)stat{
+    if(self=[super init]){
+        self.stats=(*stat);
+    }
+    return self;
+}
+
 @end

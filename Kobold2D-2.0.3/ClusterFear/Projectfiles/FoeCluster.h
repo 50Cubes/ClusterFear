@@ -13,7 +13,13 @@ typedef struct {
     int maxCritters;
     int damage;
     int moveSpeed;
-} SGFoeStats;
+} SGFoeStats_;
+
+@interface SGFoeStats : NSObject
+@property(nonatomic, readwrite)SGFoeStats_ stats;
+
+-(id)init:(SGFoeStats_ const *)stat;
+@end
 
 @interface FoeCluster : CCNode
 
@@ -24,6 +30,6 @@ typedef struct {
 @property(nonatomic, readonly)NSUInteger health;
 @property(nonatomic, readonly)NSUInteger damage;
 
-+(SGFoeStats) getStatsByClassName:(NSString*)name;
++(SGFoeStats*) getStatsByClassName:(NSString*)name;
 @end
 
