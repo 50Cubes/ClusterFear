@@ -22,16 +22,34 @@
         
         [tileMapLayer setDelegate:self];
         [self setTileLayer:tileMapLayer];
+        [tileMapLayer setSize:[self size]];
+        
         [self addChild:tileMapLayer];
+        
+        [self spawnEnemies];
+        [self schedule:@selector(spawnEnemies) interval:5.0f];
     }
     return self;
+}
+
+-(void)onEnter
+{
+    [super onEnter];
+    
+    NSLog(@"Entering");
 }
 
 -(void)spawnEnemies
 {
     SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
     
-    [[self tileLayer] addChild:testBug];
+    
+    
+    CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 1024.0f, CCRANDOM_0_1() * 768.0f );
+    
+    [testBug setPosition:spawnPoint];
+    
+    [self addChild:testBug];
 }
 
 

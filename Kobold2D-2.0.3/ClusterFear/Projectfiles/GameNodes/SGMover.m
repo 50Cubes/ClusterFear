@@ -23,9 +23,11 @@
     xDirection /= magnitude;
     yDirection /= magnitude;
     
-    float rotation = atanf(yDirection/xDirection);
+    float rotation = atanf((xDirection == 0) ? 0.0f : yDirection/xDirection);
     
     [super setPosition:position];
+    
+    rotation *= 360.0f;
     if( rotation != rotation_ )
         [self setRotation:rotation];
 }
