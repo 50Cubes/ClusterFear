@@ -8,6 +8,8 @@
 
 #import "SGGameCoordinator.h"
 
+#import "SGRandomization.h"
+
 #import "SGBug.h"
 #import "TileMapLayer.h"
 #import "SGLocalPlayer.h"
@@ -16,9 +18,15 @@
 
 #import "SGProjectile.h"
 
+#import "SGObstacle.h"
+
+#import "SGBat.h"
+
 @interface SGGameCoordinator ()
 {
     NSMutableArray *_moverList;
+    
+    CCArray *_enemyTypes;
 }
 
 -(void)physicsSetup;
@@ -36,6 +44,7 @@
     self = [super init];
     if( self != nil )
     {
+        
         _moverList = [NSMutableArray new];
         
         TileMapLayer *tileMapLayer = [TileMapLayer node];
@@ -59,6 +68,13 @@
         //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
         [self addChild:runActivator];
         
+        
+        _enemyTypes = [CCArray arrayWithCapacity:2];
+        [_enemyTypes addObject:[SGBat class]];
+        [_enemyTypes addObject:[SGBug class]];
+        
+        [self generateRandomObstacles];
+        [self schedule:@selector(spawnEnemies) interval:1.0f];
     }
     return self;
 }
@@ -72,17 +88,29 @@
     NSLog(@"Entering");
 }
 
+#define numObstacles 25
+-(void)generateRandomObstacles
+{
+    for( int count = 0; count < numObstacles; count++ )
+    {
+        SGObstacle *newObstacle = [SGObstacle obstacle];
+        
+        [newObstacle setPosition:SGRandomScreenPoint()];
+        
+        [self addChild:newObstacle];
+    }
+}
+
 -(void)spawnEnemies
 {
     if( _enemyCount < 10 )
     {
         _enemyCount++;
         
-        SGBug *testBug = [SGBug spriteWithFile:@"spider.png"];
+        Class enemyClass = [_enemyTypes randomObject];
+        SGEnemy *testBug = [enemyClass enemy];
         
-        
-        
-        CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 768.0f, CCRANDOM_0_1() * 1024.0f );
+        CGPoint spawnPoint = SGRandomScreenPoint();
         
         [testBug setPosition:spawnPoint];
         
@@ -106,6 +134,8 @@
         [localPlayer moveToPoint:touchPoint];
     }else{
         [localPlayer facePoint:touchPoint];
+
+        [localPlayer fireWeapon];
     }
 }
 

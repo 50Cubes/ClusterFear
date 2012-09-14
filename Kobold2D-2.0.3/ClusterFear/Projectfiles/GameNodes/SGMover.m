@@ -9,10 +9,9 @@
 #import "SGMover.h"
 #import "SGWeapon.h"
 
-@interface SGMover ()
+#import "SGProjectile.h"
 
--(void)initializeHealth:(int)newHealth;
--(void)initializeShape;
+@interface SGMover ()
 
 @end
 
@@ -27,8 +26,6 @@
 {
     return YES;
 }
-
-@synthesize movingShape;
 
 //-(void)setPosition:(CGPoint)position
 //{
@@ -62,23 +59,10 @@
 
 -(void)fireProjectile:(SGProjectile *)projectile
 {
+    [projectile setPosition:position_];
+    [projectile setRotation:rotation_];
+    
     [[self owner] mover:self firedProjectile:projectile];
-}
-
--(void)getHitFromWeapon:(SGWeapon *)weapon{
-    health -= [weapon damageInflicted];
-    if(health <= 0){
-        [self die];
-    }
-}
-
--(void)die{
-    [self stopAllActions];
-    
-    [[self owner] moverPerished:self];
-    
-    CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:1.0f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
-    [self runAction:dieSequence];
 }
 
 
@@ -123,33 +107,24 @@
     [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
 }
 
+-(void)die
+{
+    [[self owner] moverPerished:self];
+    
+    [super die];
+}
+
+-(void)didDestroy:(SGDestroyable *)destroyable
+{
+    //yay i killed something
+}
 
 #pragma mark initialization
 
 +(id)moverWithFile:(NSString *)file andHealth:(int)startingHealth{
     SGMover *m = [self spriteWithFile:file];
     [m initializeHealth:startingHealth];
-    [m initializeShape];
     return m;
 }
-
--(void)initializeHealth:(int)newHealth{
-    health = newHealth;
-}
-
--(void)initializeShape{
-    movingShape = cpCircleShapeNew(cpBodyNew(25, INFINITY), 20.0, cpvzero);
-    movingShape->e = 0.5;
-    movingShape->u = 0.8;
-    movingShape->collision_type = 1;
-    movingShape->data = (__bridge void *)self;
-}
-
-
--(void)removeFromParentAndDoCleanup
-{
-    [self removeFromParentAndCleanup:YES];
-}
-
 
 @end

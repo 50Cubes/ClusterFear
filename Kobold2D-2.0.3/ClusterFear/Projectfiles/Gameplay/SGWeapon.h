@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class SGMover;
+@class SGDestroyable;
 
 @interface SGWeapon : NSObject{
     int damageInflicted;
@@ -26,5 +27,6 @@
 
 
 -(void)fire;
+-(void)didDestroy:(SGDestroyable *)killedMover;
 
 @end

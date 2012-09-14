@@ -7,10 +7,13 @@
 //
 
 #import "CCSprite.h"
+#import "SGmover.h"
 
 @class SGWeapon;
 
 @interface SGProjectile : CCSprite
+
++(float)range;
 
 +(NSString *)projectileAsset;
 +(SGProjectile *)projectileForWeapon:(SGWeapon *)weapon;

@@ -37,4 +37,9 @@ static float SGRandNormalized(void)
     return (float)(SGRand()/4294967296.0);
 }
 
+static CGPoint SGRandomScreenPoint(void)
+{
+    return (CGPoint){.x=SGRandNormalized() * 1024.0f, .y=SGRandNormalized() * 768.0f};
+}
+
 #endif

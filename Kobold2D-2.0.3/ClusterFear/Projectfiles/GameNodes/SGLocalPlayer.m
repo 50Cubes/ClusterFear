@@ -34,4 +34,9 @@
     weapon = newWeapon;
 }
 
+-(void)fireWeapon
+{
+    [weapon fire];
+}
+
 @end
