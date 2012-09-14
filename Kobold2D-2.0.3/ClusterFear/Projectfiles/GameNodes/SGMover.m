@@ -80,7 +80,7 @@
     
     //    [super setPosition:position];
     
-    rotation = CC_RADIANS_TO_DEGREES(rotation) - 90.0f;
+    rotation = CC_RADIANS_TO_DEGREES(rotation);
     if( rotation != rotation_ )
     {
         [self setRotation:rotation];
