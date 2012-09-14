@@ -16,10 +16,10 @@
 
 +(id) node
 {
-	CCScene *scene = [CCScene node];
-	TileMapLayer *layer = [TileMapLayer node];
-	[scene addChild: layer];
-	return scene;
+//	CCScene *scene = [CCScene node];
+	TileMapLayer *layer = [[TileMapLayer alloc] init];
+//	[scene addChild: layer];
+	return layer;
 }
 
 -(id) init
@@ -50,13 +50,6 @@
 	}
 
 	return self;
-}
-
--(void)loadEnemies
-{
-    SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
-    
-    [self addChild:testBug];
 }
 
 -(CGPoint) tilePosFromLocation:(CGPoint)location tileMap:(CCTMXTiledMap*)tileMap
@@ -195,6 +188,8 @@
 		[winterLayer setTileGID:tileGID at:tilePos];
 		*/
 	}
+    
+    [[self delegate] touchAtPoint:location inTile:tilePos];
 }
 
 
