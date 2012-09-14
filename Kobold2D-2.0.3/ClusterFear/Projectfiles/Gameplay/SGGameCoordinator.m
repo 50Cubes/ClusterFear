@@ -53,7 +53,7 @@
     
     
     
-    CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 1024.0f, CCRANDOM_0_1() * 768.0f );
+    CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 768.0f, CCRANDOM_0_1() * 1024.0f );
     
     [testBug setPosition:spawnPoint];
     

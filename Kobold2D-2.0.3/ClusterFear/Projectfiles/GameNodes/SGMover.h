@@ -19,6 +19,8 @@
 -(void)getHitFromWeapon:(SGWeapon *)weapon;
 -(void)die;
 
+-(void)facePoint:(CGPoint)pointToFace;
+-(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection;
 -(void)moveToPoint:(CGPoint)targetPoint;
 
 @end
