@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB51603B5C800B9D0A2 /* soldier.png */; };
 		C117131F1603786A00208448 /* SGMover.m in Sources */ = {isa = PBXBuildFile; fileRef = C117131E1603786A00208448 /* SGMover.m */; };
 		C117132416037C7C00208448 /* SGBug.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132316037C7C00208448 /* SGBug.m */; };
 		C11713291603886600208448 /* SGLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713281603886600208448 /* SGLocalPlayer.m */; };
@@ -44,10 +45,10 @@
 		DCC1A3AD13A94F1A005BD75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A39113A94F1A005BD75D /* main.m */; };
 		DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
 		DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528AB16039BBA001D09D3 /* SGWeapon.m */; };
-		DFD528B21603AC4E001D09D3 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD528B11603AC4E001D09D3 /* soldier.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C616EB51603B5C800B9D0A2 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 		C117131D1603786A00208448 /* SGMover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMover.h; path = GameNodes/SGMover.h; sourceTree = "<group>"; };
 		C117131E1603786A00208448 /* SGMover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMover.m; path = GameNodes/SGMover.m; sourceTree = "<group>"; };
 		C117132216037C7C00208448 /* SGBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBug.h; path = GameNodes/SGBug.h; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
 		DFD528AA16039BBA001D09D3 /* SGWeapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGWeapon.h; path = Gameplay/SGWeapon.h; sourceTree = "<group>"; };
 		DFD528AB16039BBA001D09D3 /* SGWeapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGWeapon.m; path = Gameplay/SGWeapon.m; sourceTree = "<group>"; };
-		DFD528B11603AC4E001D09D3 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +124,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C616EAD1603B0FC00B9D0A2 /* enemies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = enemies;
+			path = "../../Projectfiles-iOS";
+			sourceTree = "<group>";
+		};
+		7C616EAF1603B10200B9D0A2 /* player */ = {
+			isa = PBXGroup;
+			children = (
+				7C616EB51603B5C800B9D0A2 /* soldier.png */,
+			);
+			name = player;
+			path = "../../Projectfiles-iOS";
+			sourceTree = "<group>";
+		};
+		7C616EB01603B10700B9D0A2 /* obstacles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = obstacles;
+			path = "../../Projectfiles-iOS";
+			sourceTree = "<group>";
+		};
 		C117131B1603755E00208448 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +272,9 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DFD528B11603AC4E001D09D3 /* soldier.png */,
+				7C616EB01603B10700B9D0A2 /* obstacles */,
+				7C616EAF1603B10200B9D0A2 /* player */,
+				7C616EAD1603B0FC00B9D0A2 /* enemies */,
 				DC81EAAB141281CE00735365 /* alien-sfx.caf */,
 				DC81EAB0141281CE00735365 /* game-events.png */,
 				DC81EAB1141281CE00735365 /* orthogonal.tmx */,
@@ -346,7 +373,7 @@
 				DC81EAC5141281CE00735365 /* fx-explosion.plist in Resources */,
 				DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */,
 				DC65618F15114CB400E59F8A /* fps_images-ipadhd.png in Resources */,
-				DFD528B21603AC4E001D09D3 /* soldier.png in Resources */,
+				7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
