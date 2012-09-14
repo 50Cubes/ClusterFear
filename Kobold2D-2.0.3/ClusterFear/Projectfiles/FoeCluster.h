@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface FoeCluster : CCNode
-- (NSNumber*) health;
-- (NSNumber*) damage;
+
+@property(nonatomic, readonly)CGPoint center;
+
+@property(nonatomic, readonly)NSUInteger minionCount;
+
+@property(nonatomic, readonly)NSUInteger health;
+@property(nonatomic, readonly)NSUInteger damage;
 
 @end

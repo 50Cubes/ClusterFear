@@ -8,6 +8,10 @@
 #import "TileMapLayer.h"
 #import "SimpleAudioEngine.h"
 
+
+#import "SGMover.h"
+#import "SGBug.h"
+
 @implementation TileMapLayer
 
 +(id) node
@@ -46,6 +50,13 @@
 	}
 
 	return self;
+}
+
+-(void)loadEnemies
+{
+    SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
+    
+    [self addChild:testBug];
 }
 
 -(CGPoint) tilePosFromLocation:(CGPoint)location tileMap:(CCTMXTiledMap*)tileMap
