@@ -12,4 +12,12 @@
 
 @synthesize damageInflicted;
 
+-(id)init{
+    if((self = [super init])){
+        damageInflicted = 10;
+    }
+    
+    return self;
+}
+
 @end

@@ -11,7 +11,11 @@
 
 #import "TileMapLayer.h"
 
-@interface SGGameCoordinator : CCScene <TileMapLayerDelegate>
+@class SGLocalPlayer;
+
+@interface SGGameCoordinator : CCScene <TileMapLayerDelegate>{
+    SGLocalPlayer *localPlayer;
+}
 
 @property (nonatomic, strong)TileMapLayer *tileLayer;
 

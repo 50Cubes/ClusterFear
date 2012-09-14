@@ -8,10 +8,13 @@
 
 #import "SGMover.h"
 
+@class SGWeapon;
+
 @interface SGLocalPlayer : SGMover{
-    //SGWeapon *weapon;
+    SGWeapon *weapon;
 }
 
--(void)moveToPoint:(CGPoint)targetPoint;
++(id)playerWithFile:(NSString *)file health:(int)startingHealth andWeapon:(SGWeapon *)weapon;
+
 
 @end

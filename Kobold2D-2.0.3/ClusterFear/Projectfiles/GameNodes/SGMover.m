@@ -9,6 +9,12 @@
 #import "SGMover.h"
 #import "SGWeapon.h"
 
+@interface SGMover ()
+
+-(void)initializeHealth:(int)newHealth;
+
+@end
+
 @implementation SGMover
 
 -(void)setPosition:(CGPoint)position
@@ -26,9 +32,12 @@
     
     float rotation = atanf(yDirection/xDirection);
     
+    CCLOG(@"rotation is: %f", rotation);
+    
     [super setPosition:position];
-    if( rotation != rotation_ )
+    if( rotation != rotation_ ){
         [self setRotation:rotation];
+    }
 }
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon{
@@ -42,6 +51,22 @@
     
 }
 
+-(void)moveToPoint:(CGPoint)targetPoint
+{
+    [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
+}
+
+#pragma mark initialization
+
++(id)moverWithFile:(NSString *)file andHealth:(int)startingHealth{
+    SGMover *m = [self spriteWithFile:file];
+    [m initializeHealth:startingHealth];
+    return m;
+}
+
+-(void)initializeHealth:(int)newHealth{
+    health = newHealth;
+}
 
 
 
