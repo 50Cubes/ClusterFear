@@ -17,6 +17,11 @@
 
 @implementation SGMover
 
++(float)speed
+{
+    return 50.0f;
+}
+
 -(void)getHitFromWeapon:(SGWeapon *)weapon{
     health -= [weapon damageInflicted];
     if(health <= 0){

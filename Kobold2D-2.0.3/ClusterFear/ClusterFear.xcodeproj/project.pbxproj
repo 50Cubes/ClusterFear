@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB51603B5C800B9D0A2 /* soldier.png */; };
+		7C616EB81603BBA700B9D0A2 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB71603BBA700B9D0A2 /* spider.png */; };
 		C117131F1603786A00208448 /* SGMover.m in Sources */ = {isa = PBXBuildFile; fileRef = C117131E1603786A00208448 /* SGMover.m */; };
 		C117132416037C7C00208448 /* SGBug.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132316037C7C00208448 /* SGBug.m */; };
 		C11713291603886600208448 /* SGLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713281603886600208448 /* SGLocalPlayer.m */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		7C616EB51603B5C800B9D0A2 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
+		7C616EB71603BBA700B9D0A2 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
 		C117131D1603786A00208448 /* SGMover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMover.h; path = GameNodes/SGMover.h; sourceTree = "<group>"; };
 		C117131E1603786A00208448 /* SGMover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMover.m; path = GameNodes/SGMover.m; sourceTree = "<group>"; };
 		C117132216037C7C00208448 /* SGBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBug.h; path = GameNodes/SGBug.h; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		7C616EAD1603B0FC00B9D0A2 /* enemies */ = {
 			isa = PBXGroup;
 			children = (
+				7C616EB71603BBA700B9D0A2 /* spider.png */,
 			);
 			name = enemies;
 			path = "../../Projectfiles-iOS";
@@ -379,6 +382,7 @@
 				DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */,
 				DC65618F15114CB400E59F8A /* fps_images-ipadhd.png in Resources */,
 				7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */,
+				7C616EB81603BBA700B9D0A2 /* spider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

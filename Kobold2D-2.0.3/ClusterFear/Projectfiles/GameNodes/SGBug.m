@@ -18,7 +18,7 @@
 
 @implementation SGBug
 
-@synthesize speed = speed_;
+//@synthesize speed = speed_;
 
 -(id)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated
 {
@@ -26,7 +26,7 @@
     if( self != nil )
     {
 //        actionManager_ = [[CCActionManager alloc] init];
-        speed_ = 50.0f;
+//        speed_ = 50.0f;
         
         [self setOpacity:0];
         
@@ -46,7 +46,8 @@
 {
     float randomDirection = 2 * PI * CCRANDOM_0_1();
     
-    CGPoint moveDirection = CGPointMake(speed_ * sinf(randomDirection), speed_ * cosf(randomDirection));
+    float speed = [[self class] speed];
+    CGPoint moveDirection = CGPointMake(speed * sinf(randomDirection), speed * cosf(randomDirection));
     
     [self faceRelativePoint:moveDirection];
     
