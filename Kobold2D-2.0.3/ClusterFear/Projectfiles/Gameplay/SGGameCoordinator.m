@@ -12,14 +12,29 @@
 #import "TileMapLayer.h"
 #import "SGLocalPlayer.h"
 #import "SGWeapon.h"
+#import "SGRunActivator.h"
+
+#import "SGProjectile.h"
+
+@interface SGGameCoordinator ()
+{
+    NSMutableArray *_moverList;
+}
+
+@end
 
 @implementation SGGameCoordinator
+
+@synthesize enemyCount = _enemyCount;
+@synthesize moverList = _moverList;
 
 -(id)init
 {
     self = [super init];
     if( self != nil )
     {
+        _moverList = [NSMutableArray new];
+        
         TileMapLayer *tileMapLayer = [TileMapLayer node];
         
         [tileMapLayer setDelegate:self];
@@ -34,6 +49,13 @@
         localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
         [self addChild:localPlayer];
         
+        runActivator = [SGRunActivator node];
+        [runActivator setContentSize:CGSizeMake(150, 60)];
+        [runActivator setup];
+        runActivator.isTouchEnabled = YES;
+        //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
+        [self addChild:runActivator];
+        
     }
     return self;
 }
@@ -42,28 +64,60 @@
 {
     [super onEnter];
     
-    [self spawnEnemies];
-    [self schedule:@selector(spawnEnemies) interval:5.0f];
+    //[self spawnEnemies];
+    //[self schedule:@selector(spawnEnemies) interval:5.0f];
     NSLog(@"Entering");
 }
 
 -(void)spawnEnemies
 {
-    SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
+    if( _enemyCount < 10 )
+    {
+        _enemyCount++;
+        
+        SGBug *testBug = [SGBug spriteWithFile:@"spider.png"];
+        
+        
+        
+        CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 768.0f, CCRANDOM_0_1() * 1024.0f );
+        
+        [testBug setPosition:spawnPoint];
+        
+        [self addMover:testBug];
+    }
+}
+
+-(void)addMover:(SGMover *)newMover
+{
+    [_moverList addObject:newMover];
     
+    [newMover setOwner:self];
     
-    
-    CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 768.0f, CCRANDOM_0_1() * 1024.0f );
-    
-    [testBug setPosition:spawnPoint];
-    
-    [self addChild:testBug];
+    [self addChild:newMover];
 }
 
 
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
-    [localPlayer moveToPoint:touchPoint];
+    if([runActivator isPressed]){
+        [localPlayer moveToPoint:touchPoint];
+    }else{
+        [localPlayer turnToPoint:touchPoint];
+    }
+}
+
+#pragma mark - Mover Delegate Methods
+
+-(void)moverPerished:(SGMover *)mover
+{
+    if( [mover isEnemy] )
+        _enemyCount--;
+}
+
+-(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile
+{
+    [self addChild:projectile];
+    [projectile fired];
 }
 
 @end

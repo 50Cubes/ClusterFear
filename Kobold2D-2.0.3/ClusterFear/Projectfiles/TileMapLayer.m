@@ -97,6 +97,7 @@
 	// move tilemap so that touched tiles is at center of screen
 	//[self centerTileMapOnTileCoord:tilePos tileMap:tileMap];
 	
+    /*
 	// Check if the touch was on water (eg. tiles with isWater property drawn in GameEventLayer)
 	bool isTouchOnWater = NO;
 	CCTMXLayer* eventLayer = [tileMap layerNamed:@"GameEventLayer"];
@@ -110,7 +111,7 @@
 			NSString* isWaterProperty = [properties valueForKey:@"isWater"];
 			isTouchOnWater = ([isWaterProperty boolValue] == YES);
 		}
-	}
+	}//*/
 	
     [[self delegate] touchAtPoint:location inTile:tilePos];
 

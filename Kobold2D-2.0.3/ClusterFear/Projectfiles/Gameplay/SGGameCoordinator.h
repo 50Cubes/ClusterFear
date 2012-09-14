@@ -11,15 +11,25 @@
 
 #import "TileMapLayer.h"
 
-@class SGLocalPlayer;
+#import "SGMover.h"
 
-@interface SGGameCoordinator : CCScene <TileMapLayerDelegate>{
+@class SGLocalPlayer;
+@class SGRunActivator;
+
+@interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner>{
     SGLocalPlayer *localPlayer;
+    SGRunActivator *runActivator;
 }
 
 @property (nonatomic, strong)TileMapLayer *tileLayer;
 
+@property (nonatomic, readonly)unsigned int enemyCount;
+
+@property (nonatomic, strong, readonly)NSArray *moverList;
+
 -(void)spawnEnemies;
+
+-(void)addMover:(SGMover *)newMover;
 
 
 @end
