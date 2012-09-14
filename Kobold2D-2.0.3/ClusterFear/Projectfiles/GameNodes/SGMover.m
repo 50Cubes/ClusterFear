@@ -41,13 +41,13 @@
     rotation = CC_RADIANS_TO_DEGREES(rotation);
     if( rotation != rotation_ )
     {
-        [self setRotation:rotation];
+        //[self setRotation:rotation];
         //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
+        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:rotation]];
     }
 }
 
--(void)moveToPoint:(CGPoint)targetPoint
-{
+-(void)turnToPoint:(CGPoint)targetPoint{
     float xDirection = targetPoint.x;
     float yDirection = targetPoint.y;
     
@@ -63,6 +63,12 @@
     yDirection /= magnitude;
     
     [self faceRelativePoint:CGPointMake(xDirection, yDirection)];
+}
+
+
+-(void)moveToPoint:(CGPoint)targetPoint
+{
+    [self turnToPoint:targetPoint];
     
     [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
 }

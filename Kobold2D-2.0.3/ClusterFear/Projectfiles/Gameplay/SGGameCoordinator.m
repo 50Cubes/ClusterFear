@@ -12,6 +12,7 @@
 #import "TileMapLayer.h"
 #import "SGLocalPlayer.h"
 #import "SGWeapon.h"
+#import "SGRunActivator.h"
 
 @implementation SGGameCoordinator
 
@@ -33,6 +34,13 @@
         
         localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
         [self addChild:localPlayer];
+        
+        runActivator = [SGRunActivator node];
+        [runActivator setContentSize:CGSizeMake(150, 60)];
+        [runActivator setup];
+        runActivator.isTouchEnabled = YES;
+        //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
+        [self addChild:runActivator];
         
     }
     return self;
@@ -63,7 +71,11 @@
 
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
-    [localPlayer moveToPoint:touchPoint];
+    if([runActivator isPressed]){
+        [localPlayer moveToPoint:touchPoint];
+    }else{
+        [localPlayer turnToPoint:touchPoint];
+    }
 }
 
 @end

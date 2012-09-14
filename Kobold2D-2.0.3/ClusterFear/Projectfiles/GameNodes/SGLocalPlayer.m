@@ -23,8 +23,6 @@
     return p;
 }
 
-
-
 -(void)initializeWeapon:(SGWeapon *)newWeapon{
     weapon = newWeapon;
 }
