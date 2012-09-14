@@ -69,6 +69,7 @@
 	return pos;
 }
 
+/*
 -(void) centerTileMapOnTileCoord:(CGPoint)tilePos tileMap:(CCTMXTiledMap*)tileMap
 {
 	// center tilemap on the given tile pos
@@ -97,7 +98,7 @@
 	CCAction* move = [CCMoveTo actionWithDuration:0.2f position:scrollPosition];
 	[tileMap stopAllActions];
 	[tileMap runAction:move];
-}
+}//*/
 
 -(CGRect) getRectFromObjectProperties:(NSDictionary*)dict tileMap:(CCTMXTiledMap*)tileMap
 {
@@ -121,7 +122,7 @@
 	CGPoint tilePos = [self tilePosFromLocation:location tileMap:tileMap];
 	
 	// move tilemap so that touched tiles is at center of screen
-	[self centerTileMapOnTileCoord:tilePos tileMap:tileMap];
+	//[self centerTileMapOnTileCoord:tilePos tileMap:tileMap];
 	
 	// Check if the touch was on water (eg. tiles with isWater property drawn in GameEventLayer)
 	bool isTouchOnWater = NO;

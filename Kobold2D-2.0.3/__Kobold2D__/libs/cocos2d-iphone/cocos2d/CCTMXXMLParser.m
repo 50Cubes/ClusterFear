@@ -465,7 +465,7 @@
 			unsigned char *deflated;
 			CGSize s = [layer layerSize];
 			int sizeHint = s.width * s.height * sizeof(uint32_t);
-
+            
 			int inflatedLen = ccInflateMemoryWithHint(buffer, len, &deflated, sizeHint);
 			NSAssert( inflatedLen == sizeHint, @"CCTMXXMLParser: Hint failed!");
 
