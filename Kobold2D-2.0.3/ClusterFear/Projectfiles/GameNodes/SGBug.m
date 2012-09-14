@@ -28,6 +28,9 @@
 //        actionManager_ = [[CCActionManager alloc] init];
         speed_ = 50.0f;
         
+        [self setOpacity:0];
+        
+        [self runAction:[CCFadeIn actionWithDuration:1.0f]];
         [self scheduleOnce:@selector(crawl) delay:1.0f];
     }
     return self;
@@ -44,6 +47,8 @@
     float randomDirection = 2 * PI * CCRANDOM_0_1();
     
     CGPoint moveDirection = CGPointMake(speed_ * sinf(randomDirection), speed_ * cosf(randomDirection));
+    
+    [self faceRelativePoint:moveDirection];
     
     return [CCMoveBy actionWithDuration:2.0f position:moveDirection];
 }
