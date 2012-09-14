@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCScene.h"
 
-@interface SGGameCoordinator : NSObject
+#import "TileMapLayer.h"
+
+@interface SGGameCoordinator : CCScene <TileMapLayerDelegate>
+
+@property (nonatomic, strong)TileMapLayer *tileLayer;
+
+-(void)spawnEnemies;
+
 
 @end

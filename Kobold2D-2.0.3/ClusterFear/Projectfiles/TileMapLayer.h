@@ -12,10 +12,18 @@ enum
 	TileMapNode = 0,
 };
 
+@protocol TileMapLayerDelegate <NSObject>
+
+-(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos;
+
+@end
+
 @interface TileMapLayer : CCLayer
 {
 	float tileMapHeightInPixels;
 }
+
+@property (nonatomic, unsafe_unretained)NSObject <TileMapLayerDelegate> *delegate;
 
 +(id) node;
 
