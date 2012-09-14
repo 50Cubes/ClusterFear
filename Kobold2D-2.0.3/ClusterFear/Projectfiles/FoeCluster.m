@@ -36,6 +36,10 @@ static NSMutableDictionary *statDict=nil;
 
     return [statDict objectForKey:name];
 }
+
+-(NSUInteger) minionCount{
+    return [[self children] count];
+}
 @end
 
 @implementation SGFoeStats

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */; };
 		7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB51603B5C800B9D0A2 /* soldier.png */; };
 		7C616EB81603BBA700B9D0A2 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB71603BBA700B9D0A2 /* spider.png */; };
 		C117131F1603786A00208448 /* SGMover.m in Sources */ = {isa = PBXBuildFile; fileRef = C117131E1603786A00208448 /* SGMover.m */; };
@@ -50,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C5CDB391603CC4A005E91DF /* SGBugCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBugCluster.h; path = GameNodes/SGBugCluster.h; sourceTree = "<group>"; };
+		4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBugCluster.m; path = GameNodes/SGBugCluster.m; sourceTree = "<group>"; };
 		7C616EB51603B5C800B9D0A2 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 		7C616EB71603BBA700B9D0A2 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
 		C117131D1603786A00208448 /* SGMover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMover.h; path = GameNodes/SGMover.h; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 				C117132316037C7C00208448 /* SGBug.m */,
 				C11713271603886600208448 /* SGLocalPlayer.h */,
 				C11713281603886600208448 /* SGLocalPlayer.m */,
+				4C5CDB391603CC4A005E91DF /* SGBugCluster.h */,
+				4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				C117132C160393A200208448 /* SGGameCoordinator.m in Sources */,
 				DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */,
 				DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */,
+				4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
