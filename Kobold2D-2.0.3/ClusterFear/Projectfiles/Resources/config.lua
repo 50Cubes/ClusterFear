@@ -69,16 +69,23 @@ local config =
 
 	SGFoeStats =
 	{
-		SGBat =
+		SGBatCluster =
 		{
 			MaxHealh = 20,
 			Damage = 1,
 			MoveSpeed = 20,
 		},
 
-		SGLocust =
+		SGLocustCluster =
 		{
 			MaxHealh = 30,
+			Damage = 2,
+			MoveSpeed = 15,
+		},
+
+		SGBugCluster =
+		{
+			MaxHealh = 10,
 			Damage = 1,
 			MoveSpeed = 10,
 		},
