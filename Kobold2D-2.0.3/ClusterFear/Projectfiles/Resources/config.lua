@@ -66,6 +66,23 @@ local config =
 		HelloWorldFontName = "Marker Felt",
 		HelloWorldFontSize = 50,
 	},
+
+	SGFoeStats =
+	{
+		SGBat =
+		{
+			MaxHealh = 20,
+			Damage = 1,
+			MoveSpeed = 20,
+		},
+
+		SGLocust =
+		{
+			MaxHealh = 30,
+			Damage = 1,
+			MoveSpeed = 10,
+		},
+	},
 }
 
 return config
