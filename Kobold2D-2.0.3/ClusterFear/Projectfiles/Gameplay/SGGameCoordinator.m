@@ -34,8 +34,6 @@
         localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
         [self addChild:localPlayer];
         
-        //[self spawnEnemies];
-        //[self schedule:@selector(spawnEnemies) interval:5.0f];
     }
     return self;
 }
@@ -44,6 +42,8 @@
 {
     [super onEnter];
     
+    [self spawnEnemies];
+    [self schedule:@selector(spawnEnemies) interval:5.0f];
     NSLog(@"Entering");
 }
 
