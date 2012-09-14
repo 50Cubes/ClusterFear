@@ -10,6 +10,8 @@
 
 #import "SGBug.h"
 #import "TileMapLayer.h"
+#import "SGLocalPlayer.h"
+#import "SGWeapon.h"
 
 @implementation SGGameCoordinator
 
@@ -26,8 +28,14 @@
         
         [self addChild:tileMapLayer];
         
-        [self spawnEnemies];
-        [self schedule:@selector(spawnEnemies) interval:5.0f];
+        
+        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+        
+        localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
+        [self addChild:localPlayer];
+        
+        //[self spawnEnemies];
+        //[self schedule:@selector(spawnEnemies) interval:5.0f];
     }
     return self;
 }
@@ -55,7 +63,7 @@
 
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
-    
+    [localPlayer moveToPoint:touchPoint];
 }
 
 @end

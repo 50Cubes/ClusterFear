@@ -19,7 +19,7 @@
 }
 
 -(id) alternateView
-{
+{    
 	return nil;
 }
 
