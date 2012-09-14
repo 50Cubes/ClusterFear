@@ -21,6 +21,9 @@
     NSMutableArray *_moverList;
 }
 
+-(void)physicsSetup;
+-(void)physicsTick;
+
 @end
 
 @implementation SGGameCoordinator
@@ -102,7 +105,7 @@
     if([runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
     }else{
-        [localPlayer turnToPoint:touchPoint];
+        [localPlayer facePoint:touchPoint];
     }
 }
 
@@ -118,6 +121,17 @@
 {
     [self addChild:projectile];
     [projectile fired];
+}
+
+#pragma mark physics
+
+-(void)physicsSetup{
+    physicalSpace = cpSpaceNew();
+    [self schedule:@selector(physicsTick)];
+}
+
+-(void)physicsTick{
+    cpSpaceStep(physicalSpace, [[CCDirector sharedDirector] secondsPerFrame]);
 }
 
 @end

@@ -12,6 +12,7 @@
 @interface SGMover ()
 
 -(void)initializeHealth:(int)newHealth;
+-(void)initializeShape;
 
 @end
 
@@ -27,6 +28,7 @@
     return YES;
 }
 
+@synthesize movingShape;
 
 //-(void)setPosition:(CGPoint)position
 //{
@@ -127,6 +129,7 @@
 +(id)moverWithFile:(NSString *)file andHealth:(int)startingHealth{
     SGMover *m = [self spriteWithFile:file];
     [m initializeHealth:startingHealth];
+    [m initializeShape];
     return m;
 }
 
@@ -134,9 +137,19 @@
     health = newHealth;
 }
 
+-(void)initializeShape{
+    movingShape = cpCircleShapeNew(cpBodyNew(25, INFINITY), 20.0, cpvzero);
+    movingShape->e = 0.5;
+    movingShape->u = 0.8;
+    movingShape->collision_type = 1;
+    movingShape->data = (__bridge void *)self;
+}
+
+
 -(void)removeFromParentAndDoCleanup
 {
     [self removeFromParentAndCleanup:YES];
 }
+
 
 @end

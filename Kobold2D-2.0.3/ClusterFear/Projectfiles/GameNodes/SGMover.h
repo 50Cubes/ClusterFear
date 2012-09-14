@@ -7,6 +7,7 @@
 //
 
 #import "CCSprite.h"
+#import "chipmunk.h"
 
 @class SGWeapon;
 
@@ -24,6 +25,7 @@
 
 @interface SGMover : CCSprite{
     int health;
+    cpShape *moverShape;
 }
 
 +(float)speed;
@@ -33,6 +35,8 @@
 @property(nonatomic, readonly)BOOL isEnemy;
 @property(nonatomic, unsafe_unretained)NSObject <SGMoverOwner> *owner;
 
+@property(nonatomic, readonly) cpShape *movingShape;
+
 -(void)fireProjectile:(SGProjectile *)projectile;
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon;
@@ -41,7 +45,5 @@
 -(void)facePoint:(CGPoint)pointToFace;
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection;
 -(void)moveToPoint:(CGPoint)targetPoint;
-
--(void)turnToPoint:(CGPoint)targetPoint;
 
 @end
