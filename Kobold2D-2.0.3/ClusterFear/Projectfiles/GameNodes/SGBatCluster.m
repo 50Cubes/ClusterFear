@@ -38,4 +38,23 @@ SGFoeStats * batStats=nil;
 -(NSUInteger)damage{
     return batStats.stats.damage;
 }
+-(BOOL) strike:(NSUInteger)damage{
+    if (health < damage) {
+        health = 0;
+        return YES;
+    }
+    // else
+    health-=damage;
+    [self killMinions];
+    return NO;
+}
+
+-(void)killMinions{
+    float ratio = health/((float)batStats.stats.maxHealth);
+    float fractionalMinions = ratio * batStats.stats.maxCritters;
+    uint numMinions = (uint)fractionalMinions;
+    while ([self minionCount] > numMinions) {
+        [self removeChild:[[self children] objectAtIndex:0] cleanup:YES];
+    }
+}
 @end
