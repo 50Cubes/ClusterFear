@@ -7,6 +7,7 @@
 //
 
 #import "SGMover.h"
+#import "SGWeapon.h"
 
 @implementation SGMover
 
@@ -29,5 +30,19 @@
     if( rotation != rotation_ )
         [self setRotation:rotation];
 }
+
+-(void)getHitFromWeapon:(SGWeapon *)weapon{
+    health -= [weapon damageInflicted];
+    if(health <= 0){
+        [self die];
+    }
+}
+
+-(void)die{
+    
+}
+
+
+
 
 @end

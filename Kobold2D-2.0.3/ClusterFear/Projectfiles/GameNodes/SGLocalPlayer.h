@@ -8,7 +8,9 @@
 
 #import "SGMover.h"
 
-@interface SGLocalPlayer : SGMover
+@interface SGLocalPlayer : SGMover{
+    //SGWeapon *weapon;
+}
 
 -(void)moveToPoint:(CGPoint)targetPoint;
 

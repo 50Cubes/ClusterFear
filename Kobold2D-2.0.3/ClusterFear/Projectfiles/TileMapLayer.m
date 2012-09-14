@@ -34,11 +34,11 @@
 		//tileMap.position = CGPointMake(-160, -120);
 
 		// hide the event layer, we only need this information for code, not to display it
-		CCTMXLayer* eventLayer = [tileMap layerNamed:@"GameEventLayer"];
-		eventLayer.visible = NO;
+		//CCTMXLayer* eventLayer = [tileMap layerNamed:@"GameEventLayer"];
+		//eventLayer.visible = NO;
 
-		CCTMXLayer* winterLayer = [tileMap layerNamed:@"WinterLayer"];
-		winterLayer.visible = NO;
+		//CCTMXLayer* winterLayer = [tileMap layerNamed:@"WinterLayer"];
+		//winterLayer.visible = NO;
 
 #if KK_PLATFORM_IOS
 		self.isTouchEnabled = YES;
@@ -150,11 +150,12 @@
 		}
 	}
 	
+    /*
 	// Check if the touch was within one of the rectangle objects
 	CCTMXObjectGroup* objectLayer = [tileMap objectGroupNamed:@"ObjectLayer"];
 	NSAssert([objectLayer isKindOfClass:[CCTMXObjectGroup class]], @"ObjectLayer not found or not a CCTMXObjectGroup");
 	
-	bool isTouchInRectangle = NO;
+    bool isTouchInRectangle = NO;
 	NSUInteger numObjects = [[objectLayer objects] count];
 	for (NSUInteger i = 0; i < numObjects; i++)
 	{
@@ -179,10 +180,11 @@
 		system.autoRemoveOnFinish = YES;
 		system.position = location;
 		[self addChild:system z:1];
-	}
+	}//*/
+    /*
+
 	else
 	{
-		/*
 		// get the winter layer and toggle its visibility
 		CCTMXLayer* winterLayer = [tileMap layerNamed:@"WinterLayer"];
 		winterLayer.visible = !winterLayer.visible;
@@ -193,8 +195,8 @@
 		// adds a given tile
 		tileGID = [winterLayer tileGIDAt:CGPointMake(0, 19)];
 		[winterLayer setTileGID:tileGID at:tilePos];
-		*/
-	}
+     }//*/
+
 }
 
 

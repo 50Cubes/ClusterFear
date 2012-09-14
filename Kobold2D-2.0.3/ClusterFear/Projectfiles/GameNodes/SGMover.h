@@ -8,6 +8,13 @@
 
 #import "CCSprite.h"
 
-@interface SGMover : CCSprite
+@class SGWeapon;
+
+@interface SGMover : CCSprite{
+    int health;
+}
+
+-(void)getHitFromWeapon:(SGWeapon *)weapon;
+-(void)die;
 
 @end
