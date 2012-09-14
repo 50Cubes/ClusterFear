@@ -20,12 +20,15 @@
 
 @synthesize speed = speed_;
 
--(id)init
+-(id)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated
 {
-    self = [super init];
+    self = [super initWithTexture:texture rect:rect rotated:rotated];
     if( self != nil )
     {
-        actionManager_ = [[CCActionManager alloc] init];
+//        actionManager_ = [[CCActionManager alloc] init];
+        speed_ = 50.0f;
+        
+        [self scheduleOnce:@selector(crawl) delay:1.0f];
     }
     return self;
 }
@@ -38,14 +41,11 @@
 
 -(CCFiniteTimeAction *)nextAction
 {
-    float randomDirection = 2 * PI * SGRandNormalized();
+    float randomDirection = 2 * PI * CCRANDOM_0_1();
     
-    CGPoint nextPosition = position_;
+    CGPoint moveDirection = CGPointMake(speed_ * sinf(randomDirection), speed_ * cosf(randomDirection));
     
-    nextPosition.x += speed_ * sinf(randomDirection);
-    nextPosition.y += speed_ * cosf(randomDirection);
-    
-    return [CCMoveTo actionWithDuration:2.0f position:nextPosition];
+    return [CCMoveBy actionWithDuration:2.0f position:moveDirection];
 }
 
 @end

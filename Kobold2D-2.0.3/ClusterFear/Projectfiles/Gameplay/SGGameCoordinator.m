@@ -24,22 +24,40 @@
         
         [tileMapLayer setDelegate:self];
         [self setTileLayer:tileMapLayer];
+        [tileMapLayer setSize:[self size]];
+        
         [self addChild:tileMapLayer];
         
         
-        localPlayer = [SGLocalPlayer playerWithFile:@"game-events.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
         
         localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
         [self addChild:localPlayer];
+        
+        //[self spawnEnemies];
+        //[self schedule:@selector(spawnEnemies) interval:5.0f];
     }
     return self;
+}
+
+-(void)onEnter
+{
+    [super onEnter];
+    
+    NSLog(@"Entering");
 }
 
 -(void)spawnEnemies
 {
     SGBug *testBug = [SGBug spriteWithFile:@"game-events.png"];
     
-    [[self tileLayer] addChild:testBug];
+    
+    
+    CGPoint spawnPoint = CGPointMake(CCRANDOM_0_1() * 1024.0f, CCRANDOM_0_1() * 768.0f );
+    
+    [testBug setPosition:spawnPoint];
+    
+    [self addChild:testBug];
 }
 
 

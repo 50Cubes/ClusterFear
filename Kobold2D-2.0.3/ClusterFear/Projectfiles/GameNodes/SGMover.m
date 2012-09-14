@@ -30,13 +30,13 @@
     xDirection /= magnitude;
     yDirection /= magnitude;
     
-    float rotation = atanf(yDirection/xDirection);
+    float rotation = atanf((xDirection == 0) ? 0.0f : yDirection/xDirection);
     
     CCLOG(@"rotation is: %f", rotation);
     
     [super setPosition:position];
     if( rotation != rotation_ ){
-        [self setRotation:rotation];
+        [self setRotation:CC_RADIANS_TO_DEGREES(rotation)];
     }
 }
 
