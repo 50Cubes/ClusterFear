@@ -2,12 +2,12 @@
 //  SGBatCuster.h
 //  ClusterFear
 //
-//  Created by Katherine Geiger on 9/14/12.
+//  Created by Alan Richardson on 9/14/12.
 //
 //
 
 #import "FoeCluster.h"
 
-@interface SGBatCuster : FoeCluster
+@interface SGBatCluster : FoeCluster
 
 @end

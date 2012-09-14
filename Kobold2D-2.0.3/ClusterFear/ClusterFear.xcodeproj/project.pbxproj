@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */; };
+		4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB521603DE1F005E91DF /* SGBatCluster.m */; };
 		7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB51603B5C800B9D0A2 /* soldier.png */; };
 		7C631C4D1603C34D004AA439 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C4C1603C34D004AA439 /* spider.png */; };
 		7C631C5A1603D173004AA439 /* bat_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C591603D173004AA439 /* bat_small.png */; };
@@ -57,6 +58,8 @@
 /* Begin PBXFileReference section */
 		4C5CDB391603CC4A005E91DF /* SGBugCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBugCluster.h; path = GameNodes/SGBugCluster.h; sourceTree = "<group>"; };
 		4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBugCluster.m; path = GameNodes/SGBugCluster.m; sourceTree = "<group>"; };
+		4C5CDB511603DE1F005E91DF /* SGBatCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBatCluster.h; path = GameNodes/SGBatCluster.h; sourceTree = "<group>"; };
+		4C5CDB521603DE1F005E91DF /* SGBatCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBatCluster.m; path = GameNodes/SGBatCluster.m; sourceTree = "<group>"; };
 		7C616EB51603B5C800B9D0A2 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 		7C631C4C1603C34D004AA439 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
 		7C631C591603D173004AA439 /* bat_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat_small.png; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				C11713281603886600208448 /* SGLocalPlayer.m */,
 				4C5CDB391603CC4A005E91DF /* SGBugCluster.h */,
 				4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */,
+				4C5CDB511603DE1F005E91DF /* SGBatCluster.h */,
+				4C5CDB521603DE1F005E91DF /* SGBatCluster.m */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				C117133C1603B98F00208448 /* SGProjectile.m in Sources */,
 				DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */,
 				4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */,
+				4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
