@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */; };
+		4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB521603DE1F005E91DF /* SGBatCluster.m */; };
+		4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB561603E492005E91DF /* SGLocustCluster.m */; };
 		7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB51603B5C800B9D0A2 /* soldier.png */; };
 		7C631C4D1603C34D004AA439 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C4C1603C34D004AA439 /* spider.png */; };
 		7C631C5A1603D173004AA439 /* bat_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C591603D173004AA439 /* bat_small.png */; };
 		7C631C5C1603D17E004AA439 /* bat_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C5B1603D17E004AA439 /* bat_large.png */; };
 		7C631C5E1603D4CA004AA439 /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C5D1603D4CA004AA439 /* rock.png */; };
+		7C6645EB1603E49100A01000 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6645EA1603E49100A01000 /* bullet.png */; };
 		C117131F1603786A00208448 /* SGMover.m in Sources */ = {isa = PBXBuildFile; fileRef = C117131E1603786A00208448 /* SGMover.m */; };
 		C117132416037C7C00208448 /* SGBug.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132316037C7C00208448 /* SGBug.m */; };
 		C11713291603886600208448 /* SGLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713281603886600208448 /* SGLocalPlayer.m */; };
@@ -61,11 +64,16 @@
 /* Begin PBXFileReference section */
 		4C5CDB391603CC4A005E91DF /* SGBugCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBugCluster.h; path = GameNodes/SGBugCluster.h; sourceTree = "<group>"; };
 		4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBugCluster.m; path = GameNodes/SGBugCluster.m; sourceTree = "<group>"; };
+		4C5CDB511603DE1F005E91DF /* SGBatCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBatCluster.h; path = GameNodes/SGBatCluster.h; sourceTree = "<group>"; };
+		4C5CDB521603DE1F005E91DF /* SGBatCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBatCluster.m; path = GameNodes/SGBatCluster.m; sourceTree = "<group>"; };
+		4C5CDB551603E491005E91DF /* SGLocustCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGLocustCluster.h; path = GameNodes/SGLocustCluster.h; sourceTree = "<group>"; };
+		4C5CDB561603E492005E91DF /* SGLocustCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGLocustCluster.m; path = GameNodes/SGLocustCluster.m; sourceTree = "<group>"; };
 		7C616EB51603B5C800B9D0A2 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 		7C631C4C1603C34D004AA439 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
 		7C631C591603D173004AA439 /* bat_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat_small.png; sourceTree = "<group>"; };
 		7C631C5B1603D17E004AA439 /* bat_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat_large.png; sourceTree = "<group>"; };
 		7C631C5D1603D4CA004AA439 /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock.png; sourceTree = "<group>"; };
+		7C6645EA1603E49100A01000 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		C117131D1603786A00208448 /* SGMover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMover.h; path = GameNodes/SGMover.h; sourceTree = "<group>"; };
 		C117131E1603786A00208448 /* SGMover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMover.m; path = GameNodes/SGMover.m; sourceTree = "<group>"; };
 		C117132216037C7C00208448 /* SGBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBug.h; path = GameNodes/SGBug.h; sourceTree = "<group>"; };
@@ -156,6 +164,7 @@
 		7C616EAF1603B10200B9D0A2 /* player */ = {
 			isa = PBXGroup;
 			children = (
+				7C6645EA1603E49100A01000 /* bullet.png */,
 				7C616EB51603B5C800B9D0A2 /* soldier.png */,
 			);
 			name = player;
@@ -224,6 +233,10 @@
 				C11713521603DB4D00208448 /* SGEnemy.m */,
 				C11713551603DBF800208448 /* SGBat.h */,
 				C11713561603DBF900208448 /* SGBat.m */,
+				4C5CDB511603DE1F005E91DF /* SGBatCluster.h */,
+				4C5CDB521603DE1F005E91DF /* SGBatCluster.m */,
+				4C5CDB551603E491005E91DF /* SGLocustCluster.h */,
+				4C5CDB561603E492005E91DF /* SGLocustCluster.m */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -424,6 +437,7 @@
 				7C631C5A1603D173004AA439 /* bat_small.png in Resources */,
 				7C631C5C1603D17E004AA439 /* bat_large.png in Resources */,
 				7C631C5E1603D4CA004AA439 /* rock.png in Resources */,
+				7C6645EB1603E49100A01000 /* bullet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +464,8 @@
 				C11713571603DBF900208448 /* SGBat.m in Sources */,
 				C117135A1603DC3A00208448 /* SGObstacle.m in Sources */,
 				C117135D1603DC8000208448 /* SGDestroyable.m in Sources */,
+				4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */,
+				4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
