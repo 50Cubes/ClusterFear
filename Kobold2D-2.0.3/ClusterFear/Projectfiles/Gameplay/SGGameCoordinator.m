@@ -42,8 +42,8 @@
 {
     [super onEnter];
     
-    [self spawnEnemies];
-    [self schedule:@selector(spawnEnemies) interval:5.0f];
+    //[self spawnEnemies];
+    //[self schedule:@selector(spawnEnemies) interval:5.0f];
     NSLog(@"Entering");
 }
 

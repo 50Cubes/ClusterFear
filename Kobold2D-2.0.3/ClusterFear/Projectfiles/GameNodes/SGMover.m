@@ -17,36 +17,6 @@
 
 @implementation SGMover
 
-//-(void)setPosition:(CGPoint)position
-//{
-//    float xDirection = position.x;
-//    float yDirection = position.y;
-//    
-//    xDirection -= position_.x;
-//    yDirection -= position_.y;
-//    
-//    if( isnan(xDirection) || isnan(yDirection) )
-//        NSLog(@"Invalid position");
-//    
-//    float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
-//    
-//    xDirection /= magnitude;
-//    yDirection /= magnitude;
-//    
-//    float rotation = atan2f(yDirection,-xDirection);
-//    
-//    CCLOG(@"rotation is: %f with yDIrection %f xDir %f", rotation, xDirection, yDirection);
-//    
-////    [super setPosition:position];
-//    
-//    rotation = CC_RADIANS_TO_DEGREES(rotation) - 90.0f;
-//    if( rotation != rotation_ )
-//    {
-//        [self setRotation:rotation];
-////        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
-//    }
-//}
-
 -(void)getHitFromWeapon:(SGWeapon *)weapon{
     health -= [weapon damageInflicted];
     if(health <= 0){
@@ -76,38 +46,22 @@
     
     float rotation = atan2f(yDirection,-xDirection);
     
-    CCLOG(@"rotation is: %f with yDIrection %f xDir %f", rotation, xDirection, yDirection);
+    //CCLOG(@"rotation is: %f with yDIrection %f xDir %f", rotation, xDirection, yDirection);
     
     //    [super setPosition:position];
     
     rotation = CC_RADIANS_TO_DEGREES(rotation);
+    
+    CCLOG(@"rotation is: %f degrees", rotation);
+
     if( rotation != rotation_ )
     {
-        [self setRotation:rotation];
+        //[self setRotation:rotation];
         //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
+        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:CC_RADIANS_TO_DEGREES(rotation)]];
     }
     
     [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
-}
-
--(void)turnTowardPoint:(CGPoint)targetPoint{
-    float xDirection = targetPoint.x;
-    float yDirection = targetPoint.y;
-    
-    xDirection -= position_.x;
-    yDirection -= position_.y;
-    
-    if( isnan(xDirection) || isnan(yDirection) )
-        NSLog(@"Invalid position");
-    
-    float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
-    
-    xDirection /= magnitude;
-    yDirection /= magnitude;
-    
-    float rotation = atan2f(yDirection,xDirection);
-    
-    [self runAction:[CCRotateBy actionWithDuration:0.2 angle:CC_RADIANS_TO_DEGREES(rotation)]];
 }
 
 

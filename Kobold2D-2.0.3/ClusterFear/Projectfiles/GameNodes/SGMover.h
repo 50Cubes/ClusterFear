@@ -20,6 +20,5 @@
 -(void)die;
 
 -(void)moveToPoint:(CGPoint)targetPoint;
--(void)turnTowardPoint:(CGPoint)targetPoint;
 
 @end
