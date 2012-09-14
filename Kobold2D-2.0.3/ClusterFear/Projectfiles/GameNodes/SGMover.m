@@ -30,9 +30,10 @@
     
     [super setPosition:position];
     
+    rotation = CC_RADIANS_TO_DEGREES(rotation) - 90.0f;
     if( rotation != rotation_ )
     {
-        [self setRotation:CC_RADIANS_TO_DEGREES(rotation) - 90.0f];
+        [self setRotation:rotation];
 //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
     }
 }
