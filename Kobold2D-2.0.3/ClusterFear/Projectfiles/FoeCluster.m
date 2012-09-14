@@ -7,27 +7,34 @@
 //
 
 #import "FoeCluster.h"
-
-
+#define EXPECTED_NUM_CLUSTER_TYPES 5
+static NSMutableDictionary *statDict=nil;
 
 @implementation FoeCluster
 +(SGFoeStats*)getStatsByClassName:(NSString *)name{
-    SGFoeStats_ ret; // TODO Cache by name instead of re-fetching every time
-    // Build path string
-    NSString* configPath = [NSString stringWithFormat:@"%@%@",@"SGFoeStats.",name];
-    // Set the config lookup path
-    if([KKConfig selectKeyPath:configPath]){
-        ret.damage = [KKConfig intForKey:@"Damage"];
-        ret.maxCritters = [KKConfig intForKey:@"MaxCritters"];
-        ret.maxHealth = [KKConfig intForKey:@"MaxHealth"];
-        ret.moveSpeed = [KKConfig intForKey:@"Damage"];
+    if(nil == statDict){
+        statDict = [NSMutableDictionary dictionaryWithCapacity:EXPECTED_NUM_CLUSTER_TYPES];
     }
-    else{
-        NSLog(@"SGFoeStats.getStatsByClassName: %@ not found by KKConfig.selectKeyPath.",configPath);
-        ret.damage = -1;
-        ret.maxHealth = 0;
+    if(nil==[statDict objectForKey:name]){
+        SGFoeStats_ nuStats; // TODO Cache by name instead of re-fetching every time
+        // Build path string
+        NSString* configPath = [NSString stringWithFormat:@"%@%@",@"SGFoeStats.",name];
+        // Set the config lookup path
+        if([KKConfig selectKeyPath:configPath]){
+            nuStats.damage = [KKConfig intForKey:@"Damage"];
+            nuStats.maxCritters = [KKConfig intForKey:@"MaxCritters"];
+            nuStats.maxHealth = [KKConfig intForKey:@"MaxHealth"];
+            nuStats.moveSpeed = [KKConfig intForKey:@"Damage"];
+        }
+        else{
+            NSLog(@"SGFoeStats.getStatsByClassName: %@ not found by KKConfig.selectKeyPath.",configPath);
+            nuStats.damage = -1;
+            nuStats.maxHealth = 0;
+        }
+        [statDict setValue:[[SGFoeStats alloc]init:&nuStats] forKey:name];
     }
-    return [[SGFoeStats alloc]init:&ret];
+
+    return [statDict objectForKey:name];
 }
 @end
 
