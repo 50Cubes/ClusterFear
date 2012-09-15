@@ -194,7 +194,7 @@ static NSMutableDictionary *statDict=nil;
             self->damage = [KKConfig intForKey:@"Damage"];
             self->maxCritters = [KKConfig intForKey:@"MaxCritters"];
             self->maxHealth = [KKConfig intForKey:@"MaxHealth"];
-            self->moveSpeed = [KKConfig intForKey:@"Damage"];
+            self->moveSpeed = [KKConfig floatForKey:@"Damage"];
         }
         else{
             NSLog(@"SGFoeStats.getStatsByClassName: %@ not found by KKConfig.selectKeyPath.",self);

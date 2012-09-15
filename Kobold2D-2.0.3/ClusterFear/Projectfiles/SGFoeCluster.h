@@ -51,7 +51,7 @@
     int maxHealth;
     int maxCritters;
     int damage;
-    int moveSpeed;
+    float moveSpeed;
 }
 
 

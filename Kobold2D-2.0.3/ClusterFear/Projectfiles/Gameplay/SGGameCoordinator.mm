@@ -179,7 +179,7 @@
 
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
-    if( YES || [runActivator isPressed]){
+    if( [runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
     }
     else

@@ -40,6 +40,8 @@
     
     float randSeed = (CCRANDOM_MINUS1_1());
     
+    ccTime flyTime = 0.21f + squareBounciness;
+    
     if( randSeed == 0.0f )
     {
         randSeed = 0.2f;
@@ -53,7 +55,6 @@
         }
     }
     
-//    CCFiniteTimeAction *scaleUp = [CCBezierTo]
     
     float bounceAngle = squareBounciness * 5280.0f * randSeed;
     [self runAction:[CCRotateBy actionWithDuration:0.32f + squareBounciness angle:bounceAngle]];
@@ -70,7 +71,7 @@
     
     //CCLOG(@"Casing bounce angle %f and direction %@", bounceAngle, NSStringFromCGPoint(casingDirection));
     
-    CCMoveBy *moveAction = [CCMoveBy actionWithDuration:0.21f + squareBounciness position:casingDirection];
+    CCMoveBy *moveAction = [CCMoveBy actionWithDuration:flyTime position:casingDirection];
     CCFiniteTimeAction *lastAction = nil;
     
     if( bounciness_ > kSGCasingMinimumBounceCoefficient )
@@ -97,6 +98,13 @@
 {
     [super onEnter];
     
+    CCFiniteTimeAction *scaleUp = [CCEaseOut actionWithAction:[CCScaleBy actionWithDuration:0.09f scale:1.2f]];
+    
+    CCFiniteTimeAction *scaleDown = [CCEaseBounceIn actionWithAction:[CCScaleTo actionWithDuration:0.47f scale:0.75f]];
+    
+    
+    [self runAction:[CCSequence actionOne:scaleUp two:scaleDown]];
+                                   
     [self bounceAround];
 }
 

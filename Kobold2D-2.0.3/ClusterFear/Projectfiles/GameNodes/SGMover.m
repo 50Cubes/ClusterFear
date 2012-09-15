@@ -11,6 +11,8 @@
 
 #import "SGProjectile.h"
 
+#import "SGSplatter.h"
+
 @interface SGMover ()
 
 @end

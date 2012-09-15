@@ -23,7 +23,12 @@ static SGFoeStats *playerStats = nil;
 
 +(void)initialize
 {
-    
+    playerStats = [[SGFoeStats alloc] initWithKeyPath:[self description]];
+}
+
++(float)speed
+{
+    return playerStats->moveSpeed;
 }
 
 

@@ -92,6 +92,14 @@ local config =
 			Damage = 1,
 			MoveSpeed = 10,
 		},
+
+        SGLocalPlayer =
+        {
+            MaxHealth = 10,
+            MaxCritters = 7,
+            Damage = 1,
+            MoveSpeed = 75,
+        },
 	},
 }
 
