@@ -12,7 +12,6 @@ SGFoeStats * locustStats=nil;
 
 @interface SGLocustCluster (){
     uint health;
-    CGPoint center;
 }
 @end
 
@@ -26,16 +25,32 @@ SGFoeStats * locustStats=nil;
     self = locustStats.stats.maxHealth ? [super init] : nil;
     if(nil!=self){
         health=locustStats.stats.maxHealth;
-        center.x=0;
-        center.y=0;
     }
     return self;
 }
 
 @synthesize health;
-@synthesize center;
 
 -(NSUInteger)damage{
     return locustStats.stats.damage;
+}
+-(BOOL) strike:(NSUInteger)damage{
+    if (health < damage) {
+        health = 0;
+        return YES;
+    }
+    // else
+    health-=damage;
+    [self killMinions];
+    return NO;
+}
+
+-(void)killMinions{
+    float ratio = health/((float)locustStats.stats.maxHealth);
+    float fractionalMinions = ratio * locustStats.stats.maxCritters;
+    uint numMinions = (uint)fractionalMinions;
+    while ([self minionCount] > numMinions) {
+        [self removeChild:[[self children] objectAtIndex:0] cleanup:YES];
+    }
 }
 @end

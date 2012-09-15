@@ -31,5 +31,6 @@ typedef struct {
 @property(nonatomic, readonly)NSUInteger damage;
 
 +(SGFoeStats*) getStatsByClassName:(NSString*)name;
+-(BOOL) strike:(NSUInteger)damage;
 @end
 

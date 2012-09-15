@@ -40,6 +40,13 @@ static NSMutableDictionary *statDict=nil;
 -(NSUInteger) minionCount{
     return [[self children] count];
 }
+-(BOOL) strike:(NSUInteger)damage{
+    return NO;
+}
+
+-(CGPoint)center{
+    return [self position];
+}
 @end
 
 @implementation SGFoeStats
