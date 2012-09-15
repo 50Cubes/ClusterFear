@@ -20,6 +20,11 @@
     return @"bullet.png";
 }
 
++(float)fadeScale
+{
+    return 0.75f;
+}
+
 +(SGCasing *)casingForProjectile:(SGProjectile *)projectile
 {
     SGCasing *rtnCasing = [self spriteWithFile:[self casingPath]];
@@ -32,6 +37,26 @@
     if( (self = [super initWithTexture:texture rect:rect rotated:rotated]) != nil)
         bounciness_ = 0.64f;
     return self;
+}
+
+-(float)ejectionIntensity
+{
+    return [[[self projectile] class] range] * (bounciness_ * bounciness_) * 0.5f;
+}
+
+-(CGPoint)findPrimaryDirection
+{
+    float distance = [self ejectionIntensity];
+    
+    CGPoint casingDirection = ccpMult([self forwardDirection], distance);
+    
+    CGFloat oldX = casingDirection.x;
+    
+    distance *= 0.1f;
+    casingDirection.x = casingDirection.y + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+    casingDirection.y = oldX + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+    
+    return casingDirection;
 }
 
 -(void)bounceAround
@@ -59,15 +84,7 @@
     float bounceAngle = squareBounciness * 5280.0f * randSeed;
     [self runAction:[CCRotateBy actionWithDuration:0.32f + squareBounciness angle:bounceAngle]];
     
-    
-    float distance = [[[self projectile] class] range] * squareBounciness * 0.5f;
-    CGPoint casingDirection = ccpMult([self forwardDirection], distance);
-    
-    CGFloat oldX = casingDirection.x;
-    
-    distance *= 0.1f;
-    casingDirection.x = casingDirection.y + (CCRANDOM_MINUS1_1() * distance * bounciness_);
-    casingDirection.y = oldX + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+    CGPoint casingDirection = [self findPrimaryDirection];
     
     //CCLOG(@"Casing bounce angle %f and direction %@", bounceAngle, NSStringFromCGPoint(casingDirection));
     
@@ -100,7 +117,7 @@
     
     CCFiniteTimeAction *scaleUp = [CCEaseOut actionWithAction:[CCScaleBy actionWithDuration:0.09f scale:1.2f]];
     
-    CCFiniteTimeAction *scaleDown = [CCEaseBounceIn actionWithAction:[CCScaleTo actionWithDuration:0.47f scale:0.75f]];
+    CCFiniteTimeAction *scaleDown = [CCEaseBounceIn actionWithAction:[CCScaleTo actionWithDuration:0.47f scale:[[self class] fadeScale]]];
     
     
     [self runAction:[CCSequence actionOne:scaleUp two:scaleDown]];

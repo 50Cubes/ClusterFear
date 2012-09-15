@@ -13,10 +13,14 @@
     float bounciness_;
 }
 
-@property(nonatomic, strong)SGProjectile *projectile;
-
 +(NSString *)casingPath;
 
 +(SGCasing *)casingForProjectile:(SGProjectile *)projectile;
+
+@property(nonatomic, strong)SGProjectile *projectile;
+
+
+-(float)ejectionIntensity;
+-(CGPoint)findPrimaryDirection;
 
 @end

@@ -9,6 +9,8 @@
 #import "SGCasing.h"
 
 @interface SGSplatter : SGCasing
+{
+}
 
 +(SGSplatter *)splatterFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity;
 

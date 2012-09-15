@@ -9,6 +9,8 @@
 #import "SGDestroyable.h"
 #import "SGWeapon.h"
 
+#import "SGProjectile.h"
+
 @interface SGDestroyable ()
 
 
@@ -46,6 +48,11 @@
         [weapon didDestroy:self];
         [self die];
     }
+}
+
+-(void)getHitFromProjectile:(SGProjectile *)projectile
+{
+    [self getHitFromWeapon:[projectile weapon]];
 }
 
 
