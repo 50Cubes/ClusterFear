@@ -89,7 +89,10 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         [self setTileLayer:tileMapLayer];
         [tileMapLayer setSize:[self size]];
         
-        [self addChild:tileMapLayer];
+        shiftLayer = [CCNode node];
+        [self addChild:shiftLayer z:0];
+        
+        [shiftLayer addChild:tileMapLayer];
         
 
         [self spawnPlayer];
@@ -102,12 +105,13 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 //        //[self addPhysicalBodyToSprite:localPlayer];
 //        [self addChild:localPlayer];
         
+        
         runActivator = [SGRunActivator node];
-        [runActivator setContentSize:CGSizeMake(150, 60)];
+        [runActivator setContentSize:CGSizeMake(128, 64)];
         [runActivator setup];
         runActivator.isTouchEnabled = YES;
         //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
-        [_tileLayer addChild:runActivator];
+        [self addChild:runActivator];
         
         
         _enemyTypes = [CCArray arrayWithCapacity:2];
@@ -131,15 +135,25 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     return self;
 }
 
+-(CGPoint)playerPoint
+{
+    return CGPointMake(_tileLayer.contentSize.width/2, _tileLayer.contentSize.height/2);
+}
+
+-(CGPoint)playerRelativeToCenter
+{
+    return ccpSub([localPlayer position], [self playerPoint]);
+}
+
 -(void)spawnPlayer
 {
     localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
     [localPlayer setOwner:self];
     
-    localPlayer.position = CGPointMake(_tileLayer.contentSize.width/2, _tileLayer.contentSize.height/2);
+    localPlayer.position = [self playerPoint];
     
     
-    [self runAction:[CCFollow actionWithTarget:localPlayer]];
+//    [self runAction:[CCFollow actionWithTarget:localPlayer]];
     [_tileLayer addChild:localPlayer z:2];
 }
 
@@ -217,16 +231,31 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 }
 
 
+#define INVERSE_CONTROLS 1
+
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
+    CGPoint playerPosition = [localPlayer position];
+    CGPoint playerGlobalPosition = ccpSub(playerPosition, [self playerPoint]);
+    touchPoint = ccpAdd(touchPoint, playerGlobalPosition);
+    
     if( [runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
     }
     else
     {
-        [localPlayer facePoint:touchPoint];
-
-        [localPlayer fireWeapon];
+        
+#ifdef INVERSE_CONTROLS
+        CGPoint vector = ccpSub(playerPosition, touchPoint);
+//        vector.x *= 1.0f;
+//        vector.y *= 1.0f;
+        touchPoint = ccpAdd(playerPosition, vector);
+#endif
+        
+        [localPlayer fireWeaponAtPoint:touchPoint];
+//        [localPlayer facePoint:touchPoint];
+//
+//        [localPlayer fireWeapon];
     }
 }
 
@@ -285,7 +314,8 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)playerMovedToPoint:(CGPoint)newPoint
 {
-//    [_tileLayer set]
+    newPoint = ccpSub([self playerPoint], newPoint);
+    [shiftLayer setPosition:newPoint];
     //Currently unused, I removed invocations cause they happened al ot - Stich
 }
 
@@ -570,7 +600,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
     for(int i = 0; i < 4; i++){
         SGTurret *t = [SGTurret turretWithAmmo:1000];
         t.owner = self;
-        [t addToParent:self atPosition:points[i]];
+        [t addToParent:_tileLayer atPosition:points[i]];
         [_turrets addObject:t];
         [t activate];
     }

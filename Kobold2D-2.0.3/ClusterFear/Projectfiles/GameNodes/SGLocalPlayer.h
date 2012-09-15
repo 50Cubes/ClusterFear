@@ -33,6 +33,7 @@
 @property(nonatomic, unsafe_unretained)NSObject <SGLocalPlayerOwner, SGMoverOwner> *owner;
 
 -(void)fireWeapon;
+-(void)fireWeaponAtPoint:(CGPoint)target;
 
 -(void)receiveReward:(int)coinValue;
 

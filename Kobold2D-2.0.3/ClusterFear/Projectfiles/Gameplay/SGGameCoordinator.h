@@ -25,6 +25,8 @@
     SGLocalPlayer *localPlayer;
     SGRunActivator *runActivator;
     
+    CCNode *shiftLayer;
+    
     //cpSpace *physicalSpace;
     //b2World *physicalSpace;
     //MyContactListener *listener;
