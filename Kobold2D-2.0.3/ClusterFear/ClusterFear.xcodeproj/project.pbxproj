@@ -58,6 +58,31 @@
 		C17470131604B58A00D5274E /* base.png in Resources */ = {isa = PBXBuildFile; fileRef = C17470111604B58A00D5274E /* base.png */; };
 		C17470141604B58A00D5274E /* rotateTop.png in Resources */ = {isa = PBXBuildFile; fileRef = C17470121604B58A00D5274E /* rotateTop.png */; };
 		C174701D1604E27600D5274E /* SGTurret.m in Sources */ = {isa = PBXBuildFile; fileRef = C174701C1604E27600D5274E /* SGTurret.m */; };
+		C17470561604FF1500D5274E /* boom.aif in Resources */ = {isa = PBXBuildFile; fileRef = C17470241604FF1500D5274E /* boom.aif */; };
+		C17470581604FF1500D5274E /* Bullet-ImpactWithBloodSplatter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470261604FF1500D5274E /* Bullet-ImpactWithBloodSplatter.mp3 */; };
+		C174705A1604FF1500D5274E /* cnpig SKETCH.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470281604FF1500D5274E /* cnpig SKETCH.wav */; };
+		C174705C1604FF1500D5274E /* Grenade3.wav in Resources */ = {isa = PBXBuildFile; fileRef = C174702A1604FF1500D5274E /* Grenade3.wav */; };
+		C174705E1604FF1500D5274E /* Gun_357mag.wav in Resources */ = {isa = PBXBuildFile; fileRef = C174702C1604FF1500D5274E /* Gun_357mag.wav */; };
+		C17470601604FF1500D5274E /* Gun_44magnum.wav in Resources */ = {isa = PBXBuildFile; fileRef = C174702E1604FF1500D5274E /* Gun_44magnum.wav */; };
+		C17470621604FF1500D5274E /* Gun_Shot.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470301604FF1500D5274E /* Gun_Shot.wav */; };
+		C17470641604FF1500D5274E /* Gun_Shot2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470321604FF1500D5274E /* Gun_Shot2.wav */; };
+		C17470661604FF1500D5274E /* hard drums.aif in Resources */ = {isa = PBXBuildFile; fileRef = C17470341604FF1500D5274E /* hard drums.aif */; };
+		C17470681604FF1500D5274E /* jamz -).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470361604FF1500D5274E /* jamz -).mp3 */; };
+		C174706A1604FF1500D5274E /* Minigun.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470381604FF1500D5274E /* Minigun.wav */; };
+		C174706C1604FF1500D5274E /* MinigunSingle.wav in Resources */ = {isa = PBXBuildFile; fileRef = C174703A1604FF1500D5274E /* MinigunSingle.wav */; };
+		C174706E1604FF1500D5274E /* new punch.aif in Resources */ = {isa = PBXBuildFile; fileRef = C174703C1604FF1500D5274E /* new punch.aif */; };
+		C17470701604FF1500D5274E /* Pistol_S-Adam3442-9043.wav in Resources */ = {isa = PBXBuildFile; fileRef = C174703E1604FF1500D5274E /* Pistol_S-Adam3442-9043.wav */; };
+		C17470721604FF1500D5274E /* punches.aif in Resources */ = {isa = PBXBuildFile; fileRef = C17470401604FF1500D5274E /* punches.aif */; };
+		C17470741604FF1500D5274E /* Ricochet1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470421604FF1500D5274E /* Ricochet1.wav */; };
+		C17470761604FF1500D5274E /* Ricochet2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470441604FF1500D5274E /* Ricochet2.wav */; };
+		C17470781604FF1500D5274E /* Shotgun1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470461604FF1500D5274E /* Shotgun1.wav */; };
+		C174707A1604FF1500D5274E /* Submachi-Diode111-2203.wav in Resources */ = {isa = PBXBuildFile; fileRef = C17470481604FF1500D5274E /* Submachi-Diode111-2203.wav */; };
+		C174707C1604FF1500D5274E /* Super Punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = C174704A1604FF1500D5274E /* Super Punch.wav */; };
+		C174707E1604FF1500D5274E /* thundah.aif in Resources */ = {isa = PBXBuildFile; fileRef = C174704C1604FF1500D5274E /* thundah.aif */; };
+		C17470801604FF1500D5274E /* ZombieBabble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C174704E1604FF1500D5274E /* ZombieBabble.mp3 */; };
+		C17470821604FF1500D5274E /* ZombieBreath.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470501604FF1500D5274E /* ZombieBreath.mp3 */; };
+		C17470841604FF1500D5274E /* ZombieCough.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470521604FF1500D5274E /* ZombieCough.mp3 */; };
+		C17470861604FF1500D5274E /* ZombieHissS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470541604FF1500D5274E /* ZombieHissS.mp3 */; };
 		C18091BE16044E6C00E43876 /* SGSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = C18091BD16044E6C00E43876 /* SGSpray.m */; };
 		C18091CE1604812200E43876 /* 64blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C18091CD1604812200E43876 /* 64blood1.png */; };
 		C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* SGFoeCluster.m */; };
@@ -92,7 +117,6 @@
 		DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A38E13A94F1A005BD75D /* AppDelegate.m */; };
 		DCC1A3AD13A94F1A005BD75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A39113A94F1A005BD75D /* main.m */; };
 		DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
-		DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528AB16039BBA001D09D3 /* SGWeapon.m */; };
 		DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528B81603B9E8001D09D3 /* SGRunActivator.m */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +191,31 @@
 		C17470121604B58A00D5274E /* rotateTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotateTop.png; sourceTree = "<group>"; };
 		C174701B1604E27600D5274E /* SGTurret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTurret.h; path = GameNodes/items/SGTurret.h; sourceTree = "<group>"; };
 		C174701C1604E27600D5274E /* SGTurret.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTurret.m; path = GameNodes/items/SGTurret.m; sourceTree = "<group>"; };
+		C17470241604FF1500D5274E /* boom.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom.aif; sourceTree = "<group>"; };
+		C17470261604FF1500D5274E /* Bullet-ImpactWithBloodSplatter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bullet-ImpactWithBloodSplatter.mp3"; sourceTree = "<group>"; };
+		C17470281604FF1500D5274E /* cnpig SKETCH.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cnpig SKETCH.wav"; sourceTree = "<group>"; };
+		C174702A1604FF1500D5274E /* Grenade3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Grenade3.wav; sourceTree = "<group>"; };
+		C174702C1604FF1500D5274E /* Gun_357mag.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_357mag.wav; sourceTree = "<group>"; };
+		C174702E1604FF1500D5274E /* Gun_44magnum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_44magnum.wav; sourceTree = "<group>"; };
+		C17470301604FF1500D5274E /* Gun_Shot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Shot.wav; sourceTree = "<group>"; };
+		C17470321604FF1500D5274E /* Gun_Shot2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Shot2.wav; sourceTree = "<group>"; };
+		C17470341604FF1500D5274E /* hard drums.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "hard drums.aif"; sourceTree = "<group>"; };
+		C17470361604FF1500D5274E /* jamz -).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "jamz -).mp3"; sourceTree = "<group>"; };
+		C17470381604FF1500D5274E /* Minigun.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Minigun.wav; sourceTree = "<group>"; };
+		C174703A1604FF1500D5274E /* MinigunSingle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MinigunSingle.wav; sourceTree = "<group>"; };
+		C174703C1604FF1500D5274E /* new punch.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "new punch.aif"; sourceTree = "<group>"; };
+		C174703E1604FF1500D5274E /* Pistol_S-Adam3442-9043.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Pistol_S-Adam3442-9043.wav"; sourceTree = "<group>"; };
+		C17470401604FF1500D5274E /* punches.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = punches.aif; sourceTree = "<group>"; };
+		C17470421604FF1500D5274E /* Ricochet1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ricochet1.wav; sourceTree = "<group>"; };
+		C17470441604FF1500D5274E /* Ricochet2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ricochet2.wav; sourceTree = "<group>"; };
+		C17470461604FF1500D5274E /* Shotgun1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Shotgun1.wav; sourceTree = "<group>"; };
+		C17470481604FF1500D5274E /* Submachi-Diode111-2203.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Submachi-Diode111-2203.wav"; sourceTree = "<group>"; };
+		C174704A1604FF1500D5274E /* Super Punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Super Punch.wav"; sourceTree = "<group>"; };
+		C174704C1604FF1500D5274E /* thundah.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = thundah.aif; sourceTree = "<group>"; };
+		C174704E1604FF1500D5274E /* ZombieBabble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZombieBabble.mp3; sourceTree = "<group>"; };
+		C17470501604FF1500D5274E /* ZombieBreath.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZombieBreath.mp3; sourceTree = "<group>"; };
+		C17470521604FF1500D5274E /* ZombieCough.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZombieCough.mp3; sourceTree = "<group>"; };
+		C17470541604FF1500D5274E /* ZombieHissS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZombieHissS.mp3; sourceTree = "<group>"; };
 		C18091BC16044E6C00E43876 /* SGSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSpray.h; path = GameNodes/SGSpray.h; sourceTree = "<group>"; };
 		C18091BD16044E6C00E43876 /* SGSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGSpray.m; path = GameNodes/SGSpray.m; sourceTree = "<group>"; };
 		C18091CD1604812200E43876 /* 64blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64blood1.png; sourceTree = "<group>"; };
@@ -212,7 +261,6 @@
 		DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
 		DFD528AA16039BBA001D09D3 /* SGWeapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGWeapon.h; path = Gameplay/SGWeapon.h; sourceTree = "<group>"; };
-		DFD528AB16039BBA001D09D3 /* SGWeapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGWeapon.m; path = Gameplay/SGWeapon.m; sourceTree = "<group>"; };
 		DFD528B71603B9E8001D09D3 /* SGRunActivator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGRunActivator.h; path = Gameplay/SGRunActivator.h; sourceTree = "<group>"; };
 		DFD528B81603B9E8001D09D3 /* SGRunActivator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGRunActivator.m; path = Gameplay/SGRunActivator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -316,7 +364,6 @@
 				C117132A160393A200208448 /* SGGameCoordinator.h */,
 				C117132B160393A200208448 /* SGGameCoordinator.m */,
 				DFD528AA16039BBA001D09D3 /* SGWeapon.h */,
-				DFD528AB16039BBA001D09D3 /* SGWeapon.m */,
 				C117133A1603B98E00208448 /* SGProjectile.h */,
 				C117133B1603B98F00208448 /* SGProjectile.m */,
 				DFD528B71603B9E8001D09D3 /* SGRunActivator.h */,
@@ -385,6 +432,38 @@
 				C174701C1604E27600D5274E /* SGTurret.m */,
 			);
 			name = Items;
+			sourceTree = "<group>";
+		};
+		C17470231604FF1500D5274E /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C17470241604FF1500D5274E /* boom.aif */,
+				C17470261604FF1500D5274E /* Bullet-ImpactWithBloodSplatter.mp3 */,
+				C17470281604FF1500D5274E /* cnpig SKETCH.wav */,
+				C174702A1604FF1500D5274E /* Grenade3.wav */,
+				C174702C1604FF1500D5274E /* Gun_357mag.wav */,
+				C174702E1604FF1500D5274E /* Gun_44magnum.wav */,
+				C17470301604FF1500D5274E /* Gun_Shot.wav */,
+				C17470321604FF1500D5274E /* Gun_Shot2.wav */,
+				C17470341604FF1500D5274E /* hard drums.aif */,
+				C17470361604FF1500D5274E /* jamz -).mp3 */,
+				C17470381604FF1500D5274E /* Minigun.wav */,
+				C174703A1604FF1500D5274E /* MinigunSingle.wav */,
+				C174703C1604FF1500D5274E /* new punch.aif */,
+				C174703E1604FF1500D5274E /* Pistol_S-Adam3442-9043.wav */,
+				C17470401604FF1500D5274E /* punches.aif */,
+				C17470421604FF1500D5274E /* Ricochet1.wav */,
+				C17470441604FF1500D5274E /* Ricochet2.wav */,
+				C17470461604FF1500D5274E /* Shotgun1.wav */,
+				C17470481604FF1500D5274E /* Submachi-Diode111-2203.wav */,
+				C174704A1604FF1500D5274E /* Super Punch.wav */,
+				C174704C1604FF1500D5274E /* thundah.aif */,
+				C174704E1604FF1500D5274E /* ZombieBabble.mp3 */,
+				C17470501604FF1500D5274E /* ZombieBreath.mp3 */,
+				C17470521604FF1500D5274E /* ZombieCough.mp3 */,
+				C17470541604FF1500D5274E /* ZombieHissS.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		C18091CC1604811400E43876 /* blood */ = {
@@ -481,6 +560,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C17470231604FF1500D5274E /* Sounds */,
 				7C75676F1603EB66005C4C06 /* terrain */,
 				7C616EAF1603B10200B9D0A2 /* player */,
 				7C631C461603C1FD004AA439 /* enemies */,
@@ -618,6 +698,31 @@
 				C1747010160485BE00D5274E /* 64blood2.png in Resources */,
 				C17470131604B58A00D5274E /* base.png in Resources */,
 				C17470141604B58A00D5274E /* rotateTop.png in Resources */,
+				C17470561604FF1500D5274E /* boom.aif in Resources */,
+				C17470581604FF1500D5274E /* Bullet-ImpactWithBloodSplatter.mp3 in Resources */,
+				C174705A1604FF1500D5274E /* cnpig SKETCH.wav in Resources */,
+				C174705C1604FF1500D5274E /* Grenade3.wav in Resources */,
+				C174705E1604FF1500D5274E /* Gun_357mag.wav in Resources */,
+				C17470601604FF1500D5274E /* Gun_44magnum.wav in Resources */,
+				C17470621604FF1500D5274E /* Gun_Shot.wav in Resources */,
+				C17470641604FF1500D5274E /* Gun_Shot2.wav in Resources */,
+				C17470661604FF1500D5274E /* hard drums.aif in Resources */,
+				C17470681604FF1500D5274E /* jamz -).mp3 in Resources */,
+				C174706A1604FF1500D5274E /* Minigun.wav in Resources */,
+				C174706C1604FF1500D5274E /* MinigunSingle.wav in Resources */,
+				C174706E1604FF1500D5274E /* new punch.aif in Resources */,
+				C17470701604FF1500D5274E /* Pistol_S-Adam3442-9043.wav in Resources */,
+				C17470721604FF1500D5274E /* punches.aif in Resources */,
+				C17470741604FF1500D5274E /* Ricochet1.wav in Resources */,
+				C17470761604FF1500D5274E /* Ricochet2.wav in Resources */,
+				C17470781604FF1500D5274E /* Shotgun1.wav in Resources */,
+				C174707A1604FF1500D5274E /* Submachi-Diode111-2203.wav in Resources */,
+				C174707C1604FF1500D5274E /* Super Punch.wav in Resources */,
+				C174707E1604FF1500D5274E /* thundah.aif in Resources */,
+				C17470801604FF1500D5274E /* ZombieBabble.mp3 in Resources */,
+				C17470821604FF1500D5274E /* ZombieBreath.mp3 in Resources */,
+				C17470841604FF1500D5274E /* ZombieCough.mp3 in Resources */,
+				C17470861604FF1500D5274E /* ZombieHissS.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,7 +741,6 @@
 				C117132416037C7C00208448 /* SGBug.m in Sources */,
 				C11713291603886600208448 /* SGLocalPlayer.m in Sources */,
 				C117132C160393A200208448 /* SGGameCoordinator.m in Sources */,
-				DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */,
 				C117133C1603B98F00208448 /* SGProjectile.m in Sources */,
 				DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */,
 				4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */,

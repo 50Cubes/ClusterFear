@@ -39,12 +39,13 @@
 {
     SGCasing *rtnCasing = [self spriteWithTexture:[self textureForCasingWithPath:[self casingPath]]];
     
+    CGSize nodeSize = [node contentSize];
+    
     rtnCasing->position_ = [node position];
     rtnCasing->rotation_ = [node rotation];
     
-    float radRot = CC_DEGREES_TO_RADIANS(rtnCasing->rotation_);
-    rtnCasing->position_.x -= 2.0f * sinf(radRot);
-    rtnCasing->position_.y -= 1.0f * cosf(radRot);
+    rtnCasing->position_.x += 0.5f * nodeSize.width;
+    rtnCasing->position_.y += 0.5f * nodeSize.height;
     
 //    [rtnCasing setProjectile:projectile];
     return rtnCasing;

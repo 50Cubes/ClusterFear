@@ -198,7 +198,7 @@ static NSMutableDictionary *statDict=nil;
     BOOL dead = NO;
     if( _health > 0 )
     {
-        [_owner foeCluster:self hitByProjectile:projectile];
+        [_owner foeCluster:self minion:member hitByProjectile:projectile];
         uint damage = (uint) [[projectile weapon] damageInflicted];
         // else
         _health-=damage;
