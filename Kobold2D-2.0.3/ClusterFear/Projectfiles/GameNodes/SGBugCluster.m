@@ -23,10 +23,10 @@ SGFoeStats * bugStats=nil;
         bugStats=[SGFoeCluster getStatsByClassName:@"SGBugCluster"];
     }
     // Return nil if stats not found in LUA (maxHealth==0)
-    self = bugStats.stats.maxHealth ? [super init] : nil;
+    self = bugStats->maxHealth ? [super init] : nil;
     if(nil!=self){
-        health=bugStats.stats.maxHealth;
-        for (int x=0; x<bugStats.stats.maxCritters; ++x) {
+        health=bugStats->maxHealth;
+        for (int x=0; x<bugStats->maxCritters; ++x) {
             [self addChild:[SGBug enemy]];
         }
     }
@@ -36,7 +36,7 @@ SGFoeStats * bugStats=nil;
 @synthesize health;
 
 -(NSUInteger)damage{
-    return bugStats.stats.damage;
+    return bugStats->damage;
 }
 -(BOOL)strike:(SGEnemy*)memberStruck :(SGWeapon*)weaponStriking{
     uint damage = (uint) [weaponStriking damageInflicted];
@@ -51,8 +51,8 @@ SGFoeStats * bugStats=nil;
 }
 
 -(void)checkForMinion:(SGEnemy*)memberStruck{
-    float ratio = health/((float)bugStats.stats.maxHealth);
-    float fractionalMinions = ratio * bugStats.stats.maxCritters;
+    float ratio = health/((float)bugStats->maxHealth);
+    float fractionalMinions = ratio * bugStats->maxCritters;
     uint numMinions = (uint)fractionalMinions;
     if ([self minionCount] > numMinions) {
         [self removeChild:memberStruck cleanup:YES];

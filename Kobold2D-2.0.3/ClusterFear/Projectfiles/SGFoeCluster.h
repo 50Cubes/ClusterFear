@@ -9,20 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "GameNodes/SGEnemy.h"
 #import "Gameplay/SGWeapon.h"
-typedef struct {
+
+@interface SGFoeStats : NSObject{
+    @public
     int maxHealth;
     int maxCritters;
     int damage;
     int moveSpeed;
-} SGFoeStats_;
+}
 
-@interface SGFoeStats : NSObject
-@property(nonatomic, readwrite)SGFoeStats_ stats;
+@property(nonatomic, unsafe_unretained)SGFoeStats *stats;
 
--(id)init:(SGFoeStats_ const *)stat;
+-(id)initWithKeyPath:(NSString *)keyPath;
 @end
 
 @interface SGFoeCluster : CCNode
+
++(SGFoeCluster *)foeCluster;
 
 @property(nonatomic, readonly)CGPoint center;
 

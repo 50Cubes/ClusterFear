@@ -126,21 +126,30 @@
         //Class enemyClass = [_enemyTypes randomObject];
         //SGEnemy *testBug = [enemyClass enemy];
         Class clusterClass = [SGBatCluster class];//TODO randomize
-        SGFoeCluster *spawnedCluster = [[clusterClass alloc] init];
+        SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
         
         CGPoint spawnPoint = SGRandomScreenPoint();
 
         //[testBug setPosition:spawnPoint];
         [spawnedCluster setPosition:spawnPoint];
         
-        for (SGEnemy* minion in [spawnedCluster children]) {
+        for (SGEnemy* minion in [spawnedCluster children])
+        {
             [self addPhysicalBodyToSprite:minion];
             [self addMover:minion];
         }
         
+        if( spawnedCluster != nil )
+            [self addCluster:spawnedCluster];
+        
         //[self addPhysicalBodyToSprite:testBug];
         //[self addMover:testBug];
     }
+}
+
+-(void)addCluster:(SGFoeCluster *)newCluster
+{
+    [self addChild:newCluster];
 }
 
 -(void)addMover:(SGMover *)newMover
@@ -149,7 +158,7 @@
     
     [newMover setOwner:self];
     
-    [self addChild:newMover];
+//    [self addChild:newMover];
 }
 
 
