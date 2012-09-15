@@ -10,11 +10,13 @@
 		4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */; };
 		4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB521603DE1F005E91DF /* SGBatCluster.m */; };
 		4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB561603E492005E91DF /* SGLocustCluster.m */; };
+		7C4A3A9616043DE20071035E /* chemical_spill.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C4A3A9516043DE20071035E /* chemical_spill.png */; };
 		7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB51603B5C800B9D0A2 /* soldier.png */; };
 		7C631C5E1603D4CA004AA439 /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C5D1603D4CA004AA439 /* rock.png */; };
 		7C6645EB1603E49100A01000 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6645EA1603E49100A01000 /* bullet.png */; };
 		7C7567741603EB85005C4C06 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7567711603EB85005C4C06 /* grass.png */; };
 		7C7567751603EB85005C4C06 /* sand.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7567721603EB85005C4C06 /* sand.png */; };
+		7CB6BB931604332B007E316A /* hazardSuit.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB6BB921604332B007E316A /* hazardSuit.png */; };
 		7CD0C67F1603EF7C00F64E85 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C67E1603EF7C00F64E85 /* water.png */; };
 		7CD0C6811603F28500F64E85 /* pebbles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6801603F28500F64E85 /* pebbles.png */; };
 		7CD0C6871604032700F64E85 /* bullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6821604032700F64E85 /* bullet2.png */; };
@@ -84,11 +86,13 @@
 		4C5CDB521603DE1F005E91DF /* SGBatCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBatCluster.m; path = GameNodes/SGBatCluster.m; sourceTree = "<group>"; };
 		4C5CDB551603E491005E91DF /* SGLocustCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGLocustCluster.h; path = GameNodes/SGLocustCluster.h; sourceTree = "<group>"; };
 		4C5CDB561603E492005E91DF /* SGLocustCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGLocustCluster.m; path = GameNodes/SGLocustCluster.m; sourceTree = "<group>"; };
+		7C4A3A9516043DE20071035E /* chemical_spill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chemical_spill.png; sourceTree = "<group>"; };
 		7C616EB51603B5C800B9D0A2 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 		7C631C5D1603D4CA004AA439 /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock.png; sourceTree = "<group>"; };
 		7C6645EA1603E49100A01000 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		7C7567711603EB85005C4C06 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		7C7567721603EB85005C4C06 /* sand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand.png; sourceTree = "<group>"; };
+		7CB6BB921604332B007E316A /* hazardSuit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hazardSuit.png; sourceTree = "<group>"; };
 		7CD0C67E1603EF7C00F64E85 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
 		7CD0C6801603F28500F64E85 /* pebbles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pebbles.png; sourceTree = "<group>"; };
 		7CD0C6821604032700F64E85 /* bullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet2.png; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 		7C616EAF1603B10200B9D0A2 /* player */ = {
 			isa = PBXGroup;
 			children = (
+				7CB6BB921604332B007E316A /* hazardSuit.png */,
 				7CD0C6821604032700F64E85 /* bullet2.png */,
 				7CD0C6831604032700F64E85 /* bullet3.png */,
 				7CD0C6841604032700F64E85 /* bullet4.png */,
@@ -215,6 +220,7 @@
 		7C616EB01603B10700B9D0A2 /* obstacles */ = {
 			isa = PBXGroup;
 			children = (
+				7C4A3A9516043DE20071035E /* chemical_spill.png */,
 				7C631C5D1603D4CA004AA439 /* rock.png */,
 			);
 			name = obstacles;
@@ -515,6 +521,8 @@
 				7CD0C6A01604183100F64E85 /* spider_large.png in Resources */,
 				7CD0C6A11604183100F64E85 /* spider_medium.png in Resources */,
 				7CD0C6A21604183100F64E85 /* spider_small.png in Resources */,
+				7CB6BB931604332B007E316A /* hazardSuit.png in Resources */,
+				7C4A3A9616043DE20071035E /* chemical_spill.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
