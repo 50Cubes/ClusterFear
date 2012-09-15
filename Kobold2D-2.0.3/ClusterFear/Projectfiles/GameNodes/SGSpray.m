@@ -45,7 +45,13 @@
 
 +(SGSpray *)sprayOnCharacter:(SGMover *)character forDamage:(int)damage andIntensity:(float)intensity
 {
+    SGSpray *newsSpray = (SGSpray *)[self casingWithNode:character];
     
+    newsSpray->bounciness_ = intensity + (damage / 100.0f);
+    
+    [character addChild:newsSpray z:1];
+    
+    return newsSpray;
 }
 
 +(SGSpray *)sprayFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity

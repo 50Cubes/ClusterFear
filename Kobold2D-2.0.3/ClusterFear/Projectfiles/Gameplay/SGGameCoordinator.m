@@ -246,9 +246,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)playerHit:(SGLocalPlayer *)player forDamage:(int)damage
 {
-    SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
-    
-    [_tileLayer addChild:splatter z:0];
+    [SGSpray sprayOnCharacter:player forDamage:damage andIntensity:0.4f];
 }
 
 -(void)playerHit:(SGLocalPlayer *)player fromProjectile:(SGProjectile *)projectile
