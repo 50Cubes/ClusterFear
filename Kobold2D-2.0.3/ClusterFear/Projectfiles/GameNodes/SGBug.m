@@ -156,7 +156,7 @@
     if( count <= 0 )
         crawlPhase = ((crawlPhase + 1) % 2);
     
-    float adjust = dT * 0.1f;
+    float adjust = dT * 0.05f;
     xTarget = xTarget + (xTarget - currentX) * adjust;
     yTarget = yTarget + (yTarget - currentY) * adjust;
     
