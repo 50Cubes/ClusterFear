@@ -19,6 +19,12 @@
 		7C7567741603EB85005C4C06 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7567711603EB85005C4C06 /* grass.png */; };
 		7C7567751603EB85005C4C06 /* sand.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7567721603EB85005C4C06 /* sand.png */; };
 		7CD0C67F1603EF7C00F64E85 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C67E1603EF7C00F64E85 /* water.png */; };
+		7CD0C6811603F28500F64E85 /* pebbles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6801603F28500F64E85 /* pebbles.png */; };
+		7CD0C6871604032700F64E85 /* bullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6821604032700F64E85 /* bullet2.png */; };
+		7CD0C6881604032700F64E85 /* bullet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6831604032700F64E85 /* bullet3.png */; };
+		7CD0C6891604032700F64E85 /* bullet4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6841604032700F64E85 /* bullet4.png */; };
+		7CD0C68A1604032700F64E85 /* bullet5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6851604032700F64E85 /* bullet5.png */; };
+		7CD0C68B1604032700F64E85 /* bullet6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD0C6861604032700F64E85 /* bullet6.png */; };
 		C117131F1603786A00208448 /* SGMover.m in Sources */ = {isa = PBXBuildFile; fileRef = C117131E1603786A00208448 /* SGMover.m */; };
 		C117132416037C7C00208448 /* SGBug.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132316037C7C00208448 /* SGBug.m */; };
 		C11713291603886600208448 /* SGLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713281603886600208448 /* SGLocalPlayer.m */; };
@@ -80,6 +86,12 @@
 		7C7567711603EB85005C4C06 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		7C7567721603EB85005C4C06 /* sand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand.png; sourceTree = "<group>"; };
 		7CD0C67E1603EF7C00F64E85 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
+		7CD0C6801603F28500F64E85 /* pebbles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pebbles.png; sourceTree = "<group>"; };
+		7CD0C6821604032700F64E85 /* bullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet2.png; sourceTree = "<group>"; };
+		7CD0C6831604032700F64E85 /* bullet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet3.png; sourceTree = "<group>"; };
+		7CD0C6841604032700F64E85 /* bullet4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet4.png; sourceTree = "<group>"; };
+		7CD0C6851604032700F64E85 /* bullet5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet5.png; sourceTree = "<group>"; };
+		7CD0C6861604032700F64E85 /* bullet6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet6.png; sourceTree = "<group>"; };
 		C117131D1603786A00208448 /* SGMover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMover.h; path = GameNodes/SGMover.h; sourceTree = "<group>"; };
 		C117131E1603786A00208448 /* SGMover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMover.m; path = GameNodes/SGMover.m; sourceTree = "<group>"; };
 		C117132216037C7C00208448 /* SGBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBug.h; path = GameNodes/SGBug.h; sourceTree = "<group>"; };
@@ -170,6 +182,11 @@
 		7C616EAF1603B10200B9D0A2 /* player */ = {
 			isa = PBXGroup;
 			children = (
+				7CD0C6821604032700F64E85 /* bullet2.png */,
+				7CD0C6831604032700F64E85 /* bullet3.png */,
+				7CD0C6841604032700F64E85 /* bullet4.png */,
+				7CD0C6851604032700F64E85 /* bullet5.png */,
+				7CD0C6861604032700F64E85 /* bullet6.png */,
 				7C6645EA1603E49100A01000 /* bullet.png */,
 				7C616EB51603B5C800B9D0A2 /* soldier.png */,
 			);
@@ -199,6 +216,7 @@
 		7C75676F1603EB66005C4C06 /* terrain */ = {
 			isa = PBXGroup;
 			children = (
+				7CD0C6801603F28500F64E85 /* pebbles.png */,
 				7CD0C67E1603EF7C00F64E85 /* water.png */,
 				7C7567711603EB85005C4C06 /* grass.png */,
 				7C7567721603EB85005C4C06 /* sand.png */,
@@ -458,6 +476,12 @@
 				7C7567741603EB85005C4C06 /* grass.png in Resources */,
 				7C7567751603EB85005C4C06 /* sand.png in Resources */,
 				7CD0C67F1603EF7C00F64E85 /* water.png in Resources */,
+				7CD0C6811603F28500F64E85 /* pebbles.png in Resources */,
+				7CD0C6871604032700F64E85 /* bullet2.png in Resources */,
+				7CD0C6881604032700F64E85 /* bullet3.png in Resources */,
+				7CD0C6891604032700F64E85 /* bullet4.png in Resources */,
+				7CD0C68A1604032700F64E85 /* bullet5.png in Resources */,
+				7CD0C68B1604032700F64E85 /* bullet6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
