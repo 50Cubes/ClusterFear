@@ -19,7 +19,7 @@
 
 @protocol SGFoeClusterOwner <NSObject>
 
--(void)foeCluster:(SGFoeCluster *)cluster hitByProjectile:(SGProjectile *)projectile;
+-(void)foeCluster:(SGFoeCluster *)cluster minion:(SGEnemy *)enemy hitByProjectile:(SGProjectile *)projectile;
 
 //-(void)foeClusterRequestsMinionPlacement:(
 

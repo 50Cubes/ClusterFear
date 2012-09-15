@@ -12,6 +12,7 @@
 {
 }
 
++(SGSpray *)sprayOnCharacter:(SGMover *)character forDamage:(int)damage andIntensity:(float)intensity;
 +(SGSpray *)sprayFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity;
 
 @property (nonatomic, readonly)CCTexture2D *splatterTexture;

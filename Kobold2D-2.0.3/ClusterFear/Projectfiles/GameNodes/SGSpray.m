@@ -27,6 +27,24 @@
 //    return CCRANDOM_MINUS1_1() >= 0.0f ? @"blood_splatter1_medium.png" : @"blood_splatter2_medium.png";
 }
 
++(CCTexture2D *)randomTexture
+{
+    NSString *fileName = @"blood_splatter1_small.png";
+    
+    float seed = CCRANDOM_MINUS1_1();
+    
+    if( seed >= 0.0f )
+    {
+        fileName = ( seed > 0.5f ) ? @"blood_splatter1_medium.png" : @"blood_splatter2_medium.png";
+    }
+    else
+    {
+        fileName = ( seed < -0.5f ) ? @"blood_splatter1_small.png" : @"blood_splatter2_small.png";
+    }
+    
+    return [[CCTextureCache sharedTextureCache] addImage:fileName];
+}
+
 
 +(float)bounceThreshold
 {
@@ -43,6 +61,17 @@
     return 2.0f;
 }
 
++(SGSpray *)sprayOnCharacter:(SGMover *)character forDamage:(int)damage andIntensity:(float)intensity
+{
+    SGSpray *newsSpray = (SGSpray *)[self casingWithNode:character];
+    
+    newsSpray->bounciness_ = intensity + (damage / 100.0f);
+    
+    [character addChild:newsSpray z:1];
+    
+    return newsSpray;
+}
+
 +(SGSpray *)sprayFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity
 {
     SGSpray *newSplat = (SGSpray *)[self casingForProjectile:projectile];
@@ -55,7 +84,7 @@
 
 -(CCTexture2D *)splatterTexture
 {
-    return [self texture];
+    return [[self class] randomTexture];
 }
 
 -(float)ejectionIntensity
@@ -113,7 +142,7 @@
         
         seed = CCRANDOM_MINUS1_1();
         
-        newSpray->rotation_ += (seed * 15.0f) / bounciness_;
+        newSpray->rotation_ += (seed * 3.25f) / bounciness_;
         
         [[self parent] addChild:newSpray];
     }
@@ -123,7 +152,7 @@
 {
     [self runAction:[CCScaleBy actionWithDuration:0.247f scale:1.5f * bounciness_]];
     [self runAction:[CCMoveBy actionWithDuration:0.327 position:[self findPrimaryDirection]]];
-    return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.137f] two:[CCFadeOut actionWithDuration:0.227f]];
+    return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.137f] two:[CCFadeOut actionWithDuration:0.367f]];
 }
 
 -(void)onEnter

@@ -75,6 +75,27 @@ static SGFoeStats *playerStats = nil;
     [[self owner] playerHit:self fromProjectile:projectile];
 }
 
+-(void)collideWithDestroyable:(SGDestroyable *)other
+{
+    int damage = [other damage];
+    if( damage > 0 )
+    {
+        if( [other isKindOfClass:[SGProjectile class]] )
+            [[self owner] playerHit:self fromProjectile:(id)other];
+        else
+        {
+            [[self owner] playerHit:self forDamage:damage];
+        }
+        
+        [self hitForDamage:damage];
+    }
+}
+
+//-(void)hitForDamage:(int)damage
+//{
+//    [super hitForDamage:damage];
+//}
+
 -(void)receiveReward:(int)coinValue
 {
     coins_ += coinValue;

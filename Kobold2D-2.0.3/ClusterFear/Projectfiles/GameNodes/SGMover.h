@@ -59,4 +59,7 @@
 
 -(void)didDestroy:(SGDestroyable *)destroyable;
 
+//don't call directly
+-(void)hitForDamage:(int)damage;
+
 @end

@@ -35,6 +35,22 @@
     return 5280.0f;
 }
 
++(SGCasing *)casingWithNode:(CCNode *)node
+{
+    SGCasing *rtnCasing = [self spriteWithTexture:[self textureForCasingWithPath:[self casingPath]]];
+    
+    CGSize nodeSize = [node contentSize];
+    
+    rtnCasing->position_ = [node position];
+    rtnCasing->rotation_ = [node rotation];
+    
+    rtnCasing->position_.x += 0.5f * nodeSize.width;
+    rtnCasing->position_.y += 0.5f * nodeSize.height;
+    
+//    [rtnCasing setProjectile:projectile];
+    return rtnCasing;
+}
+
 +(SGCasing *)casingForProjectile:(SGProjectile *)projectile
 {
     SGCasing *rtnCasing = [self spriteWithTexture:[self textureForCasingWithPath:[self casingPath]]];
