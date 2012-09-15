@@ -8,11 +8,15 @@
 
 #import "SGProjectile.h"
 
-@interface SGCasing : SGProjectile
+@interface SGCasing : CCSprite
 {
     float bounciness_;
 }
 
-+(SGCasing *)casingForWeapon:(SGWeapon *)weapon;
+@property(nonatomic, strong)SGProjectile *projectile;
+
++(NSString *)casingPath;
+
++(SGCasing *)casingForProjectile:(SGProjectile *)projectile;
 
 @end

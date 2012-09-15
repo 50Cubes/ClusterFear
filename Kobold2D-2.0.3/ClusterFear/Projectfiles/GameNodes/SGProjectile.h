@@ -9,16 +9,16 @@
 #import "CCSprite.h"
 #import "SGmover.h"
 
+#import "CCSprite+Convenience.h"
+
 @class SGWeapon;
 
-@interface SGProjectile : CCSprite
+@interface SGProjectile : SGDestroyable
 
 +(float)speed;
 
 +(NSString *)projectileAsset;
 +(SGProjectile *)projectileForWeapon:(SGWeapon *)weapon;
-
--(CGPoint)forwardDirection;
 
 @property(nonatomic, strong)SGWeapon *weapon;
 

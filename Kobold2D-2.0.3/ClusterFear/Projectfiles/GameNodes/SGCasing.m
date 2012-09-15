@@ -9,14 +9,21 @@
 #import "SGCasing.h"
 #import "SGWeapon.h"
 
+#import "CCSprite+Convenience.h"
+
 #define kSGCasingMinimumBounceCoefficient 0.1f
 
 @implementation SGCasing
 
-+(SGCasing *)casingForWeapon:(SGWeapon *)weapon
++(NSString *)casingPath
 {
-    SGCasing *rtnCasing = [self spriteWithFile:[self projectileAsset]];
-    [rtnCasing setWeapon:weapon];
+    return @"bullet.png";
+}
+
++(SGCasing *)casingForProjectile:(SGProjectile *)projectile
+{
+    SGCasing *rtnCasing = [self spriteWithFile:[self casingPath]];
+    [rtnCasing setProjectile:projectile];
     return rtnCasing;
 }
 
@@ -50,7 +57,7 @@
     [self runAction:[CCRotateBy actionWithDuration:0.32f + squareBounciness angle:bounceAngle]];
     
     
-    float distance = [[[self weapon] class] range] * squareBounciness * 0.5f;
+    float distance = [[[self projectile] class] range] * squareBounciness * 0.5f;
     CGPoint casingDirection = ccpMult([self forwardDirection], distance);
     
     CGFloat oldX = casingDirection.x;
@@ -71,7 +78,10 @@
         lastAction = [CCSequence actionOne:moveAction two:[CCCallFunc actionWithTarget:self selector:@selector(bounceAround)]];
     }
     else
+    {
         lastAction = moveAction;
+        [self setProjectile:nil];
+    }
     
     [self runAction:lastAction];
 }

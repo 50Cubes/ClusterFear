@@ -7,6 +7,7 @@
 //
 
 #import "SGProjectile.h"
+#import "CCSprite+Convenience.h"
 
 #import "SGCasing.h"
 
@@ -26,7 +27,7 @@
 
 +(NSString *)projectileAsset
 {
-    return @"bullet.png";
+    return @"bullet5.png";
 }
 
 +(NSString *)casingAsset
@@ -44,11 +45,6 @@
     return aProj;
 }
 
--(CGPoint)forwardDirection
-{
-    return ccpForAngle(CC_DEGREES_TO_RADIANS(rotation_));
-}
-
 -(void)fired
 {
     float myRange = [[self class] range];
@@ -62,9 +58,9 @@
     [self runAction:fireSequence];
 }
 
--(SGProjectile *)casing
+-(SGCasing *)casing
 {
-    SGCasing *casing = [SGCasing casingForWeapon:[self weapon]];
+    SGCasing *casing = [SGCasing casingForProjectile:self];
     
     [casing setPosition:position_];
     [casing setRotation:rotation_];
