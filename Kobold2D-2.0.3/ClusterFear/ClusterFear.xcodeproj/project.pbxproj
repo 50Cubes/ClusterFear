@@ -11,6 +11,8 @@
 		4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB521603DE1F005E91DF /* SGBatCluster.m */; };
 		4C6E46A61604D63800ABBA43 /* SGCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E46A51604D63700ABBA43 /* SGCollectable.m */; };
 		7C0D3F35160460020095CA39 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D3F34160460020095CA39 /* coin.png */; };
+		7C34660716053E9500C2F85F /* pistol.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C34660516053E9500C2F85F /* pistol.png */; };
+		7C34660816053E9500C2F85F /* shotgun.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C34660616053E9500C2F85F /* shotgun.png */; };
 		7C3DF6531604484D003E922B /* blood_splatter1_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */; };
 		7C3DF6541604484D003E922B /* blood_splatter1_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF6501604484D003E922B /* blood_splatter1_small.png */; };
 		7C3DF6551604484D003E922B /* blood_splatter2_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF6511604484D003E922B /* blood_splatter2_medium.png */; };
@@ -160,6 +162,8 @@
 		4C6E46A41604D63700ABBA43 /* SGCollectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGCollectable.h; path = Gameplay/SGCollectable.h; sourceTree = "<group>"; };
 		4C6E46A51604D63700ABBA43 /* SGCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGCollectable.m; path = Gameplay/SGCollectable.m; sourceTree = "<group>"; };
 		7C0D3F34160460020095CA39 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
+		7C34660516053E9500C2F85F /* pistol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pistol.png; sourceTree = "<group>"; };
+		7C34660616053E9500C2F85F /* shotgun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shotgun.png; sourceTree = "<group>"; };
 		7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter1_medium.png; sourceTree = "<group>"; };
 		7C3DF6501604484D003E922B /* blood_splatter1_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter1_small.png; sourceTree = "<group>"; };
 		7C3DF6511604484D003E922B /* blood_splatter2_medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter2_medium.png; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 		7C6ED4AF16050BEF00246FD2 /* weapons */ = {
 			isa = PBXGroup;
 			children = (
+				7C34660516053E9500C2F85F /* pistol.png */,
+				7C34660616053E9500C2F85F /* shotgun.png */,
 				DFD5291416051E92001D09D3 /* blast.png */,
 				DFD5291716052F07001D09D3 /* blast0.png */,
 				DFD5291816052F08001D09D3 /* blast1.png */,
@@ -863,6 +869,8 @@
 				DFD5294816052F7B001D09D3 /* blast23.png in Resources */,
 				DFD5294916052F7B001D09D3 /* blast24.png in Resources */,
 				DFD5294A16052F7B001D09D3 /* blast25.png in Resources */,
+				7C34660716053E9500C2F85F /* pistol.png in Resources */,
+				7C34660816053E9500C2F85F /* shotgun.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
