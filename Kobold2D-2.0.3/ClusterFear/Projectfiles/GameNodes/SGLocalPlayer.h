@@ -10,9 +10,12 @@
 
 @class SGWeapon;
 
+@class SGLocalPlayer;
+
 @protocol SGLocalPlayerOwner <NSObject>
 
 -(void)playerMovedToPoint:(CGPoint)newPoint;
+-(void)playerHasDied:(SGLocalPlayer *)player;
 
 @end
 

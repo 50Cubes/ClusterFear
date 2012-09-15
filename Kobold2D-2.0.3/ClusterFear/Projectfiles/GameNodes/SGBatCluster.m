@@ -20,13 +20,14 @@ SGFoeStats * batStats=nil;
 -(id)init{
     // Static init
     if (nil==batStats) {
-        batStats=[SGFoeCluster getStatsByClassName:@"SGBatCluster"];
+        batStats=[[self class] getStatsByClassName:@"SGBatCluster"];
     }
     // Return nil if stats not found in LUA (maxHealth==0)
-    self = batStats.stats.maxHealth ? [super init] : nil;
-    if(nil!=self){
-        health=batStats.stats.maxHealth;
-        for (int i=0; i<batStats.stats.maxCritters; ++i) {
+    self = batStats->maxHealth ? [super init] : nil;
+    if(nil!=self)
+    {
+        health=batStats->maxHealth;
+        for (int i=0; i<batStats->maxCritters; ++i) {
             [self addChild:[SGBat enemy]];
         }
     }
@@ -36,7 +37,7 @@ SGFoeStats * batStats=nil;
 @synthesize health;
 
 -(NSUInteger)damage{
-    return batStats.stats.damage;
+    return batStats->damage;
 }
 -(BOOL)strike:(SGEnemy*)memberStruck :(SGWeapon*)weaponStriking{
     uint damage = (uint) [weaponStriking damageInflicted];
@@ -51,8 +52,8 @@ SGFoeStats * batStats=nil;
 }
 
 -(void)checkForMinion:(SGEnemy*)memberStruck{
-    float ratio = health/((float)batStats.stats.maxHealth);
-    float fractionalMinions = ratio * batStats.stats.maxCritters;
+    float ratio = health/((float)batStats->maxHealth);
+    float fractionalMinions = ratio * batStats->maxCritters;
     uint numMinions = (uint)fractionalMinions;
     if ([self minionCount] > numMinions) {
         [self removeChild:memberStruck cleanup:YES];

@@ -11,31 +11,46 @@
 static NSMutableDictionary *statDict=nil;
 
 @implementation SGFoeCluster
+
++(NSString *)keyPath
+{
+    return [NSString stringWithFormat:@"%@%@",@"SGFoeStats.",[self description]];
+}
++(SGFoeCluster *)foeCluster
+{
+    return [[self alloc] init];
+}
+
 +(SGFoeStats*)getStatsByClassName:(NSString *)name{
+    
     if(nil == statDict){
         statDict = [NSMutableDictionary dictionaryWithCapacity:EXPECTED_NUM_CLUSTER_TYPES];
     }
-    if(nil==[statDict objectForKey:name]){
-        SGFoeStats_ nuStats; // TODO Cache by name instead of re-fetching every time
+    
+    SGFoeStats *newStats = [statDict objectForKey:name];
+    if(nil==newStats){
         // Build path string
-        NSString* configPath = [NSString stringWithFormat:@"%@%@",@"SGFoeStats.",name];
+        NSString* configPath = [self keyPath];
         // Set the config lookup path
-        if([KKConfig selectKeyPath:configPath]){
-            nuStats.damage = [KKConfig intForKey:@"Damage"];
-            nuStats.maxCritters = [KKConfig intForKey:@"MaxCritters"];
-            nuStats.maxHealth = [KKConfig intForKey:@"MaxHealth"];
-            nuStats.moveSpeed = [KKConfig intForKey:@"Damage"];
-        }
-        else{
-            NSLog(@"SGFoeStats.getStatsByClassName: %@ not found by KKConfig.selectKeyPath.",configPath);
-            nuStats.damage = -1;
-            nuStats.maxHealth = 0;
-        }
-        [statDict setValue:[[SGFoeStats alloc]init:&nuStats] forKey:name];
+        newStats = [[SGFoeStats alloc] initWithKeyPath:configPath];
+        
+        if( newStats != nil )
+            [statDict setValue:newStats forKey:name];
     }
 
-    return [statDict objectForKey:name];
+    return newStats;
 }
+
+//-(SGFoeCluster *)initWithStats:(GBFoeStats *)stats
+//{
+//    self = [super init];
+//    if( self != nil )
+//    {
+//        
+//    }
+//    
+//    return self;
+//}
 
 -(NSUInteger) minionCount{
     return [[self children] count];
@@ -53,10 +68,25 @@ static NSMutableDictionary *statDict=nil;
 
 @synthesize stats;
 
--(id)init:(SGFoeStats_ const *)stat{
+-(id)initWithKeyPath:(NSString *)keyPath{
     if(self=[super init]){
-        self.stats=(*stat);
+        if([KKConfig selectKeyPath:keyPath]){
+            self->damage = [KKConfig intForKey:@"Damage"];
+            self->maxCritters = [KKConfig intForKey:@"MaxCritters"];
+            self->maxHealth = [KKConfig intForKey:@"MaxHealth"];
+            self->moveSpeed = [KKConfig intForKey:@"Damage"];
+        }
+        else{
+            NSLog(@"SGFoeStats.getStatsByClassName: %@ not found by KKConfig.selectKeyPath.",self);
+//            [self release];
+            self = nil;
+        }
     }
+    return self;
+}
+
+-(SGFoeStats *)stats
+{
     return self;
 }
 
