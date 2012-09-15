@@ -79,7 +79,7 @@ static CCArray *_roster = nil;
 
 -(void)repool
 {
-    [self runAction:[CCSequence actionOne:[CCFadeOut actionWithDuration:0.47f] two:[CCCallFunc actionWithTarget:self selector:@selector(doRepool)]]];
+    [self runAction:[CCSequence actionOne:[CCFadeTo actionWithDuration:0.47f opacity:0] two:[CCCallFunc actionWithTarget:self selector:@selector(doRepool)]]];
 }
 
 //-(void)onEnter

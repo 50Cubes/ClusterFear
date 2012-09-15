@@ -84,7 +84,7 @@
 
 -(CCTexture2D *)splatterTexture
 {
-    return [[self class] randomTexture];
+    return (CCRANDOM_MINUS1_1() > 0.0f) ? [self texture] : [[self class] randomTexture];
 }
 
 -(float)ejectionIntensity

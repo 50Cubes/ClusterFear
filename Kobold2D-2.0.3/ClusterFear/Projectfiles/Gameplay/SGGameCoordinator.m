@@ -239,9 +239,12 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)playerHasDied:(SGLocalPlayer *)player
 {
-    localPlayer = nil;
-    
-    [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
+    if( localPlayer != nil )
+    {
+        localPlayer = nil;
+        
+        [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
+    }
 }
 
 -(void)playerHit:(SGLocalPlayer *)player forDamage:(int)damage
@@ -259,6 +262,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 -(void)playerMovedToPoint:(CGPoint)newPoint
 {
 //    [_tileLayer set]
+    //Currently unused, I removed invocations cause they happened al ot - Stich
 }
 
 #pragma mark - Cluster Tracking

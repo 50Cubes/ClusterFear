@@ -47,6 +47,7 @@
     rtnCasing->position_.x += 0.5f * nodeSize.width;
     rtnCasing->position_.y += 0.5f * nodeSize.height;
     
+    [rtnCasing scheduleOnce:@selector(selfRemove) delay:60.0f];
 //    [rtnCasing setProjectile:projectile];
     return rtnCasing;
 }
@@ -63,6 +64,7 @@
     rtnCasing->position_.y -= 1.0f * cosf(radRot);
     
     [rtnCasing setProjectile:projectile];
+    [rtnCasing scheduleOnce:@selector(selfRemove) delay:60.0f];
     return rtnCasing;
 }
 
@@ -189,6 +191,11 @@ static NSMutableDictionary *textureCache = nil;
     [self runAction:[self ejectionAction]];
                                    
     [self bounceAround];
+}
+
+-(void)selfRemove
+{
+    [self removeFromParentAndCleanup:YES];
 }
 
 @end
