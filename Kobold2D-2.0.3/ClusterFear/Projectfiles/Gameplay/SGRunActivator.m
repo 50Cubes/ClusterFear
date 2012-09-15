@@ -19,6 +19,9 @@
 -(void)setup{
     ccColor4B mg = {ccMAGENTA.r, ccMAGENTA.g, ccMAGENTA.b, 255};
     
+    CCSprite *weaponImage = [CCSprite spriteWithFile:@"weaponicons.png" rect:CGRectMake(0, 0, 128.0f, 64.0f)];
+    [self addChild:weaponImage];
+    
     CCLayerColor *color = [CCLayerColor layerWithColor:mg width:self.contentSize.width height:self.contentSize.height];
     [self addChild:color];
 }

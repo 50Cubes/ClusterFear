@@ -16,11 +16,12 @@
 #import "SGLocalPlayer.h"
 
 #import "SGFoeCluster.h"
+#import "SGTurret.h"
 
 @class SGLocalPlayer;
 @class SGRunActivator;
 
-@interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner, SGLocalPlayerOwner, SGFoeClusterOwner>{
+@interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner, SGLocalPlayerOwner, SGFoeClusterOwner, SGTurretOwner>{
     SGLocalPlayer *localPlayer;
     SGRunActivator *runActivator;
     

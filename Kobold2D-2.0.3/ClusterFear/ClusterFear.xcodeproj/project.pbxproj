@@ -85,6 +85,8 @@
 		C17470821604FF1500D5274E /* ZombieBreath.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470501604FF1500D5274E /* ZombieBreath.mp3 */; };
 		C17470841604FF1500D5274E /* ZombieCough.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470521604FF1500D5274E /* ZombieCough.mp3 */; };
 		C17470861604FF1500D5274E /* ZombieHissS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C17470541604FF1500D5274E /* ZombieHissS.mp3 */; };
+		C17470891605027300D5274E /* weaponicons.png in Resources */ = {isa = PBXBuildFile; fileRef = C17470881605027300D5274E /* weaponicons.png */; };
+		C174708B1605059300D5274E /* SGWeapon.m in Sources */ = {isa = PBXBuildFile; fileRef = C174708A1605059200D5274E /* SGWeapon.m */; };
 		C18091BE16044E6C00E43876 /* SGSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = C18091BD16044E6C00E43876 /* SGSpray.m */; };
 		C18091CE1604812200E43876 /* 64blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C18091CD1604812200E43876 /* 64blood1.png */; };
 		C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* SGFoeCluster.m */; };
@@ -220,6 +222,8 @@
 		C17470501604FF1500D5274E /* ZombieBreath.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZombieBreath.mp3; sourceTree = "<group>"; };
 		C17470521604FF1500D5274E /* ZombieCough.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZombieCough.mp3; sourceTree = "<group>"; };
 		C17470541604FF1500D5274E /* ZombieHissS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZombieHissS.mp3; sourceTree = "<group>"; };
+		C17470881605027300D5274E /* weaponicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weaponicons.png; sourceTree = "<group>"; };
+		C174708A1605059200D5274E /* SGWeapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGWeapon.m; sourceTree = "<group>"; };
 		C18091BC16044E6C00E43876 /* SGSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSpray.h; path = GameNodes/SGSpray.h; sourceTree = "<group>"; };
 		C18091BD16044E6C00E43876 /* SGSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGSpray.m; path = GameNodes/SGSpray.m; sourceTree = "<group>"; };
 		C18091CD1604812200E43876 /* 64blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64blood1.png; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 		7C616EAF1603B10200B9D0A2 /* player */ = {
 			isa = PBXGroup;
 			children = (
+				C17470881605027300D5274E /* weaponicons.png */,
 				C17470111604B58A00D5274E /* base.png */,
 				C17470121604B58A00D5274E /* rotateTop.png */,
 				7CB6BB921604332B007E316A /* hazardSuit.png */,
@@ -377,6 +382,7 @@
 				C117132A160393A200208448 /* SGGameCoordinator.h */,
 				C117132B160393A200208448 /* SGGameCoordinator.m */,
 				DFD528AA16039BBA001D09D3 /* SGWeapon.h */,
+				C174708A1605059200D5274E /* SGWeapon.m */,
 				C117133A1603B98E00208448 /* SGProjectile.h */,
 				C117133B1603B98F00208448 /* SGProjectile.m */,
 				DFD528B71603B9E8001D09D3 /* SGRunActivator.h */,
@@ -737,8 +743,12 @@
 				C17470821604FF1500D5274E /* ZombieBreath.mp3 in Resources */,
 				C17470841604FF1500D5274E /* ZombieCough.mp3 in Resources */,
 				C17470861604FF1500D5274E /* ZombieHissS.mp3 in Resources */,
+<<<<<<< HEAD
 				7C6ED4B316050C2400246FD2 /* grenade_large.png in Resources */,
 				7C6ED4B416050C2400246FD2 /* grenade_medium.png in Resources */,
+=======
+				C17470891605027300D5274E /* weaponicons.png in Resources */,
+>>>>>>> 60823358864e1101ce992c8f9a0fd9cd89f082a8
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +782,7 @@
 				C1747005160482CA00D5274E /* SGSplatter.m in Sources */,
 				4C6E46A61604D63800ABBA43 /* SGCollectable.m in Sources */,
 				C174701D1604E27600D5274E /* SGTurret.m in Sources */,
+				C174708B1605059300D5274E /* SGWeapon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
