@@ -22,7 +22,7 @@
   </tile>
  </tileset>
  <tileset firstgid="175" name="JM_tileSet" tilewidth="64" tileheight="64">
-  <image source="../tileSet.png" width="256" height="64"/>
+  <image source="tileSet.png" width="256" height="64"/>
  </tileset>
  <layer name="Tile Layer 2" width="34" height="24">
   <data encoding="base64" compression="zlib">
