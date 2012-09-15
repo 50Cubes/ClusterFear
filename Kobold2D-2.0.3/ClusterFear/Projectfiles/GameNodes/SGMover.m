@@ -215,6 +215,7 @@
 -(void)didDestroy:(SGDestroyable *)destroyable
 {
     //yay i killed something
+    [[self owner] mover:self killedSomething:destroyable];
 }
 
 -(void)hitForDamage:(int)damage

@@ -79,7 +79,7 @@ static NSMutableDictionary *statDict=nil;
         {
             destination_ = CGPointZero;
             
-            _health = myStats->maxCritters * myStats->maxHealth;
+            _health = myStats->maxCritters * myStats->maxHealth * 1.2f; //on average creature are buffer than normal...
             [self populate];
         }
     }

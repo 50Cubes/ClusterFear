@@ -18,6 +18,8 @@
 
 -(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile;
 
+-(void)mover:(SGMover *)mover killedSomething:(SGDestroyable *)killer;
+
 //-(void)moverPerished:(SGMover *)mover;
 
 @end

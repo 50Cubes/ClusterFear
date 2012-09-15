@@ -81,11 +81,13 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         _destroyedTurrets = [CCArray new];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"Gun_Shot2.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shotgun1.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.aif"];
         //[[SimpleAudioEngine sharedEngine] preloadEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
 
         TileMapLayer *tileMapLayer = [TileMapLayer node];
-    
+        
+        
         
         [tileMapLayer setDelegate:self];
         [self setTileLayer:tileMapLayer];
@@ -107,6 +109,10 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 //        //[self addPhysicalBodyToSprite:localPlayer];
 //        [self addChild:localPlayer];
         
+        
+        CCLayerColor *layerColor = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 96)];
+        
+        [self addChild:layerColor z:4];
         
         runActivator = [SGRunActivator node];
         [runActivator setContentSize:CGSizeMake(128.0f, 64)];
@@ -133,6 +139,27 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
         [self addChild:shotgunActivator];
         
+        killLabel = [CCLabelTTF labelWithString:@"Kill Count: 0"
+											 dimensions:CGSizeMake(128.0f, 64.0f)
+											 hAlignment:kCCTextAlignmentCenter
+										  lineBreakMode:kCCLineBreakModeWordWrap
+											   fontName:@"Arial"
+											   fontSize:24];
+        
+        
+        deathLabel = [CCLabelTTF labelWithString:@"Death Count: 0"
+                                     dimensions:CGSizeMake(128.0f, 64.0f)
+                                     hAlignment:kCCTextAlignmentCenter
+                                  lineBreakMode:kCCLineBreakModeWordWrap
+                                       fontName:@"Arial"
+                                       fontSize:24];
+        
+        [killLabel setPosition:CGPointMake(64.0f, 704)];
+        
+        [deathLabel setPosition:CGPointMake(896.0f, 704)];
+        
+        [self addChild:killLabel];
+        [self addChild:deathLabel];
         
         _enemyTypes = [CCArray arrayWithCapacity:2];
         [_enemyTypes addObject:[SGBatCluster class]];
@@ -167,14 +194,17 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnPlayer
 {
-    localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGShotgun alloc] init]];
-    [localPlayer setOwner:self];
-    
-    localPlayer.position = [self playerPoint];
-    
-    
-//    [self runAction:[CCFollow actionWithTarget:localPlayer]];
-    [_tileLayer addChild:localPlayer z:2];
+    if( localPlayer == nil )
+    {
+        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGShotgun alloc] init]];
+        [localPlayer setOwner:self];
+        
+        localPlayer.position = [self playerPoint];
+        
+        
+        //    [self runAction:[CCFollow actionWithTarget:localPlayer]];
+        [_tileLayer addChild:localPlayer z:2];
+    }
 }
 
 
@@ -250,6 +280,13 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 //    [self addChild:newMover];
 }
 
+-(void)mover:(SGMover *)mover killedSomething:(SGDestroyable *)killer
+{
+    playerKills++;
+    
+    [killLabel setString:[NSString stringWithFormat:@"Kill Count: %u", playerKills]];
+}
+
 
 #define INVERSE_CONTROLS 1
 
@@ -322,7 +359,11 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     {
         localPlayer = nil;
         
+        playerDeaths++;
+        
         [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
+        
+        [deathLabel setString:[NSString stringWithFormat:@"Death Count: %u", playerDeaths]];
     }
 }
 
@@ -365,12 +406,12 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     
     [_tileLayer addChild:splatter z:0];
     
-    if( CCRANDOM_0_1() > 0.8f )
-    {
-        SGCollectable *collectable = [SGCollectable collectable];
-        
-        [_tileLayer addChild:collectable z:1];
-    }
+//    if( CCRANDOM_0_1() > 0.8f )
+//    {
+//        SGCollectable *collectable = [SGCollectable collectable];
+//        
+//        [_tileLayer addChild:collectable z:1];
+//    }
 }
 
 #pragma mark physics

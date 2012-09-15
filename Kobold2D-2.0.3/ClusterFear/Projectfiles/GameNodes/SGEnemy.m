@@ -48,7 +48,9 @@
 
 +(SGEnemy *)enemyWithTier:(SGEnemyTier)tier
 {
-    return [self spriteWithTexture:[self textureWithTier:tier]];
+    SGEnemy *newEnemy = (SGEnemy *)[self spriteWithTexture:[self textureWithTier:tier]];
+    newEnemy->tier = tier;
+    return newEnemy;
 }
 
 +(SGEnemy *)enemy
@@ -84,17 +86,24 @@
         [self setOpacityModifyRGB:NO];
         
         currentSpeed_ = 1.0f;
-        
-        [self setOpacity:0];
-        
-        [self runAction:[CCFadeIn actionWithDuration:0.657f]];
-        [self scheduleOnce:@selector(crawl) delay:0.75f];
+
         
 //        [self scheduleOnce:@selector(die) delay:1200.0f];
     }
     return self;
 }
 
+-(void)onEnter
+{
+    health_ *= (tier - 3);
+    
+    [super onEnter];
+    
+    [self setOpacity:0];
+    
+    [self runAction:[CCFadeIn actionWithDuration:0.657f]];
+    [self scheduleOnce:@selector(crawl) delay:0.75f];
+}
 
 
 -(void)crawl

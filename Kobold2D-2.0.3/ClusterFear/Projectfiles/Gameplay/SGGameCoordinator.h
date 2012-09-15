@@ -29,6 +29,11 @@
     
     CCNode *shiftLayer;
     
+    CCLabelTTF *killLabel;
+    CCLabelTTF *deathLabel;
+    
+    int playerDeaths;
+    int playerKills;
     //cpSpace *physicalSpace;
     //b2World *physicalSpace;
     //MyContactListener *listener;
