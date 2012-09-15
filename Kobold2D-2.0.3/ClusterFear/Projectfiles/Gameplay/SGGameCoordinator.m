@@ -28,8 +28,8 @@
 #import "SGCollectable.h"
 
 #import "SGBat.h"
+#import "SimpleAudioEngine.h"
 
-#define PTM_RATIO 32
 
 @interface SGGameCoordinator ()
 {
@@ -37,6 +37,9 @@
     
     CCArray *_enemyTypes;
     CCArray *_clusters;
+    
+    CCArray *_turrets;
+    CCArray *_destroyedTurrets;
 }
 
 
@@ -44,6 +47,7 @@
 //-(void)physicsTick:(ccTime)dt;
 
 //-(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
+-(void)spawnTurrets;
 
 @end
 
@@ -71,7 +75,13 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         _clusters = [CCArray arrayWithCapacity:10];
         _moverList = [CCArray new];
         _projectileList = [CCArray new];
+        _turrets = [CCArray new];
+        _destroyedTurrets = [CCArray new];
         
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Gun_Shot2.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.aif"];
+        //[[SimpleAudioEngine sharedEngine] preloadEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
+
         TileMapLayer *tileMapLayer = [TileMapLayer node];
     
         
@@ -105,7 +115,16 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         [_enemyTypes addObject:[SGBatCluster class]];
         [_enemyTypes addObject:[SGBugCluster class]];
         
+        
+        //CCMenuItemSprite *replay = [CCMenuItemSprite itemWithTarget:self selector:@selector(replay)];
+        //[replay setNormalImage:[CCSprite spriteWithFile:@"game-events.png"]];
+        //replay.isEnabled = NO;
+        //replay.position = CGPointMake(0, 700);
+        
         [self generateRandomObstacles];
+        
+        [self spawnTurrets];
+        
         [self schedule:@selector(spawnEnemies) interval:1.0f];
 //        [self schedule:@selector(physicsTick:)];
         [self scheduleUpdateWithPriority:1];
@@ -121,6 +140,8 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     localPlayer.position = CGPointMake(_tileLayer.contentSize.width/2, _tileLayer.contentSize.height/2);
     [_tileLayer addChild:localPlayer z:1];
 }
+
+
 
 -(void)onEnter
 {
@@ -160,7 +181,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnEnemies
 {
-    if( [self enemyCount] < 8 )
+    if( [self enemyCount] < 4 )
     {
         Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
@@ -227,6 +248,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [_projectileList addObject:projectile];
     [_tileLayer addChild:projectile z:2 tag:0];
     [projectile fired];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"Gun_Shot2.wav"];
 }
 
 -(void)removeProjectile:(SGProjectile *)projectile
@@ -239,7 +261,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)playerHasDied:(SGLocalPlayer *)player
 {
-    if( localPlayer != nil )
+    if( localPlayer != nil ) //Stich: this can end up getting scheduled multiple times if you die in rapid succession.. somehow...
     {
         localPlayer = nil;
         
@@ -338,7 +360,7 @@ static inline BOOL SGEnemyCheckCollisionWithPoint(SGEnemy *enemy, CGPoint cluste
 
 //static inline BOOL TransformPointsIntersectionTest
 
-static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clusters, CCArray *projectiles )
+static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clusters, CCArray *projectiles, CCArray *turrets)
 {
 //    BOOL hasDebug = NO;
     CGPoint playeCenter = [localPlayer boundingBoxCenter];
@@ -393,6 +415,23 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
                 }
             }
         }
+        
+        for(SGTurret *tur in turrets){
+            if([tur isDead]){
+                continue;
+            }
+            CGPoint turretCenter = [tur boundingBoxCenter];
+            
+            float turretRadius = [tur radius];
+            
+            for( SGEnemy *minion in [cluster minions] )
+            {
+                if( SGEnemyCheckCollisionWithPoint( minion, clusterCenter, turretCenter, kPhysicsCollisionThreashold + turretRadius ) )
+                {
+                    DoDestroyableCollision(tur, minion);
+                }
+            }
+        }
     }
 }
 
@@ -407,7 +446,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 //        dT -= maxTimeSlice;
 //        if( dT <= 0.0f )
 //            interval = maxTimeSlice + dT;
-        DoPhysics(interval, localPlayer, _clusters, _projectileList);
+        DoPhysics(interval, localPlayer, _clusters, _projectileList, _turrets);
         
 //    } while( dT > 0.0f );
 }
@@ -519,5 +558,48 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
     spriteShapeDef.isSensor = true;
     spriteBody->CreateFixture(&spriteShapeDef);
 }//*/
+
+#pragma mark - turet
+
+-(void)spawnTurrets{
+    [_destroyedTurrets removeAllObjects];
+
+    CGPoint points[] = {CGPointMake(200, 100), CGPointMake(200, 700), CGPointMake(800, 700), CGPointMake(800, 100)};
+    for(int i = 0; i < 4; i++){
+        SGTurret *t = [SGTurret turretWithAmmo:1000];
+        t.owner = self;
+        [t addToParent:self atPosition:points[i]];
+        [_turrets addObject:t];
+        [t activate];
+    }
+}
+
+-(CGPoint)directionForClosestEnemy:(SGTurret *)turret{
+    CGPoint p = turret.position;
+    float minDistance = (float)INT32_MAX;
+    SGFoeCluster *target = nil;
+    for(SGFoeCluster *f in _clusters){
+        float dist = ccpDistance(p, f.position);
+        if(dist < minDistance){
+            minDistance = dist;
+            target = f;
+        }
+    }
+    
+    if(target){
+        return target.position;
+    }
+    
+    return CGPointZero;
+}
+
+-(void)getDestroyed:(SGTurret *)turret{
+    [[SimpleAudioEngine sharedEngine] playEffect:@"boom.aif"];
+    [_destroyedTurrets addObject:turret];
+    [_turrets removeObject:turret];
+    if([_turrets count] <= 0){
+        [self performSelector:@selector(spawnTurrets) withObject:nil afterDelay:4.0];
+    }
+}
 
 @end

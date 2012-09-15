@@ -6,7 +6,7 @@
  */
 
 #import "TileMapLayer.h"
-#import "SimpleAudioEngine.h"
+//#import "SimpleAudioEngine.h"
 
 
 #import "SGMover.h"
@@ -48,7 +48,7 @@
 		self.isMouseEnabled = YES;
 #endif
 
-		[[SimpleAudioEngine sharedEngine] preloadEffect:@"alien-sfx.caf"];
+		//[[SimpleAudioEngine sharedEngine] preloadEffect:@"alien-sfx.caf"];
 	}
 
 	return self;

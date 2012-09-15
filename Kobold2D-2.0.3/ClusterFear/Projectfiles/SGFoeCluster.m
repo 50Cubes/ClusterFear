@@ -10,6 +10,7 @@
 #import "SGRandomization.h"
 
 #import "SGProjectile.h"
+#import "SimpleAudioEngine.h"
 
 #define EXPECTED_NUM_CLUSTER_TYPES 5
 static NSMutableDictionary *statDict=nil;
@@ -240,6 +241,8 @@ static NSMutableDictionary *statDict=nil;
     {
         [self makeArrangements];
     }
+    
+    //[[SimpleAudioEngine sharedEngine] playEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
 }
 
 
