@@ -21,6 +21,7 @@
 #import "SGObstacle.h"
 
 #import "SGBat.h"
+#import "../GameNodes/SGBatCluster.h"
 
 #define PTM_RATIO 32
 
@@ -118,19 +119,27 @@
 
 -(void)spawnEnemies
 {
-    if( _enemyCount < 100 )
+    if( _enemyCount < 10 )
     {
         _enemyCount++;
         
-        Class enemyClass = [_enemyTypes randomObject];
-        SGEnemy *testBug = [enemyClass enemy];
+        //Class enemyClass = [_enemyTypes randomObject];
+        //SGEnemy *testBug = [enemyClass enemy];
+        Class clusterClass = [SGBatCluster class];//TODO randomize
+        SGFoeCluster *spawnedCluster = [[clusterClass alloc] init];
         
         CGPoint spawnPoint = SGRandomScreenPoint();
+
+        //[testBug setPosition:spawnPoint];
+        [spawnedCluster setPosition:spawnPoint];
         
-        [testBug setPosition:spawnPoint];
+        for (SGEnemy* minion in [spawnedCluster children]) {
+            [self addPhysicalBodyToSprite:minion];
+            [self addMover:minion];
+        }
         
-        [self addPhysicalBodyToSprite:testBug];
-        [self addMover:testBug];
+        //[self addPhysicalBodyToSprite:testBug];
+        //[self addMover:testBug];
     }
 }
 
