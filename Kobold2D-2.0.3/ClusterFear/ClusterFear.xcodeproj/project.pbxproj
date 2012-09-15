@@ -19,7 +19,7 @@
 		C117131F1603786A00208448 /* SGMover.m in Sources */ = {isa = PBXBuildFile; fileRef = C117131E1603786A00208448 /* SGMover.m */; };
 		C117132416037C7C00208448 /* SGBug.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132316037C7C00208448 /* SGBug.m */; };
 		C11713291603886600208448 /* SGLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713281603886600208448 /* SGLocalPlayer.m */; };
-		C117132C160393A200208448 /* SGGameCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = C117132B160393A200208448 /* SGGameCoordinator.m */; };
+		C117132C160393A200208448 /* SGGameCoordinator.mm in Sources */ = {isa = PBXBuildFile; fileRef = C117132B160393A200208448 /* SGGameCoordinator.mm */; };
 		C117133C1603B98F00208448 /* SGProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = C117133B1603B98F00208448 /* SGProjectile.m */; };
 		C11713531603DB4D00208448 /* SGEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713521603DB4D00208448 /* SGEnemy.m */; };
 		C11713571603DBF900208448 /* SGBat.m in Sources */ = {isa = PBXBuildFile; fileRef = C11713561603DBF900208448 /* SGBat.m */; };
@@ -59,6 +59,7 @@
 		DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
 		DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528AB16039BBA001D09D3 /* SGWeapon.m */; };
 		DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528B81603B9E8001D09D3 /* SGRunActivator.m */; };
+		DFD528DA1603F558001D09D3 /* MyContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFD528D91603F558001D09D3 /* MyContactListener.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,8 +82,8 @@
 		C117132616037E8400208448 /* SGRandomization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SGRandomization.h; path = Utils/SGRandomization.h; sourceTree = "<group>"; };
 		C11713271603886600208448 /* SGLocalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGLocalPlayer.h; path = GameNodes/SGLocalPlayer.h; sourceTree = "<group>"; };
 		C11713281603886600208448 /* SGLocalPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGLocalPlayer.m; path = GameNodes/SGLocalPlayer.m; sourceTree = "<group>"; };
-		C117132A160393A200208448 /* SGGameCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGGameCoordinator.h; path = Gameplay/SGGameCoordinator.h; sourceTree = "<group>"; };
-		C117132B160393A200208448 /* SGGameCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGGameCoordinator.m; path = Gameplay/SGGameCoordinator.m; sourceTree = "<group>"; };
+		C117132A160393A200208448 /* SGGameCoordinator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SGGameCoordinator.hh; path = Gameplay/SGGameCoordinator.hh; sourceTree = "<group>"; };
+		C117132B160393A200208448 /* SGGameCoordinator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SGGameCoordinator.mm; path = Gameplay/SGGameCoordinator.mm; sourceTree = "<group>"; };
 		C117133A1603B98E00208448 /* SGProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGProjectile.h; path = GameNodes/SGProjectile.h; sourceTree = "<group>"; };
 		C117133B1603B98F00208448 /* SGProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGProjectile.m; path = GameNodes/SGProjectile.m; sourceTree = "<group>"; };
 		C11713511603DB4D00208448 /* SGEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGEnemy.h; path = GameNodes/SGEnemy.h; sourceTree = "<group>"; };
@@ -138,6 +139,8 @@
 		DFD528AB16039BBA001D09D3 /* SGWeapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGWeapon.m; path = Gameplay/SGWeapon.m; sourceTree = "<group>"; };
 		DFD528B71603B9E8001D09D3 /* SGRunActivator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGRunActivator.h; path = Gameplay/SGRunActivator.h; sourceTree = "<group>"; };
 		DFD528B81603B9E8001D09D3 /* SGRunActivator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGRunActivator.m; path = Gameplay/SGRunActivator.m; sourceTree = "<group>"; };
+		DFD528D81603F558001D09D3 /* MyContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContactListener.h; path = Utils/MyContactListener.h; sourceTree = "<group>"; };
+		DFD528D91603F558001D09D3 /* MyContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MyContactListener.mm; path = Utils/MyContactListener.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,8 +209,8 @@
 				C18411CF1602D906007F06A6 /* SGFoeCluster.m */,
 				C117131D1603786A00208448 /* SGMover.h */,
 				C117131E1603786A00208448 /* SGMover.m */,
-				C117132A160393A200208448 /* SGGameCoordinator.h */,
-				C117132B160393A200208448 /* SGGameCoordinator.m */,
+				C117132A160393A200208448 /* SGGameCoordinator.hh */,
+				C117132B160393A200208448 /* SGGameCoordinator.mm */,
 				DFD528AA16039BBA001D09D3 /* SGWeapon.h */,
 				DFD528AB16039BBA001D09D3 /* SGWeapon.m */,
 				C117133A1603B98E00208448 /* SGProjectile.h */,
@@ -246,6 +249,8 @@
 		C117132516037E7200208448 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DFD528D81603F558001D09D3 /* MyContactListener.h */,
+				DFD528D91603F558001D09D3 /* MyContactListener.mm */,
 				C117132616037E8400208448 /* SGRandomization.h */,
 			);
 			name = Utils;
@@ -455,7 +460,7 @@
 				C117131F1603786A00208448 /* SGMover.m in Sources */,
 				C117132416037C7C00208448 /* SGBug.m in Sources */,
 				C11713291603886600208448 /* SGLocalPlayer.m in Sources */,
-				C117132C160393A200208448 /* SGGameCoordinator.m in Sources */,
+				C117132C160393A200208448 /* SGGameCoordinator.mm in Sources */,
 				DFD528AC16039BBB001D09D3 /* SGWeapon.m in Sources */,
 				C117133C1603B98F00208448 /* SGProjectile.m in Sources */,
 				DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */,
@@ -466,6 +471,7 @@
 				C117135D1603DC8000208448 /* SGDestroyable.m in Sources */,
 				4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */,
 				4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */,
+				DFD528DA1603F558001D09D3 /* MyContactListener.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

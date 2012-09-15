@@ -14,10 +14,10 @@
 @interface SGDestroyable : CCSprite
 {
     int health_;
-    cpShape *destroyableShape;
+    //cpShape *destroyableShape;
 }
 
-@property(nonatomic, readonly) cpShape *destroyableShape;
+//@property(nonatomic, readonly) cpShape *destroyableShape;
 
 +(NSString *)imagePath;
 +(int)startingHealth;

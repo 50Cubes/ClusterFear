@@ -11,13 +11,13 @@
 
 @interface SGDestroyable ()
 
--(void)initializeShape;
+//-(void)initializeShape;
 
 @end
 
 @implementation SGDestroyable
 
-@synthesize destroyableShape;
+//@synthesize destroyableShape;
 
 +(NSString *)imagePath
 {
@@ -33,7 +33,7 @@
 {
     SGDestroyable *d = [self spriteWithFile:[self imagePath]];
     [d initializeHealth:[self startingHealth]];
-    [d initializeShape];
+    //[d initializeShape];
     return d;
 }
 
@@ -63,6 +63,7 @@
     [self removeFromParentAndCleanup:YES];
 }
 
+/*
 -(void)initializeShape{
     destroyableShape = cpCircleShapeNew(cpBodyNew(25, INFINITY), 20.0, cpvzero);
     destroyableShape->e = 0.5;
@@ -70,5 +71,14 @@
     destroyableShape->collision_type = 1;
     destroyableShape->data = (__bridge void *)self;
 }
+
+#pragma mark - physics
+
+-(void)setPosition:(CGPoint)position{
+    [super setPosition:position];
+    destroyableShape->body->p.x = position.x;
+    destroyableShape->body->p.y = position.y;
+}//*/
+
 
 @end
