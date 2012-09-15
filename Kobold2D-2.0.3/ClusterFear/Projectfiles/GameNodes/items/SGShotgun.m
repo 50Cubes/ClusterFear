@@ -20,7 +20,7 @@
 
 +(ccTime)fireDelay
 {
-    return 0.375f;
+    return 0.415f;
 }
 
 
