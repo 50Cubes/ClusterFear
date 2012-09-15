@@ -14,6 +14,7 @@
 @protocol SGTurretOwner <NSObject>
 
 -(CGPoint)directionForClosestEnemy:(SGTurret *)turret;
+-(void)getDestroyed:(SGTurret *)turret;
 
 @end
 
@@ -21,6 +22,7 @@
 {
     SGWeapon *weapon;
     int ammo_;
+    CCSprite *baseSprite;
 }
 
 @property (nonatomic, readonly)int ammo;

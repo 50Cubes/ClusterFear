@@ -42,9 +42,9 @@
 
 -(void)addToParent:(CCNode *)parent atPosition:(CGPoint)position{
     self.position = position;
-    CCSprite *turretBase = [CCSprite spriteWithFile:@"base.png"]; //doesn't rotate with turrent
-    turretBase.position = position;
-    [parent addChild:turretBase];
+    baseSprite = [CCSprite spriteWithFile:@"base.png"]; //doesn't rotate with turrent
+    baseSprite.position = position;
+    [parent addChild:baseSprite];
     [parent addChild:self];
 }
 
@@ -87,6 +87,22 @@
     [self performSelector:@selector(tryToFire) withObject:nil afterDelay:time];
 }
 
+-(void)collideWithDestroyable:(SGDestroyable *)other{
+    int damage = [other damage];
+    if( damage > 0 )
+    {
+        [self hitForDamage:damage];
+    }
+
+}
+
+-(void)die
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [baseSprite removeFromParentAndCleanup:YES];
+    [[self owner] getDestroyed:self];
+    [super die];
+}
 
 
 @end

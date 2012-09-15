@@ -46,7 +46,6 @@
 //-(void)physicsTick:(ccTime)dt;
 
 //-(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
--(void)replay;
 -(void)spawnTurrets;
 
 @end
@@ -75,6 +74,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         _clusters = [CCArray arrayWithCapacity:10];
         _moverList = [CCArray new];
         _projectileList = [CCArray new];
+        _turrets = [CCArray new];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"alien-sfx.caf"];
         TileMapLayer *tileMapLayer = [TileMapLayer node];
@@ -111,10 +111,10 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         [_enemyTypes addObject:[SGBugCluster class]];
         
         
-        CCMenuItemSprite *replay = [CCMenuItemSprite itemWithTarget:self selector:@selector(replay)];
-        [replay setNormalImage:[CCSprite spriteWithFile:@"game-events.png"]];
-        replay.isEnabled = NO;
-        replay.position = CGPointMake(0, 700);
+        //CCMenuItemSprite *replay = [CCMenuItemSprite itemWithTarget:self selector:@selector(replay)];
+        //[replay setNormalImage:[CCSprite spriteWithFile:@"game-events.png"]];
+        //replay.isEnabled = NO;
+        //replay.position = CGPointMake(0, 700);
         
         [self generateRandomObstacles];
         
@@ -349,7 +349,7 @@ static inline BOOL SGEnemyCheckCollisionWithPoint(SGEnemy *enemy, CGPoint cluste
 
 //static inline BOOL TransformPointsIntersectionTest
 
-static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clusters, CCArray *projectiles )
+static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clusters, CCArray *projectiles, CCArray *turrets)
 {
 //    BOOL hasDebug = NO;
     CGPoint playeCenter = [localPlayer boundingBoxCenter];
@@ -404,6 +404,20 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
                 }
             }
         }
+        
+        for(SGTurret *tur in turrets){
+            CGPoint turretCenter = [tur boundingBoxCenter];
+            
+            float turretRadius = [tur radius];
+            
+            for( SGEnemy *minion in [cluster minions] )
+            {
+                if( SGEnemyCheckCollisionWithPoint( minion, clusterCenter, turretCenter, kPhysicsCollisionThreashold + turretRadius ) )
+                {
+                    DoDestroyableCollision(tur, minion);
+                }
+            }
+        }
     }
 }
 
@@ -418,7 +432,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 //        dT -= maxTimeSlice;
 //        if( dT <= 0.0f )
 //            interval = maxTimeSlice + dT;
-        DoPhysics(interval, localPlayer, _clusters, _projectileList);
+        DoPhysics(interval, localPlayer, _clusters, _projectileList, _turrets);
         
 //    } while( dT > 0.0f );
 }
@@ -534,11 +548,12 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 #pragma mark - turet
 
 -(void)spawnTurrets{
-    CGPoint points[] = {CGPointMake(200, 200), CGPointMake(200, 900), CGPointMake(900, 200), CGPointMake(900, 900)};
+    CGPoint points[] = {CGPointMake(200, 100), CGPointMake(200, 700), CGPointMake(800, 700), CGPointMake(800, 100)};
     for(int i = 0; i < 4; i++){
         SGTurret *t = [SGTurret turretWithAmmo:1000];
         t.owner = self;
         [t addToParent:self atPosition:points[i]];
+        [_turrets addObject:t];
         [t activate];
     }
 }
@@ -560,6 +575,13 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
     }
     
     return CGPointZero;
+}
+
+-(void)getDestroyed:(SGTurret *)turret{
+    [_turrets removeObject:turret];
+    if([_turrets count] <= 0){
+        [self performSelector:@selector(spawnTurrets) withObject:nil afterDelay:4.0];
+    }
 }
 
 @end
