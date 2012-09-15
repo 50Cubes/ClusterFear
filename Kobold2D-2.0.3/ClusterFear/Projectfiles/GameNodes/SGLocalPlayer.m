@@ -23,6 +23,13 @@
     return p;
 }
 
+-(void)setPosition:(CGPoint)position
+{
+    [super setPosition:position];
+    
+    [[self owner] playerMovedToPoint:position];
+}
+
 
 -(BOOL)isEnemy
 {

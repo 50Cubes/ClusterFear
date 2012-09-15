@@ -14,6 +14,8 @@ enum
 
 @protocol TileMapLayerDelegate <NSObject>
 
+-(void)tileOfType:(NSString *)tileType inTile:(CGPoint)tilePos;
+
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos;
 
 @end

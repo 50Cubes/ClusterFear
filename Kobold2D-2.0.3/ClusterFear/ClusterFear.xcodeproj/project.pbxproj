@@ -118,6 +118,7 @@
 		C117136D1603EED700208448 /* SGCasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGCasing.m; path = GameNodes/SGCasing.m; sourceTree = "<group>"; };
 		C1171377160409C200208448 /* CCSprite+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCSprite+Convenience.h"; path = "Utils/CCSprite+Convenience.h"; sourceTree = "<group>"; };
 		C1171378160409C200208448 /* CCSprite+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCSprite+Convenience.m"; path = "Utils/CCSprite+Convenience.m"; sourceTree = "<group>"; };
+		C117137B160412F100208448 /* MFDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDebug.h; sourceTree = "<group>"; };
 		C18411CE1602D906007F06A6 /* SGFoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFoeCluster.h; sourceTree = "<group>"; };
 		C18411CF1602D906007F06A6 /* SGFoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFoeCluster.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +294,7 @@
 		C117132516037E7200208448 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C117137B160412F100208448 /* MFDebug.h */,
 				DFD528D81603F558001D09D3 /* MyContactListener.h */,
 				DFD528D91603F558001D09D3 /* MyContactListener.mm */,
 				C117132616037E8400208448 /* SGRandomization.h */,

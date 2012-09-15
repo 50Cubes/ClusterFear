@@ -108,6 +108,14 @@
     }
 }
 
+
+#pragma mark - Level Config
+
+-(void)tileOfType:(NSString *)tileType inTile:(CGPoint)tilePos
+{
+    //populate tiles based on map
+}
+
 -(void)spawnEnemies
 {
     if( _enemyCount < 100 )
@@ -168,6 +176,13 @@
     
     [self addChild:projectile];
     [projectile fired];
+}
+
+#pragma mark - Local Player Delegates
+
+-(void)playerMovedToPoint:(CGPoint)newPoint
+{
+//    [[self tileLayer] set]
 }
 
 #pragma mark physics

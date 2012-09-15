@@ -27,6 +27,8 @@
 	if ((self = [super init]))
 	{
 		CCTMXTiledMap* tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"orthogonal.tmx"];
+        
+        
 		tileMapHeightInPixels = tileMap.mapSize.height * tileMap.tileSize.height / CC_CONTENT_SCALE_FACTOR();
 		[self addChild:tileMap z:-1 tag:TileMapNode];
 		
