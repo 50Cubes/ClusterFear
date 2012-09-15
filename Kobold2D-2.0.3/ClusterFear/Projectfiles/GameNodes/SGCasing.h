@@ -16,6 +16,7 @@
 +(NSString *)casingPath;
 
 +(SGCasing *)casingForProjectile:(SGProjectile *)projectile;
++(SGCasing *)casingWithNode:(CCNode *)node;
 
 +(float)maxRotation;
 

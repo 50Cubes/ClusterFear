@@ -65,13 +65,13 @@
 {    
     [super crawl];
     
-    CCFiniteTimeAction *squirm = [CCSkewBy actionWithDuration:0.1747f skewX:0.45f skewY:-6.05f];
-    CCFiniteTimeAction *squirm2 = [CCSkewBy actionWithDuration:0.1852f skewX:-8.35f skewY:-0.04f];
-    CCFiniteTimeAction *squirm3 = [CCSkewBy actionWithDuration:0.1247f skewX:-0.15f skewY:9.05f];
+//    CCFiniteTimeAction *squirm = [CCSkewBy actionWithDuration:0.1747f skewX:0.45f skewY:-6.05f];
+//    CCFiniteTimeAction *squirm2 = [CCSkewBy actionWithDuration:0.1852f skewX:-8.35f skewY:-0.04f];
+//    CCFiniteTimeAction *squirm3 = [CCSkewBy actionWithDuration:0.1247f skewX:-0.15f skewY:9.05f];
 //    CCFiniteTimeAction *squirm4 = [CCSkewBy actionWithDuration:0.2847f skewX:-1.15f skewY:-0.85f];
-    CCSequence *mainSequence = [CCSequence actions:squirm, squirm2, squirm3, nil];
+//    CCSequence *mainSequence = [CCSequence actions:squirm, squirm2, squirm3, nil];
     
-    [self runAction:[CCSequence actions:mainSequence, [CCSkewTo actionWithDuration:0.167f skewX:1.0f skewY:1.0f], nil]];
+//    [self runAction:[CCSequence actions:mainSequence, [CCSkewTo actionWithDuration:0.167f skewX:1.0f skewY:1.0f], nil]];
     
     CCFiniteTimeAction *flapDown = [CCScaleBy actionWithDuration:0.27f scaleX:0.95f scaleY:1.1f];
     
@@ -153,7 +153,7 @@
             break;
     }
     
-    if( count > 1 )
+    if( count <= 0 )
         crawlPhase = ((crawlPhase + 1) % 2);
     
     float adjust = dT * 0.1f;

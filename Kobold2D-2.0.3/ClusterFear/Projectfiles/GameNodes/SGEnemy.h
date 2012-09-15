@@ -33,6 +33,7 @@ typedef enum {
 
 +(CCTexture2D *)textureWithTier:(SGEnemyTier)tier;
 
+
 @property (nonatomic, unsafe_unretained)SGFoeCluster *cluster;
 
 @property (nonatomic, readonly)float radius;
