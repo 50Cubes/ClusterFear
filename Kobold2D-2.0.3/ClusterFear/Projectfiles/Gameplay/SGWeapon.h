@@ -21,10 +21,13 @@
 +(CGFloat)fireDelay;
 +(NSUInteger)magazineSize;
 
++(float)range;
+
 @property(readonly) int damageInflicted;
 
 @property(nonatomic, unsafe_unretained)SGMover *owner;
 
++(SGWeapon *)weapon;
 
 -(void)fire;
 -(void)didDestroy:(SGDestroyable *)killedMover;

@@ -30,6 +30,16 @@
     return 10;
 }
 
++(float)range
+{
+    return 400.0f;
+}
+
++(SGWeapon *)weapon
+{
+    return [[self alloc] init];
+}
+
 -(id)init{
     if((self = [super init])){
         damageInflicted = 10;

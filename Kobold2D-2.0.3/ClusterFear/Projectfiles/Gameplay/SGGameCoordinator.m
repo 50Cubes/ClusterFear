@@ -53,7 +53,9 @@
         [self addChild:tileMapLayer];
         
         
-        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[SGWeapon weapon]];
+        
+        [localPlayer setOwner:self];
         
         localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
         [self addChild:localPlayer];
@@ -145,6 +147,13 @@
 
 -(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile
 {
+    SGProjectile *casing = [projectile casing];
+    
+    if( casing != nil )
+    {
+        [self addChild:casing];
+    }
+    
     [self addChild:projectile];
     [projectile fired];
 }

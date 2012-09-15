@@ -13,13 +13,16 @@
 
 @interface SGProjectile : CCSprite
 
-+(float)range;
++(float)speed;
 
 +(NSString *)projectileAsset;
 +(SGProjectile *)projectileForWeapon:(SGWeapon *)weapon;
 
+-(CGPoint)forwardDirection;
 
 @property(nonatomic, strong)SGWeapon *weapon;
+
+-(SGProjectile *)casing;
 -(void)fired;
 
 @end

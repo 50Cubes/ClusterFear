@@ -31,6 +31,8 @@
 
 
 -(void)initializeWeapon:(SGWeapon *)newWeapon{
+    [weapon setOwner:nil];
+    [newWeapon setOwner:self];
     weapon = newWeapon;
 }
 
