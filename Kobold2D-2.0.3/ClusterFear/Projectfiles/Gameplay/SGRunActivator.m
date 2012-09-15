@@ -16,14 +16,26 @@
 
 @synthesize isPressed = _isPressed;
 
++(SGRunActivator *)activatorWithOffset:(float)offset;
+{
+    SGRunActivator *activator = (SGRunActivator *)[self node];
+    activator->offset = offset;
+    return activator;
+}
+
 -(void)setup{
-    ccColor4B mg = {ccMAGENTA.r, ccMAGENTA.g, ccMAGENTA.b, 128};
+    ccColor4B mg = {ccGRAY.r, ccGRAY.g, ccGRAY.b, 196};
     
     
     CCLayerColor *color = [CCLayerColor layerWithColor:mg width:self.contentSize.width height:self.contentSize.height];
     [self addChild:color];
     
-    CCSprite *weaponImage = [CCSprite spriteWithFile:@"weaponicons.png" rect:CGRectMake(0, 0, 128.0f, 64.0f)];
+    CCSprite *menuButton = [CCSprite spriteWithFile:@"weaponicons.png" rect:CGRectMake(0, offset + 0, 128.0f, 64.0f)];
+    CCSprite *menuDown = [CCSprite spriteWithFile:@"weaponicons.png" rect:CGRectMake(0, offset + 64.0f, 128.0f, 64.0f)];
+    CCMenuItemSprite *weaponImage = [CCMenuItemSprite itemWithNormalSprite:menuButton selectedSprite:menuDown];
+    
+    [weaponImage setSize:[self contentSize]];
+    
     [color addChild:weaponImage];
 }
 

@@ -34,6 +34,11 @@
     return @"bullet5.png";
 }
 
+-(NSString *)audioFile
+{
+    return [[[self weapon] class] gunshotFile];
+}
+
 +(NSString *)casingAsset
 {
     return [self projectileAsset];
@@ -47,6 +52,12 @@
     [aProj setWeapon:weapon];
     
     return aProj;
+}
+
+-(void)setWeapon:(SGWeapon *)weapon
+{
+    _weapon = weapon;
+    damage_ = [weapon damageInflicted];
 }
 
 -(float)radius

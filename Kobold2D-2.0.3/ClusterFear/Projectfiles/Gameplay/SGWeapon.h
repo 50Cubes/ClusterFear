@@ -18,8 +18,10 @@
 }
 
 +(Class)projectileClass;
-+(CGFloat)fireDelay;
++(ccTime)fireDelay;
 +(NSUInteger)magazineSize;
+
++(NSString *)gunshotFile;
 
 +(float)range;
 

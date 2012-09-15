@@ -60,6 +60,14 @@ static SGFoeStats *playerStats = nil;
     weapon = newWeapon;
 }
 
+-(void)switchToWeapon:(Class)weaponClass
+{
+    if( [weapon class] != weaponClass )
+    {
+        [self initializeWeapon:[weaponClass weapon]];
+    }
+}
+
 -(void)fireWeapon
 {
     [weapon fire];

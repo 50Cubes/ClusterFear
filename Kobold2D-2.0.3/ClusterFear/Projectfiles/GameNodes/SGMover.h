@@ -43,6 +43,7 @@
 @property(nonatomic, readonly)float radius;
 
 -(void)fireProjectile:(SGProjectile *)projectile;
+-(void)fireProjectile:(SGProjectile *)projectile withAccuracy:(float)accuracy;
 
 -(float)facePoint:(CGPoint)pointToFace;
 -(CCFiniteTimeAction *)actionToFacePoint:(CGPoint)normalizedVector;
