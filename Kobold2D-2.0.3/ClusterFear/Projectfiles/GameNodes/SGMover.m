@@ -19,7 +19,7 @@
 
 +(float)speed
 {
-    return 50.0f;
+    return 10.0f;
 }
 
 -(BOOL)isEnemy
@@ -97,8 +97,10 @@
 -(void)collideWithDestroyable:(SGDestroyable *)other{
     //return;
     if([other respondsToSelector:@selector(weapon)]){
-        SGWeapon *w = [other performSelector:@selector(weapon)];
-        [self getHitFromWeapon:w];
+        SGProjectile *p = (SGProjectile *)other;
+        if(![p spent]){
+            [self getHitFromWeapon:[p weapon]];
+        }
     }else{
         //return;
 

@@ -21,6 +21,7 @@
 +(SGProjectile *)projectileForWeapon:(SGWeapon *)weapon;
 
 @property(nonatomic, strong)SGWeapon *weapon;
+@property(nonatomic, readonly) BOOL spent;
 
 -(SGProjectile *)casing;
 -(void)fired;
