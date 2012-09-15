@@ -143,8 +143,9 @@
         _enemyCount++;
         
 
-        Class clusterClass = [_enemyTypes randomObject];//TODO randomize
-        SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
+        //Class clusterClass = [_enemyTypes randomObject];//TODO randomize
+        //SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
+        SGFoeCluster *spawnedCluster = [SGBatCluster foeCluster];
         
         CGPoint spawnPoint = SGRandomScreenPoint();
 
@@ -249,39 +250,45 @@
 }//*/
 
 -(void)physicsTick:(ccTime)dt{
-    CCArray *collisionObjects = [[CCArray alloc] initWithCapacity:[_moverList count]];
-    CCArray *projectileSets =   [[CCArray alloc] initWithCapacity:[_moverList count]];
+    @synchronized(self){
+        CCArray *collisionObjects = [[CCArray alloc] initWithCapacity:[_moverList count]];
+        CCArray *projectileSets =   [[CCArray alloc] initWithCapacity:[_moverList count]];
 
-    for(SGMover *m in _moverList){
-        NSMutableSet *s = [NSMutableSet new];
-        for(SGProjectile *p in _projectileList){
-            if(CGRectIntersectsRect(m.boundingBox, p.boundingBox)){
-                [s addObject:p];
-            }
-        }
-        
-        if([s count] > 0){
-            [collisionObjects addObject:m];
-            [projectileSets addObject:s];
-        }else{
-            [collisionObjects addObject:[NSNull null]];
-            [projectileSets addObject:[NSNull null]];
-        }
-    }
-    
-    int index = 0;
-    if([collisionObjects count] > 0){
-        for(id item in collisionObjects){
-            if(![item isKindOfClass:[NSNull class]]){
-                SGMover *m = (SGMover *)item;
-                NSSet *projectileSet = [projectileSets objectAtIndex:index];
-                for(SGProjectile *p in projectileSet){
-                    [m collideWithDestroyable:p];
-                    [p collideWithDestroyable:m];
+        for(SGMover *m in _moverList){
+            NSMutableSet *s = [NSMutableSet new];
+            for(SGProjectile *p in _projectileList){
+                if(CGRectIntersectsRect([m boundingBoxInWorldSpace], [p boundingBoxInWorldSpace])){
+                    [s addObject:p];
                 }
             }
             
-            index++;
+            if([s count] > 0){
+                [collisionObjects addObject:m];
+                [projectileSets addObject:s];
+            }else{
+                [collisionObjects addObject:[NSNull null]];
+                [projectileSets addObject:[NSNull null]];
+            }
+        }
+        
+        int index = 0;
+        if([collisionObjects count] > 0){
+            NSMutableSet *alreadyGotSet = [NSMutableSet new];
+            for(id item in collisionObjects){
+                if(![item isKindOfClass:[NSNull class]]){
+                    SGMover *m = (SGMover *)item;
+                    NSMutableSet *projectileSet = [projectileSets objectAtIndex:index];
+                    [projectileSet minusSet:alreadyGotSet];
+                    for(SGProjectile *p in projectileSet){
+                        [m collideWithDestroyable:p];
+                        [p collideWithDestroyable:m];
+                    }
+                    
+                    [alreadyGotSet unionSet:projectileSet];
+                }
+                
+                index++;
+            }
         }
     }
 }

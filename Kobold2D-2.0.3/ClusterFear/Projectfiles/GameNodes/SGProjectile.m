@@ -15,6 +15,8 @@
 
 @implementation SGProjectile
 
+@synthesize spent;
+
 +(float)range
 {
     return 400.0f;
@@ -72,7 +74,7 @@
 {
     if( collidedWith != nil )
     {
-        
+        spent = YES;
     }
     
     //[self removeFromParentAndCleanup:YES];

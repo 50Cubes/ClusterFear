@@ -13,4 +13,6 @@
 -(CGPoint)forwardDirection;
 -(CGPoint)backwardDirection;
 
+-(CGRect)boundingBoxInWorldSpace;
+
 @end

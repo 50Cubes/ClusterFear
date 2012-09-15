@@ -12,6 +12,8 @@
 
 +(NSString *)imagePath
 {
+    return kSGBatAssetLarge;
+    
     NSString *asset = kSGBatAssetSmall;
     
     float roll = CCRANDOM_0_1();
