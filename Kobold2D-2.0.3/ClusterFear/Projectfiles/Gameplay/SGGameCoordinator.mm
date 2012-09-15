@@ -61,6 +61,7 @@
         
         
         localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+        [localPlayer setOwner:self];
         
         localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
         [self addPhysicalBodyToSprite:localPlayer];
@@ -139,7 +140,9 @@
 {
     if([runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
-    }else{
+    }
+    else
+    {
         [localPlayer facePoint:touchPoint];
 
         [localPlayer fireWeapon];
