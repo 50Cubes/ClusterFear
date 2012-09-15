@@ -11,13 +11,12 @@
 
 @interface SGDestroyable ()
 
-//-(void)initializeShape;
 
 @end
 
 @implementation SGDestroyable
 
-//@synthesize destroyableShape;
+@synthesize damage;
 
 +(NSString *)imagePath
 {
@@ -28,12 +27,16 @@
     return 100;
 }
 
++(int)damageCapability{
+    return 10;
+}
+
+
 
 +(SGDestroyable *)destroyable
 {
     SGDestroyable *d = [self spriteWithFile:[self imagePath]];
     [d initializeHealth:[self startingHealth]];
-    //[d initializeShape];
     return d;
 }
 
@@ -53,8 +56,9 @@
 -(void)die{
     [self stopAllActions];
     
-    CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:0.5f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
-    [self runAction:dieSequence];
+    //CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:0.5f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
+    //[self runAction:dieSequence];
+    [self removeFromParentAndDoCleanup];
 }
 
 
@@ -63,22 +67,12 @@
     [self removeFromParentAndCleanup:YES];
 }
 
-/*
--(void)initializeShape{
-    destroyableShape = cpCircleShapeNew(cpBodyNew(25, INFINITY), 20.0, cpvzero);
-    destroyableShape->e = 0.5;
-    destroyableShape->u = 0.8;
-    destroyableShape->collision_type = 1;
-    destroyableShape->data = (__bridge void *)self;
+#pragma mark - collision
+
+-(void)collideWithDestroyable:(SGDestroyable *)other{
+    
 }
 
-#pragma mark - physics
-
--(void)setPosition:(CGPoint)position{
-    [super setPosition:position];
-    destroyableShape->body->p.x = position.x;
-    destroyableShape->body->p.y = position.y;
-}//*/
 
 
 @end

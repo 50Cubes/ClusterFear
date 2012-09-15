@@ -48,6 +48,7 @@
     self = [super init];
     if( self != nil )
     {
+        _enemyCount = 0;
         [self physicsSetup];
         _moverList = [NSMutableArray new];
         
@@ -110,6 +111,7 @@
 
 -(void)spawnEnemies
 {
+    CCLOG(@"enemy count: %d", _enemyCount);
     if( _enemyCount < 100 )
     {
         _enemyCount++;
@@ -153,8 +155,10 @@
 
 -(void)moverPerished:(SGMover *)mover
 {
-    if( [mover isEnemy] )
+    if( [mover isEnemy] ){
         _enemyCount--;
+        [_moverList removeObject:mover];
+    }
 }
 
 -(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile
@@ -205,13 +209,16 @@
             b2Body *bodyA = contact.fixtureA->GetBody();
             b2Body *bodyB = contact.fixtureB->GetBody();
             if (bodyA->GetUserData() != NULL && bodyB->GetUserData() != NULL) {
-                CCSprite *spriteA = (__bridge CCSprite *) bodyA->GetUserData();
-                CCSprite *spriteB = (__bridge CCSprite *) bodyB->GetUserData();
+                SGDestroyable *spriteA = (__bridge SGDestroyable *) bodyA->GetUserData();
+                SGDestroyable *spriteB = (__bridge SGDestroyable *) bodyB->GetUserData();
+                
+                [spriteA collideWithDestroyable:spriteB];
+                [spriteB collideWithDestroyable:spriteA];
                 
                 //CCLOG(@"collision between %@ and %@", spriteA, spriteB);
                 
-                toDestroy.push_back(bodyA);
-                toDestroy.push_back(bodyB);
+                //toDestroy.push_back(bodyA);
+                //toDestroy.push_back(bodyB);
 
                 /*
                 if (spriteA.tag == 1 && spriteB.tag == 2) {

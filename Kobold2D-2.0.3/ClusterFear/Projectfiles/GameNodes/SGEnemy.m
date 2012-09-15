@@ -61,4 +61,8 @@
     return [CCMoveBy actionWithDuration:1.25f position:moveDirection];
 }
 
+-(void)afterBounce{
+    [self crawl];
+}
+
 @end

@@ -22,7 +22,9 @@
 
 @end
 
-@interface SGMover : SGDestroyable
+@interface SGMover : SGDestroyable{
+    CCLabelTTF *healthLabel;
+}
 
 +(float)speed;
 

@@ -75,7 +75,8 @@
         
     }
     
-    [self removeFromParentAndCleanup:YES];
+    //[self removeFromParentAndCleanup:YES];
+    [self die];
 }
 
 @end

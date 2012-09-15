@@ -11,5 +11,6 @@
 @interface CCSprite (Convenience)
 
 -(CGPoint)forwardDirection;
+-(CGPoint)backwardDirection;
 
 @end
