@@ -24,6 +24,8 @@
 @interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner, SGLocalPlayerOwner, SGFoeClusterOwner, SGTurretOwner>{
     SGLocalPlayer *localPlayer;
     SGRunActivator *runActivator;
+    SGRunActivator *turretActivator;
+    SGRunActivator *shotgunActivator;
     
     CCNode *shiftLayer;
     

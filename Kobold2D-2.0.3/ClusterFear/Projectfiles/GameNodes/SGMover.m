@@ -55,8 +55,19 @@
 
 -(void)fireProjectile:(SGProjectile *)projectile
 {
+    [self fireProjectile:projectile withAccuracy:0.0f];
+}
+
+-(void)fireProjectile:(SGProjectile *)projectile withAccuracy:(float)accuracy
+{
     [projectile setPosition:position_];
-    [projectile setRotation:rotation_];
+    
+    if( accuracy != 0.0f )
+    {
+        [projectile setRotation:rotation_ + (CCRANDOM_MINUS1_1() * accuracy)];
+    }
+    else
+        [projectile setRotation:rotation_];
     
     [projectile hackForGameJam];
     

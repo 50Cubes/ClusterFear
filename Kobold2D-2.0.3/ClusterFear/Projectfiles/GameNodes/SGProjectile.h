@@ -29,6 +29,8 @@
 +(NSString *)projectileAsset;
 +(SGProjectile *)projectileForWeapon:(SGWeapon *)weapon;
 
+-(NSString *)audioFile;
+
 @property(nonatomic, strong)SGWeapon *weapon;
 @property(nonatomic, readonly) BOOL spent;
 

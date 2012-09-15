@@ -90,6 +90,7 @@
 		C18091BE16044E6C00E43876 /* SGSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = C18091BD16044E6C00E43876 /* SGSpray.m */; };
 		C18091CE1604812200E43876 /* 64blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C18091CD1604812200E43876 /* 64blood1.png */; };
 		C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* SGFoeCluster.m */; };
+		C193AF02160526060050DD84 /* SGShotgun.m in Sources */ = {isa = PBXBuildFile; fileRef = C193AF01160526060050DD84 /* SGShotgun.m */; };
 		DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */; };
 		DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615013A969B600A7AC53 /* libbox2d-ios.a */; };
 		DC65615D13A969B600A7AC53 /* libchipmunk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615113A969B600A7AC53 /* libchipmunk-ios.a */; };
@@ -229,6 +230,8 @@
 		C18091CD1604812200E43876 /* 64blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64blood1.png; sourceTree = "<group>"; };
 		C18411CE1602D906007F06A6 /* SGFoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFoeCluster.h; sourceTree = "<group>"; };
 		C18411CF1602D906007F06A6 /* SGFoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFoeCluster.m; sourceTree = "<group>"; };
+		C193AF00160526060050DD84 /* SGShotgun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGShotgun.h; path = GameNodes/items/SGShotgun.h; sourceTree = "<group>"; };
+		C193AF01160526060050DD84 /* SGShotgun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGShotgun.m; path = GameNodes/items/SGShotgun.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-hd.png"; path = "Resources/fps_images-hd.png"; sourceTree = "<group>"; };
 		DC65615013A969B600A7AC53 /* libbox2d-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -449,6 +452,8 @@
 			children = (
 				C174701B1604E27600D5274E /* SGTurret.h */,
 				C174701C1604E27600D5274E /* SGTurret.m */,
+				C193AF00160526060050DD84 /* SGShotgun.h */,
+				C193AF01160526060050DD84 /* SGShotgun.m */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -780,6 +785,7 @@
 				4C6E46A61604D63800ABBA43 /* SGCollectable.m in Sources */,
 				C174701D1604E27600D5274E /* SGTurret.m in Sources */,
 				C174708B1605059300D5274E /* SGWeapon.m in Sources */,
+				C193AF02160526060050DD84 /* SGShotgun.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

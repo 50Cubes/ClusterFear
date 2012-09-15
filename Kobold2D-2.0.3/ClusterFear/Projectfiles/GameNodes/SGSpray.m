@@ -9,8 +9,8 @@
 #import "SGSpray.h"
 #import "SGSplatter.h"
 
-#define kSGSprayThreshold 0.285f
-#define kSGSprayDelay 0.12f
+#define kSGSprayThreshold 0.475f
+#define kSGSprayDelay 0.09f
 
 @implementation SGSpray
 
@@ -89,7 +89,7 @@
 
 -(float)ejectionIntensity
 {
-    return 75.0f;
+    return 85.0f;
 }
 
 -(CGPoint)findPrimaryDirection
@@ -133,7 +133,7 @@
     {
         bounciness_ *= bounciness_ * 0.8f;
         
-        SGSpray *newSpray = [SGSpray sprayFromProjectile:[self projectile] andIntensity:bounciness_ * (flip) ? 0.25f : 0.58f];
+        SGSpray *newSpray = [SGSpray sprayFromProjectile:[self projectile] andIntensity:bounciness_ * (flip) ? 0.22f : 0.58f];
         
         if( flip )
         {
@@ -150,9 +150,9 @@
 
 -(CCFiniteTimeAction *)ejectionAction
 {
-    [self runAction:[CCScaleBy actionWithDuration:0.247f scale:1.5f * bounciness_]];
-    [self runAction:[CCMoveBy actionWithDuration:0.327 position:[self findPrimaryDirection]]];
-    return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.137f] two:[CCFadeOut actionWithDuration:0.367f]];
+    [self runAction:[CCScaleBy actionWithDuration:0.147f scale:1.5f * bounciness_]];
+    [self runAction:[CCMoveBy actionWithDuration:0.227 position:[self findPrimaryDirection]]];
+    return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.117f] two:[CCFadeOut actionWithDuration:0.327f]];
 }
 
 -(void)onEnter

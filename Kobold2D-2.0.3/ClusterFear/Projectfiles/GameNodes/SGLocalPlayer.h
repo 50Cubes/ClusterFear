@@ -39,4 +39,6 @@
 
 -(void)getHitByEnemy:(SGEnemy *)enemy;
 
+-(void)switchToWeapon:(Class)weaponClass;
+
 @end

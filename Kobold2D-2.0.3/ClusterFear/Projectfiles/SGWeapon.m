@@ -20,9 +20,14 @@
     return [SGProjectile class];
 }
 
-+(CGFloat)fireDelay
++(ccTime)fireDelay
 {
     return 0.1f;
+}
+
++(NSString *)gunshotFile
+{
+    return @"Gun_Shot2.wav";
 }
 
 +(NSUInteger)magazineSize
@@ -32,7 +37,7 @@
 
 +(float)range
 {
-    return 400.0f;
+    return 425.0f;
 }
 
 +(SGWeapon *)weapon

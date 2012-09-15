@@ -30,6 +30,8 @@
 #import "SGBat.h"
 #import "SimpleAudioEngine.h"
 
+#import "SGShotgun.h"
+
 
 @interface SGGameCoordinator ()
 {
@@ -107,11 +109,29 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         
         
         runActivator = [SGRunActivator node];
-        [runActivator setContentSize:CGSizeMake(128, 64)];
+        [runActivator setContentSize:CGSizeMake(128.0f, 64)];
         [runActivator setup];
+        [runActivator setPosition:CGPointMake(0.0f, 0.0f)];
         runActivator.isTouchEnabled = YES;
         //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
         [self addChild:runActivator];
+        
+        turretActivator = [SGRunActivator activatorWithOffset:128.0f];
+        [turretActivator setContentSize:CGSizeMake(128.0f, 64)];
+        [turretActivator setup];
+        turretActivator.isTouchEnabled = YES;
+        [turretActivator setPosition:CGPointMake(896.0f, 0.0f)];
+        //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
+        [self addChild:turretActivator];
+        
+        shotgunActivator = [SGRunActivator activatorWithOffset:196.0f];
+        [shotgunActivator setContentSize:CGSizeMake(128.0f, 64)];
+        [shotgunActivator setup];
+        shotgunActivator.isTouchEnabled = YES;
+        
+        [shotgunActivator setPosition:CGPointMake(448.0f, 0.0f)];
+        //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
+        [self addChild:shotgunActivator];
         
         
         _enemyTypes = [CCArray arrayWithCapacity:2];
@@ -147,7 +167,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnPlayer
 {
-    localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+    localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGShotgun alloc] init]];
     [localPlayer setOwner:self];
     
     localPlayer.position = [self playerPoint];
@@ -242,6 +262,10 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     if( [runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
     }
+    else if( [turretActivator isPressed] )
+    {
+        [self spawnTurretAtPlayer];
+    }
     else
     {
         
@@ -251,6 +275,8 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 //        vector.y *= 1.0f;
         touchPoint = ccpAdd(playerPosition, vector);
 #endif
+        
+        [localPlayer switchToWeapon:[shotgunActivator isPressed] ? [SGShotgun class] : [SGWeapon class]];
         
         [localPlayer fireWeaponAtPoint:touchPoint];
 //        [localPlayer facePoint:touchPoint];
@@ -279,7 +305,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [_projectileList addObject:projectile];
     [_tileLayer addChild:projectile z:2 tag:0];
     [projectile fired];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"Gun_Shot2.wav"];
+    [[SimpleAudioEngine sharedEngine] playEffect:[projectile audioFile]];
 }
 
 -(void)removeProjectile:(SGProjectile *)projectile
@@ -592,6 +618,15 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 }//*/
 
 #pragma mark - turet
+
+-(void)spawnTurretAtPlayer
+{
+    SGTurret *t = [SGTurret turretWithAmmo:1000];
+    t.owner = self;
+    [t addToParent:_tileLayer atPosition:[localPlayer position]];
+    [_turrets addObject:t];
+    [t activate];
+}
 
 -(void)spawnTurrets{
     [_destroyedTurrets removeAllObjects];

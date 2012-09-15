@@ -9,6 +9,8 @@
 #import "SGTurret.h"
 #import "SGRandomization.h"
 
+#import "SGShotgun.h"
+
 @interface SGTurret ()
 
 -(void)setAmmo:(int)newAmmo;
@@ -24,9 +26,15 @@
 }
 
 +(id)turretWithAmmo:(int)ammo{
-    SGTurret *t = [SGTurret moverWithFile:[self imagePath] andHealth:1000];
+    SGTurret *t = [SGTurret moverWithFile:[self imagePath] andHealth:500];
     [t setAmmo:ammo];
-    [t initializeWeapon:[[SGWeapon alloc] init]];
+    
+    BOOL isShotgun = (CCRANDOM_0_1() > 0.95f);
+    Class weaponClass = isShotgun ? [SGShotgun class] : [SGWeapon class];
+    [t initializeWeapon:[weaponClass weapon]];
+    
+    if( isShotgun )
+        [t setAmmo:250];
 
     return t;
 }
@@ -58,6 +66,9 @@
 {
     if(ammo_ > 0){
         ammo_--;
+        
+        if( (ammo_ % 2) == 0 )
+            [self hitForDamage:1];
         [weapon fire];
     }
 }
