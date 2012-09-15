@@ -12,9 +12,6 @@
 #import "TileMapLayer.h"
 
 #import "SGMover.h"
-#import "SpaceManagerCocos2d.h"
-#import "chipmunk.h"
-#import "Box2D.h"
 //#import "MyContactListener.h"
 #import "SGLocalPlayer.h"
 
@@ -32,15 +29,19 @@
     //MyContactListener *listener;
 }
 
++(SGGameCoordinator  *)sharedCoordinator;
+
 @property (nonatomic, strong)TileMapLayer *tileLayer;
 
 @property (nonatomic, readonly)unsigned int enemyCount;
 
-@property (nonatomic, strong, readonly)NSArray *moverList;
+@property (nonatomic, strong, readonly)CCArray *moverList;
 
 -(void)spawnEnemies;
 
 -(void)addMover:(SGMover *)newMover;
+
+-(void)removeProjectile:(SGProjectile *)projectile;
 
 
 @end

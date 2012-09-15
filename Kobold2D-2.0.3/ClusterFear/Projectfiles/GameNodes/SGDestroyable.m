@@ -30,7 +30,7 @@
 }
 
 +(int)damageCapability{
-    return 10;
+    return 5;
 }
 
 
@@ -76,7 +76,8 @@
 
 #pragma mark - collision
 
--(void)collideWithDestroyable:(SGDestroyable *)other{
+-(void)collideWithDestroyable:(SGDestroyable *)other
+{
     
 }
 

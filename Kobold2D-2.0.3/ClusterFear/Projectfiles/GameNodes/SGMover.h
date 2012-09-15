@@ -18,13 +18,16 @@
 
 -(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile;
 
--(void)moverPerished:(SGMover *)mover;
+//-(void)moverPerished:(SGMover *)mover;
 
 @end
 
 @interface SGMover : SGDestroyable{
     CCLabelTTF *healthLabel;
-    CGFloat velocity_;
+    
+    CGPoint destination_;
+    CGPoint velocity_;
+    CGFloat currentSpeed_;
 }
 
 +(float)speed;
@@ -34,7 +37,8 @@
 @property(nonatomic, readonly)BOOL isEnemy;
 @property(nonatomic, unsafe_unretained)NSObject <SGMoverOwner> *owner;
 
-@property(nonatomic, readonly)float velocity;
+@property(nonatomic, readonly)CGPoint velocity;
+@property(nonatomic, readonly)CGFloat currentSpeed;
 
 -(void)fireProjectile:(SGProjectile *)projectile;
 

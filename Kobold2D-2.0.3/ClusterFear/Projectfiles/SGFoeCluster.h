@@ -21,6 +21,8 @@
 
 -(void)foeCluster:(SGFoeCluster *)cluster hitByProjectile:(SGProjectile *)projectile;
 
+//-(void)foeClusterRequestsMinionPlacement:(
+
 -(CGPoint)foeClusterRequestsPlayerLocation:(SGFoeCluster *)cluster;
 -(void)foeClusterDestroyed:(SGFoeCluster *)cluster;
 
@@ -36,13 +38,22 @@
 +(SGFoeCluster *)foeCluster;
 +(Class)minionClass;
 
-@property(nonatomic, readonly)float velocity;
+@property(nonatomic, readonly)float speed;
+
+@property(nonatomic, readonly)CCArray *minions;
 
 @property(nonatomic, readonly)NSUInteger minionLimit;
 @property(nonatomic, readonly)NSUInteger minionCount;
 
 @property(nonatomic, readonly)NSUInteger health;
 @property(nonatomic, readonly)NSUInteger damage;
+
+@property(nonatomic, readonly)CGPoint velocity;
+
+@property(nonatomic, readonly)float radius;
+
+//In local coordinate system, add to position for global
+@property(nonatomic, readonly)CGPoint destination;
 
 @property(nonatomic, unsafe_unretained)NSObject <SGFoeClusterOwner> *owner;
 

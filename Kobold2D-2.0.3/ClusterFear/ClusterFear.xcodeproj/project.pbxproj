@@ -48,7 +48,15 @@
 		C117135D1603DC8000208448 /* SGDestroyable.m in Sources */ = {isa = PBXBuildFile; fileRef = C117135C1603DC8000208448 /* SGDestroyable.m */; };
 		C117136E1603EED800208448 /* SGCasing.m in Sources */ = {isa = PBXBuildFile; fileRef = C117136D1603EED700208448 /* SGCasing.m */; };
 		C1171379160409C300208448 /* CCSprite+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = C1171378160409C200208448 /* CCSprite+Convenience.m */; };
-		C18091BE16044E6C00E43876 /* SGSplatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C18091BD16044E6C00E43876 /* SGSplatter.m */; };
+		C1747000160482AC00D5274E /* SGDecal.m in Sources */ = {isa = PBXBuildFile; fileRef = C1746FFF160482AC00D5274E /* SGDecal.m */; };
+		C1747005160482CA00D5274E /* SGSplatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1747004160482CA00D5274E /* SGSplatter.m */; };
+		C174700C160485BE00D5274E /* 16blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1747007160485BE00D5274E /* 16blood1.png */; };
+		C174700D160485BE00D5274E /* 16blood2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1747008160485BE00D5274E /* 16blood2.png */; };
+		C174700E160485BE00D5274E /* 32blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1747009160485BE00D5274E /* 32blood1.png */; };
+		C174700F160485BE00D5274E /* 32blood2.png in Resources */ = {isa = PBXBuildFile; fileRef = C174700A160485BE00D5274E /* 32blood2.png */; };
+		C1747010160485BE00D5274E /* 64blood2.png in Resources */ = {isa = PBXBuildFile; fileRef = C174700B160485BE00D5274E /* 64blood2.png */; };
+		C18091BE16044E6C00E43876 /* SGSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = C18091BD16044E6C00E43876 /* SGSpray.m */; };
+		C18091CE1604812200E43876 /* 64blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C18091CD1604812200E43876 /* 64blood1.png */; };
 		C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* SGFoeCluster.m */; };
 		DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */; };
 		DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615013A969B600A7AC53 /* libbox2d-ios.a */; };
@@ -144,8 +152,18 @@
 		C1171377160409C200208448 /* CCSprite+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCSprite+Convenience.h"; path = "Utils/CCSprite+Convenience.h"; sourceTree = "<group>"; };
 		C1171378160409C200208448 /* CCSprite+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCSprite+Convenience.m"; path = "Utils/CCSprite+Convenience.m"; sourceTree = "<group>"; };
 		C117137B160412F100208448 /* MFDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDebug.h; sourceTree = "<group>"; };
-		C18091BC16044E6C00E43876 /* SGSplatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSplatter.h; path = GameNodes/SGSplatter.h; sourceTree = "<group>"; };
-		C18091BD16044E6C00E43876 /* SGSplatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGSplatter.m; path = GameNodes/SGSplatter.m; sourceTree = "<group>"; };
+		C1746FFE160482AC00D5274E /* SGDecal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDecal.h; path = GameNodes/SGDecal.h; sourceTree = "<group>"; };
+		C1746FFF160482AC00D5274E /* SGDecal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDecal.m; path = GameNodes/SGDecal.m; sourceTree = "<group>"; };
+		C1747003160482CA00D5274E /* SGSplatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSplatter.h; path = GameNodes/SGSplatter.h; sourceTree = "<group>"; };
+		C1747004160482CA00D5274E /* SGSplatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGSplatter.m; path = GameNodes/SGSplatter.m; sourceTree = "<group>"; };
+		C1747007160485BE00D5274E /* 16blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 16blood1.png; sourceTree = "<group>"; };
+		C1747008160485BE00D5274E /* 16blood2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 16blood2.png; sourceTree = "<group>"; };
+		C1747009160485BE00D5274E /* 32blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32blood1.png; sourceTree = "<group>"; };
+		C174700A160485BE00D5274E /* 32blood2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32blood2.png; sourceTree = "<group>"; };
+		C174700B160485BE00D5274E /* 64blood2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64blood2.png; sourceTree = "<group>"; };
+		C18091BC16044E6C00E43876 /* SGSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSpray.h; path = GameNodes/SGSpray.h; sourceTree = "<group>"; };
+		C18091BD16044E6C00E43876 /* SGSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGSpray.m; path = GameNodes/SGSpray.m; sourceTree = "<group>"; };
+		C18091CD1604812200E43876 /* 64blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64blood1.png; sourceTree = "<group>"; };
 		C18411CE1602D906007F06A6 /* SGFoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFoeCluster.h; sourceTree = "<group>"; };
 		C18411CF1602D906007F06A6 /* SGFoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFoeCluster.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +263,7 @@
 		7C631C461603C1FD004AA439 /* enemies */ = {
 			isa = PBXGroup;
 			children = (
+				C18091CC1604811400E43876 /* blood */,
 				7C0D3F34160460020095CA39 /* coin.png */,
 				7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */,
 				7C3DF6501604484D003E922B /* blood_splatter1_small.png */,
@@ -302,6 +321,8 @@
 				C117135C1603DC8000208448 /* SGDestroyable.m */,
 				C1171377160409C200208448 /* CCSprite+Convenience.h */,
 				C1171378160409C200208448 /* CCSprite+Convenience.m */,
+				C1746FFE160482AC00D5274E /* SGDecal.h */,
+				C1746FFF160482AC00D5274E /* SGDecal.m */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -309,24 +330,15 @@
 		C117132116037C6000208448 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
-				C117132216037C7C00208448 /* SGBug.h */,
-				C117132316037C7C00208448 /* SGBug.m */,
+				C17470061604834400D5274E /* Enemies */,
 				C11713271603886600208448 /* SGLocalPlayer.h */,
 				C11713281603886600208448 /* SGLocalPlayer.m */,
-				4C5CDB391603CC4A005E91DF /* SGBugCluster.h */,
-				4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */,
-				C11713511603DB4D00208448 /* SGEnemy.h */,
-				C11713521603DB4D00208448 /* SGEnemy.m */,
-				C11713551603DBF800208448 /* SGBat.h */,
-				C11713561603DBF900208448 /* SGBat.m */,
-				4C5CDB511603DE1F005E91DF /* SGBatCluster.h */,
-				4C5CDB521603DE1F005E91DF /* SGBatCluster.m */,
-				4C5CDB551603E491005E91DF /* SGLocustCluster.h */,
-				4C5CDB561603E492005E91DF /* SGLocustCluster.m */,
 				C117136C1603EED700208448 /* SGCasing.h */,
 				C117136D1603EED700208448 /* SGCasing.m */,
-				C18091BC16044E6C00E43876 /* SGSplatter.h */,
-				C18091BD16044E6C00E43876 /* SGSplatter.m */,
+				C18091BC16044E6C00E43876 /* SGSpray.h */,
+				C18091BD16044E6C00E43876 /* SGSpray.m */,
+				C1747003160482CA00D5274E /* SGSplatter.h */,
+				C1747004160482CA00D5274E /* SGSplatter.m */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -340,6 +352,38 @@
 				C117132616037E8400208448 /* SGRandomization.h */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		C17470061604834400D5274E /* Enemies */ = {
+			isa = PBXGroup;
+			children = (
+				C117132216037C7C00208448 /* SGBug.h */,
+				C117132316037C7C00208448 /* SGBug.m */,
+				4C5CDB391603CC4A005E91DF /* SGBugCluster.h */,
+				4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */,
+				C11713511603DB4D00208448 /* SGEnemy.h */,
+				C11713521603DB4D00208448 /* SGEnemy.m */,
+				C11713551603DBF800208448 /* SGBat.h */,
+				C11713561603DBF900208448 /* SGBat.m */,
+				4C5CDB511603DE1F005E91DF /* SGBatCluster.h */,
+				4C5CDB521603DE1F005E91DF /* SGBatCluster.m */,
+				4C5CDB551603E491005E91DF /* SGLocustCluster.h */,
+				4C5CDB561603E492005E91DF /* SGLocustCluster.m */,
+			);
+			name = Enemies;
+			sourceTree = "<group>";
+		};
+		C18091CC1604811400E43876 /* blood */ = {
+			isa = PBXGroup;
+			children = (
+				C1747007160485BE00D5274E /* 16blood1.png */,
+				C1747008160485BE00D5274E /* 16blood2.png */,
+				C1747009160485BE00D5274E /* 32blood1.png */,
+				C174700A160485BE00D5274E /* 32blood2.png */,
+				C174700B160485BE00D5274E /* 64blood2.png */,
+				C18091CD1604812200E43876 /* 64blood1.png */,
+			);
+			name = blood;
 			sourceTree = "<group>";
 		};
 		DC81EAAC141281CE00735365 /* David Gervais Tilesets */ = {
@@ -552,6 +596,12 @@
 				7C3DF65816044F9B003E922B /* chemical_spill.png in Resources */,
 				7C3DF65A1604524A003E922B /* tileSet2.png in Resources */,
 				7C0D3F35160460020095CA39 /* coin.png in Resources */,
+				C18091CE1604812200E43876 /* 64blood1.png in Resources */,
+				C174700C160485BE00D5274E /* 16blood1.png in Resources */,
+				C174700D160485BE00D5274E /* 16blood2.png in Resources */,
+				C174700E160485BE00D5274E /* 32blood1.png in Resources */,
+				C174700F160485BE00D5274E /* 32blood2.png in Resources */,
+				C1747010160485BE00D5274E /* 64blood2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,7 +633,9 @@
 				C117136E1603EED800208448 /* SGCasing.m in Sources */,
 				DFD528DA1603F558001D09D3 /* MyContactListener.mm in Sources */,
 				C1171379160409C300208448 /* CCSprite+Convenience.m in Sources */,
-				C18091BE16044E6C00E43876 /* SGSplatter.m in Sources */,
+				C18091BE16044E6C00E43876 /* SGSpray.m in Sources */,
+				C1747000160482AC00D5274E /* SGDecal.m in Sources */,
+				C1747005160482CA00D5274E /* SGSplatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

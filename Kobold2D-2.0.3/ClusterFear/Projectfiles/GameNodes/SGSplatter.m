@@ -2,73 +2,22 @@
 //  SGSplatter.m
 //  ClusterFear
 //
-//  Created by Kevin Stich on 9/14/12.
+//  Created by Kevin Stich on 9/15/12.
 //
 //
 
 #import "SGSplatter.h"
 
-#define kSGSplatterThreshold 0.1f
-#define kSGSplatterDelay 0.07f
-
 @implementation SGSplatter
 
-+(NSString *)casingPath
++(SGSplatter *)splatterFromSpray:(SGSpray *)spray
 {
-    return CCRANDOM_MINUS1_1() >= 0.0f ? @"blood_splatter1_medium.png" : @"blood_splatter2_medium.png";
+    SGSplatter *splatter = [self spriteWithTexture:[spray texture]];
+    [splatter setOpacity:128 * CCRANDOM_0_1()];
+    [splatter setPosition:[spray position]];
+    return splatter;
 }
 
-+(float)fadeScale
-{
-    return 0.24f;
-}
 
-+(float)maxRotation
-{
-    return 350.0f;
-}
-
-+(SGSplatter *)splatterFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity
-{
-    SGSplatter *newSplat = (SGSplatter *)[self casingForProjectile:projectile];
-    
-//    CGFloat oldX = newSplat->
-    newSplat->bounciness_ = intensity;
-    
-    return newSplat;
-}
-
--(float)ejectionIntensity
-{
-    return 25.0f;
-}
-
--(CGPoint)findPrimaryDirection
-{
-    return ccpMult([self forwardDirection], [self ejectionIntensity]);
-}
-
--(void)splatter
-{
-    SGSplatter *splatter = [[self class] splatterFromProjectile:[self projectile] andIntensity:bounciness_ * 0.5f];
-    
-    [self addChild:splatter];
-    
-    if( bounciness_ <= kSGSplatterThreshold )
-    {
-        [self unschedule:@selector(splatter)];
-    }
-    else
-        bounciness_ *= bounciness_ * 0.8f;
-}
-
--(void)onEnter
-{
-    [super onEnter];
-    
-    [self schedule:@selector(splatter) interval:0.17f repeat:kCCRepeatForever delay:0.07f];
-    
-    [self runAction:[CCFadeOut actionWithDuration:1.27f]];
-}
 
 @end

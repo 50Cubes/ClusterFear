@@ -74,7 +74,7 @@ local config =
 			MaxHealth = 20,
 			MaxCritters = 4,
 			Damage = 1,
-			MoveSpeed = 20,
+			MoveSpeed = 15,
 		},
 
 		SGLocustCluster =
@@ -90,7 +90,7 @@ local config =
 			MaxHealth = 10,
 			MaxCritters = 7,
 			Damage = 1,
-			MoveSpeed = 10,
+			MoveSpeed = 8,
 		},
 
         SGLocalPlayer =

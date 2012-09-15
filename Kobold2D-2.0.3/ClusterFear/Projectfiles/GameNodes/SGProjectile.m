@@ -9,6 +9,7 @@
 #import "SGProjectile.h"
 #import "CCSprite+Convenience.h"
 
+#import "SGGameCoordinator.hh"
 #import "SGCasing.h"
 
 #import "SGWeapon.h"
@@ -55,7 +56,7 @@
     
     ccTime fireTime = myRange / [[self class] speed];
     
-    CCSequence *fireSequence = [CCSequence actionOne:[CCMoveBy actionWithDuration:fireTime position:direction] two:[CCCallFuncO actionWithTarget:self selector:@selector(collideWithDestroyable:) object:nil]];
+    CCSequence *fireSequence = [CCSequence actionOne:[CCMoveBy actionWithDuration:fireTime position:direction] two:[CCCallFuncO actionWithTarget:self selector:@selector(projectileDidHitTarget:) object:nil]];
     
     [self runAction:fireSequence];
 }
@@ -72,13 +73,19 @@
 
 -(void)collideWithDestroyable:(SGDestroyable *)collidedWith
 {
-    if( collidedWith != nil )
+    [[SGGameCoordinator sharedCoordinator] removeProjectile:self];
+    [self removeFromParentAndCleanup:YES];
+}
+
+-(void)projectileDidHitTarget:(SGDestroyable *)target
+{
+    if( target != nil )
     {
         spent = YES;
     }
     
-    //[self removeFromParentAndCleanup:YES];
-    [self die];
+    [[SGGameCoordinator sharedCoordinator] removeProjectile:self];
+    [self removeFromParentAndCleanup:YES];
 }
 
 @end

@@ -13,7 +13,13 @@
 
 @class SGWeapon;
 
-@interface SGProjectile : SGDestroyable
+@protocol SGProjectileOwner <NSObject>
+
+-(void)projectileDestroyed:(SGProjectile *)projectile;
+
+@end
+
+@interface SGProjectile : CCSprite
 
 +(float)speed;
 
@@ -22,6 +28,10 @@
 
 @property(nonatomic, strong)SGWeapon *weapon;
 @property(nonatomic, readonly) BOOL spent;
+
+//@property(nonatomic, readonly)CGRect physicsBounds;
+
+-(void)projectileDidHitTarget:(SGDestroyable *)target;
 
 -(SGProjectile *)casing;
 -(void)fired;

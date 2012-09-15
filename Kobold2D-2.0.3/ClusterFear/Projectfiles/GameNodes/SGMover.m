@@ -11,7 +11,7 @@
 
 #import "SGProjectile.h"
 
-#import "SGSplatter.h"
+#import "SGSpray.h"
 
 @implementation SGProjectile (SkeazePosition)
 
@@ -36,11 +36,17 @@
 }
 
 
-@synthesize velocity = velocity_;
+//@synthesize velocity = velocity_;
+@synthesize currentSpeed = currentSpeed_;
 
 -(BOOL)isEnemy
 {
     return YES;
+}
+
+-(CGPoint)velocity
+{
+    return ccpMult([self forwardDirection], currentSpeed_);
 }
 
 -(void)fireProjectile:(SGProjectile *)projectile
@@ -119,9 +125,10 @@
     CCFiniteTimeAction *rtnAction = nil;
     if( rotation != rotation_ )
     {
+        float delta = sqrtf(fabsf(rotation - rotation_));
         //[self setRotation:rotation];
         //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
-        rtnAction = [CCRotateTo actionWithDuration:0.2 angle:rotation];
+        rtnAction = [CCRotateTo actionWithDuration:0.01f * delta angle:rotation];
     }
     return rtnAction;
 }
@@ -135,13 +142,15 @@
     float mySpeed = [[self class] speed];
     
     
-    velocity_ = ccpDistance(position_, targetPoint) / moveTime;
+    currentSpeed_ = ccpDistance(position_, targetPoint) / moveTime;
     
-    if( velocity_ > mySpeed )
+    if( currentSpeed_ > mySpeed )
     {
-        moveTime *= (velocity_ / mySpeed);
-        velocity_ = mySpeed;
+        moveTime *= (currentSpeed_ / mySpeed);
+        currentSpeed_ = mySpeed;
     }
+    
+    destination_ = targetPoint;
     
     return [CCSequence actionOne:faceAction two:[CCMoveTo actionWithDuration:moveTime position:targetPoint]];
 }
@@ -155,12 +164,12 @@
     float mySpeed = [[self class] speed];
     
     
-    velocity_ = distance / moveTime;
+    currentSpeed_ = distance / moveTime;
     
-    if( velocity_ > mySpeed )
+    if( currentSpeed_ > mySpeed )
     {
-        moveTime *= (velocity_ / mySpeed);
-        velocity_ = mySpeed;
+        moveTime *= (currentSpeed_ / mySpeed);
+        currentSpeed_ = mySpeed;
     }
     
     [self runAction:[CCMoveTo actionWithDuration:moveTime position:targetPoint]];
@@ -173,7 +182,7 @@
 
 -(void)die
 {
-    [[self owner] moverPerished:self];
+//    [[self owner] moverPerished:self];
     
     //[super die];
     [self stopAllActions];

@@ -23,7 +23,7 @@
 
 #import "SGObstacle.h"
 
-#import "SGSplatter.h"
+#import "SGSpray.h"
 
 #import "SGBat.h"
 
@@ -31,10 +31,12 @@
 
 @interface SGGameCoordinator ()
 {
-    NSMutableArray *_moverList, *_projectileList;
+    CCArray *_moverList, *_projectileList;
     
     CCArray *_enemyTypes;
+    CCArray *_clusters;
 }
+
 
 //-(void)physicsSetup;
 -(void)physicsTick:(ccTime)dt;
@@ -45,7 +47,16 @@
 
 @implementation SGGameCoordinator
 
-@synthesize enemyCount = _enemyCount;
+static SGGameCoordinator *_sharedCoordinator = nil;
++(SGGameCoordinator *)sharedCoordinator
+{
+    if( _sharedCoordinator == nil )
+    {
+        NSLog(@"@oh noe");
+    }
+    return _sharedCoordinator;
+}
+
 @synthesize moverList = _moverList;
 
 -(id)init
@@ -53,10 +64,11 @@
     self = [super init];
     if( self != nil )
     {
-        _enemyCount = 0;
+        _sharedCoordinator = self;
         //[self physicsSetup];
-        _moverList = [NSMutableArray new];
-        _projectileList = [NSMutableArray new];
+        _clusters = [CCArray arrayWithCapacity:10];
+        _moverList = [CCArray new];
+        _projectileList = [CCArray new];
         
         TileMapLayer *tileMapLayer = [TileMapLayer node];
     
@@ -93,7 +105,8 @@
         
         [self generateRandomObstacles];
         [self schedule:@selector(spawnEnemies) interval:1.0f];
-        [self schedule:@selector(physicsTick:)];
+//        [self schedule:@selector(physicsTick:)];
+        [self scheduleUpdateWithPriority:1];
     }
     return self;
 }
@@ -114,6 +127,11 @@
     //[self spawnEnemies];
     //[self schedule:@selector(spawnEnemies) interval:5.0f];
     NSLog(@"Entering");
+}
+
+-(NSUInteger)enemyCount
+{
+    return [_clusters count];
 }
 
 #define numObstacles 25
@@ -140,23 +158,15 @@
 
 -(void)spawnEnemies
 {
-    if( _enemyCount < 4 )
+    if( [self enemyCount] < 4 )
     {
-        _enemyCount++;
-        
-
-        //Class clusterClass = [_enemyTypes randomObject];//TODO randomize
-        //SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
-        SGFoeCluster *spawnedCluster = [SGBatCluster foeCluster];
+        Class clusterClass = [_enemyTypes randomObject];//TODO randomize
+        SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
+//        SGFoeCluster *spawnedCluster = [SGBatCluster foeCluster];
         
         CGPoint spawnPoint = SGRandomScreenPoint();
 
         [spawnedCluster setPosition:spawnPoint];
-        
-        for (SGEnemy* minion in [spawnedCluster children])
-        {
-            [self addMover:minion];
-        }//*/
         
         if( spawnedCluster != nil )
             [self addCluster:spawnedCluster];
@@ -167,12 +177,14 @@
 {
     [newCluster setOwner:self];
     
+    [_clusters addObject:newCluster];
+    
     [[self tileLayer] addChild:newCluster];
 }
 
 -(void)addMover:(SGMover *)newMover
 {
-    [_moverList addObject:newMover];
+//    [_moverList addObject:newMover];
     
     [newMover setOwner:self];
     
@@ -195,10 +207,10 @@
 
 #pragma mark - Mover Delegate Methods
 
--(void)moverPerished:(SGMover *)mover
-{
-    [_moverList removeObject:mover];
-}
+//-(void)moverPerished:(SGMover *)mover
+//{
+//    [_moverList removeObject:mover];
+//}
 
 -(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile
 {
@@ -215,6 +227,10 @@
     [projectile fired];
 }
 
+-(void)removeProjectile:(SGProjectile *)projectile
+{
+    [_projectileList removeObject:projectile];
+}
 
 
 #pragma mark - Local Player Delegates
@@ -235,7 +251,7 @@
 
 -(void)foeClusterDestroyed:(SGFoeCluster *)cluster
 {
-    _enemyCount--;
+    [_clusters removeObject:cluster];
 }
 
 -(CGPoint)foeClusterRequestsPlayerLocation:(SGFoeCluster *)cluster
@@ -245,7 +261,7 @@
 
 -(void)foeCluster:(SGFoeCluster *)cluster hitByProjectile:(SGProjectile *)projectile
 {
-    SGSplatter *splatter = [SGSplatter splatterFromProjectile:projectile andIntensity:0.8f];
+    SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
     
     [[self tileLayer] addChild:splatter];
 }
@@ -259,6 +275,69 @@
     //listener = new MyContactListener();
     //physicalSpace->SetContactListener(listener);
 }//*/
+
+static inline void DoCollision(SGDestroyable *destroyable, SGProjectile *projectile)
+{
+    [destroyable getHitFromProjectile:projectile];
+    
+    [projectile projectileDidHitTarget:destroyable];
+}
+
+#define kPhysicsCollisionThreashold 64.0f
+
+static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles )
+{
+    BOOL hasDebug = NO;
+    for( SGFoeCluster *cluster in clusters )
+    {
+        CGRect clusterBounds = [cluster boundingBoxInWorldSpace];
+        float radius = [cluster radius];
+        clusterBounds.origin.x -= radius;
+        clusterBounds.origin.y -= radius;
+        radius *= 2.0f;
+        clusterBounds.size.width = radius;
+        clusterBounds.size.height = radius;
+        
+        for( SGProjectile *bullet in projectiles )
+        {
+            CGRect bulletBounds = [bullet boundingBoxInWorldSpace];
+            if(CGRectIntersectsRect(clusterBounds, bulletBounds))
+            {
+                CGPoint clusterOffset = [cluster boundingBoxCenter];
+                for( SGEnemy *enemy in [cluster minions] )
+                {
+                    if( ccpDistance(clusterOffset, [enemy boundingBoxCenter]) < kPhysicsCollisionThreashold )
+                   {
+                       if( CGRectIntersectsRect(bulletBounds, [enemy boundingBoxInWorldSpace]))
+                       {
+                           DoCollision(enemy, bullet);
+                       }
+                   }
+                }
+            }
+            else if( !hasDebug )
+            {
+                NSLog(@"Cluster %@ Bullet %@", NSStringFromCGRect(clusterBounds), NSStringFromCGRect(bulletBounds));
+            }
+        }
+    }
+}
+
+-(void)update:(ccTime)dT
+{
+    const float maxTimeSlice = 0.127f;
+    
+    ccTime interval = dT;
+//    ccTime interval = maxTimeSlice;
+//    do
+//    {
+//        dT -= maxTimeSlice;
+//        if( dT <= 0.0f )
+//            interval = maxTimeSlice + dT;
+        DoPhysics(interval, _clusters, _projectileList);
+        
+//    } while( dT > 0.0f );
+}
 
 -(void)physicsTick:(ccTime)dt{
     @synchronized(self){
@@ -291,8 +370,8 @@
                     NSMutableSet *projectileSet = [projectileSets objectAtIndex:index];
                     [projectileSet minusSet:alreadyGotSet];
                     for(SGProjectile *p in projectileSet){
-                        [m collideWithDestroyable:p];
-                        [p collideWithDestroyable:m];
+//                        [m collideWithDestroyable:p];
+//                        [p collideWithDestroyable:m];
                     }
                     
                     [alreadyGotSet unionSet:projectileSet];

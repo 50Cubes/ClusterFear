@@ -19,7 +19,7 @@
 {
     SGObstacle *newObst = [self spriteWithFile:[self filePath]];
     
-    [newObst setRotation:15.0f * CCRANDOM_MINUS1_1()];
+    [newObst setRotation:35.0f * CCRANDOM_MINUS1_1()];
     
     return newObst;
 }

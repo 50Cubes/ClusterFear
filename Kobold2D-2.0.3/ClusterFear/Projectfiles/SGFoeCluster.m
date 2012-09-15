@@ -18,6 +18,8 @@ static NSMutableDictionary *statDict=nil;
 
 @synthesize health = _health;
 
+@synthesize minions = _minions;
+
 +(NSString *)keyPath
 {
     return [NSString stringWithFormat:@"%@%@",@"SGFoeStats.",[self description]];
@@ -63,7 +65,8 @@ static NSMutableDictionary *statDict=nil;
     return newStats;
 }
 
-//@synthesize velocity = velocity_;
+@synthesize velocity = velocity_;
+@synthesize destination = destination_;
 
 -(id)init
 {
@@ -73,6 +76,7 @@ static NSMutableDictionary *statDict=nil;
         self = [super init];
         if( self != nil )
         {
+            _health = myStats->maxHealth;
             [self populate];
         }
     }
@@ -82,22 +86,60 @@ static NSMutableDictionary *statDict=nil;
     return self;
 }
 
--(float)velocity
+-(float)radius
+{
+    return 128.0f;
+}
+
+-(float)speed
 {
     return [[self class] getStats]->moveSpeed;
 }
 
+-(CGPoint)velocity
+{
+    return velocity_;
+}
+
 -(void)populate
 {
-    Class minionClass = [[self class] minionClass];
-    for( int numCrits = [self minionLimit]; numCrits > 0; numCrits-- )
+    [self schedule:@selector(chainSpawnMinions) interval:0.167f];
+}
+
+
+-(void)chainSpawnMinions
+{
+    BOOL unschedule = NO;
+    
+    NSUInteger numMinions = [self minionCount];
+    NSUInteger limit = [self minionLimit];
+    
+    unschedule = numMinions > limit;
+    if( !unschedule )
     {
-        SGEnemy *minion = [minionClass enemyForCluster:self];
-        if( minionClass != nil )
+        
+        Class minionClass = [[self class] minionClass];
+                if( minionClass != nil )
         {
+            SGEnemy *minion;
+            if(numMinions == limit && (limit % 3) == 0)
+            {
+                unschedule = YES;
+                minion = [minionClass bossForCluster:self];
+            }
+            else
+            {
+                minion = [minionClass enemyWithStrength:CCRANDOM_0_1()];
+                [minion setCluster:self];
+            }
+            
+            [_minions addObject:minion];
             [self addChild:minion];
         }
     }
+    
+    if( unschedule )
+        [self unschedule:@selector(chainSpawnMinions)];
 }
 
 //-(SGFoeCluster *)initWithStats:(GBFoeStats *)stats
@@ -124,7 +166,8 @@ static NSMutableDictionary *statDict=nil;
     {
         [_owner foeCluster:self hitByProjectile:projectile];
         uint damage = (uint) [[projectile weapon] damageInflicted];
-        if (_health <= damage) {
+        if (_health <= damage)
+        {
             _health = 0;
             [_owner foeClusterDestroyed:self];
             return YES;
@@ -139,7 +182,7 @@ static NSMutableDictionary *statDict=nil;
 
 -(void)memberDied:(SGEnemy *)member
 {
-    [[self children] removeObject:member];
+    [_minions removeObject:member];
 }
 
 -(void)checkForMinion:(SGEnemy*)memberStruck{
@@ -160,24 +203,19 @@ static NSMutableDictionary *statDict=nil;
     [self crawl];
 }
 
-
--(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection
-{
-    float rotation = atan2f(normalizedRelativeDirection.y,-normalizedRelativeDirection.x);
-    
-    rotation = CC_RADIANS_TO_DEGREES(rotation);
-    if( rotation != self->rotation_ )
-    {
-        //[self setRotation:rotation];
-        //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
-        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:rotation]];
-    }
-}
-
 -(void)crawl
 {
     CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
+    
+    
+    [self notifyMinionsOfPathChange];
+    
     [self runAction:sequencedAction];
+}
+
+-(void)notifyMinionsOfPathChange
+{
+    [children_ makeObjectsPerformSelector:@selector(reorient)];
 }
 
 -(CCFiniteTimeAction *)nextAction
@@ -190,14 +228,18 @@ static NSMutableDictionary *statDict=nil;
     
     ccpMult(playerPosition, 0.005f);
     
-    float speed = [[[self class] minionClass] speed];
+    float speed = [self speed];
     CGPoint moveDirection = CGPointMake(speed * sinf(randomDirection), speed * cosf(randomDirection));
     
     moveDirection = ccpAdd(moveDirection, playerPosition);
     
-    [self faceRelativePoint:moveDirection];
+    ccTime moveTime = 22.25f;
     
-    return [CCMoveBy actionWithDuration:8.25f position:moveDirection];
+    velocity_ = ccpMult(moveDirection, 1.0f/moveTime);
+    
+    destination_ = moveDirection;
+
+    return [CCMoveBy actionWithDuration:moveTime position:moveDirection];
 }
 @end
 

@@ -2,16 +2,18 @@
 //  SGSplatter.h
 //  ClusterFear
 //
-//  Created by Kevin Stich on 9/14/12.
+//  Created by Kevin Stich on 9/15/12.
 //
 //
 
-#import "SGCasing.h"
+#import "SGDecal.h"
 
-@interface SGSplatter : SGCasing
-{
-}
+#import "SGSpray.h"
 
-+(SGSplatter *)splatterFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity;
+@interface SGSplatter : SGDecal
+
++(SGSplatter *)splatterFromSpray:(SGSpray *)spray;
+
+
 
 @end
