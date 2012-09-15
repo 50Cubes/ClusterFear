@@ -12,6 +12,8 @@
 
 @class SGLocalPlayer;
 
+@class SGEnemy;
+
 @protocol SGLocalPlayerOwner <NSObject>
 
 -(void)playerMovedToPoint:(CGPoint)newPoint;
@@ -22,6 +24,7 @@
 
 @interface SGLocalPlayer : SGMover{
     SGWeapon *weapon;
+    int coins_;
 }
 
 +(id)playerWithFile:(NSString *)file health:(int)startingHealth andWeapon:(SGWeapon *)weapon;
@@ -29,5 +32,9 @@
 @property(nonatomic, unsafe_unretained)NSObject <SGLocalPlayerOwner, SGMoverOwner> *owner;
 
 -(void)fireWeapon;
+
+-(void)receiveReward:(int)coinValue;
+
+-(void)getHitByEnemy:(SGEnemy *)enemy;
 
 @end

@@ -65,9 +65,19 @@ static SGFoeStats *playerStats = nil;
     [weapon fire];
 }
 
+-(void)getHitByEnemy:(SGEnemy *)enemy
+{
+    
+}
+
 -(void)getHitFromProjectile:(SGProjectile *)projectile
 {
     [[self owner] playerHit:self fromProjectile:projectile];
+}
+
+-(void)receiveReward:(int)coinValue
+{
+    coins_ += coinValue;
 }
 
 -(void)die

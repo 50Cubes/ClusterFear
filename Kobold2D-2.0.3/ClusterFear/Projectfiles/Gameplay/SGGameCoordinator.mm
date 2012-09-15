@@ -25,6 +25,8 @@
 
 #import "SGSpray.h"
 
+#import "SGCollectable.h"
+
 #import "SGBat.h"
 
 #define PTM_RATIO 32
@@ -116,8 +118,8 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
     [localPlayer setOwner:self];
     
-    localPlayer.position = CGPointMake([self tileLayer].contentSize.width/2, [self tileLayer].contentSize.height/2);
-    [[self tileLayer] addChild:localPlayer];
+    localPlayer.position = CGPointMake(_tileLayer.contentSize.width/2, _tileLayer.contentSize.height/2);
+    [_tileLayer addChild:localPlayer];
 }
 
 -(void)onEnter
@@ -144,7 +146,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         [newObstacle setPosition:SGRandomScreenPoint()];
         
         //[self addPhysicalBodyToSprite:newObstacle];
-        [[self tileLayer] addChild:newObstacle z:1 tag:0];
+        [_tileLayer addChild:newObstacle z:1 tag:0];
     }
 }
 
@@ -179,7 +181,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     
     [_clusters addObject:newCluster];
     
-    [[self tileLayer] addChild:newCluster z:2 tag:0];
+    [_tileLayer addChild:newCluster z:2 tag:0];
 }
 
 -(void)addMover:(SGMover *)newMover
@@ -218,12 +220,12 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     
     if( casing != nil )
     {
-        [[self tileLayer] addChild:casing z:0 tag:0];
+        [_tileLayer addChild:casing z:0 tag:0];
     }
     
     //[self addPhysicalBodyToSprite:projectile];
     [_projectileList addObject:projectile];
-    [[self tileLayer] addChild:projectile z:2 tag:0];
+    [_tileLayer addChild:projectile z:2 tag:0];
     [projectile fired];
 }
 
@@ -246,12 +248,12 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 {
     SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
     
-    [[self tileLayer] addChild:splatter];
+    [_tileLayer addChild:splatter];
 }
 
 -(void)playerMovedToPoint:(CGPoint)newPoint
 {
-//    [[self tileLayer] set]
+//    [_tileLayer set]
 }
 
 #pragma mark - Cluster Tracking
@@ -268,9 +270,16 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)foeCluster:(SGFoeCluster *)cluster hitByProjectile:(SGProjectile *)projectile
 {
-    SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
+    SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.9f];
     
-    [[self tileLayer] addChild:splatter];
+    [_tileLayer addChild:splatter];
+    
+    if( CCRANDOM_0_1() > 0.9f )
+    {
+        SGCollectable *collectable = [SGCollectable collectable];
+        
+        [_tileLayer addChild:collectable z:1];
+    }
 }
 
 #pragma mark physics
@@ -304,9 +313,10 @@ static inline BOOL TestPoints(CGRect bounds, CGPoint *points)
 
 //static inline BOOL TransformPointsIntersectionTest
 
-static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles )
+static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clusters, CCArray *projectiles )
 {
 //    BOOL hasDebug = NO;
+    CGPoint playeCenter = [localPlayer boundingBoxCenter];
     for( SGFoeCluster *cluster in clusters )
     {
         CGPoint clusterCenter = [cluster boundingBoxCenter];
@@ -318,8 +328,13 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
         clusterBounds.size.width = radius;
         clusterBounds.size.height = radius;
         
-        
         CGPoint clusterOffset = clusterBounds.origin;
+        
+//        if( ccpDistance(clusterOffset, playeCenter) < kPhysicsCollisionThreashold )
+//        {
+//            [localPlayer getHit
+//        }
+        
 //        clusterOffset.x += clusterBounds.size.width * 0.5f;
 //        clusterOffset.y += clusterBounds.size.height * 0.5f;
         for( SGProjectile *bullet in projectiles )
@@ -372,7 +387,7 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
 
 -(void)update:(ccTime)dT
 {
-    const float maxTimeSlice = 0.127f;
+//    const float maxTimeSlice = 0.127f;
     
     ccTime interval = dT;
 //    ccTime interval = maxTimeSlice;
@@ -381,7 +396,7 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
 //        dT -= maxTimeSlice;
 //        if( dT <= 0.0f )
 //            interval = maxTimeSlice + dT;
-        DoPhysics(interval, _clusters, _projectileList);
+        DoPhysics(interval, localPlayer, _clusters, _projectileList);
         
 //    } while( dT > 0.0f );
 }
