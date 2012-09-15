@@ -13,6 +13,15 @@
 
 @class SGFoeStats;
 
+@class SGFoeCluster;
+
+@protocol SGFoeClusterOwner <NSObject>
+
+-(CGPoint)foeClusterRequestsPlayerLocation:(SGFoeCluster *)cluster;
+-(void)foeClusterDestroyed:(SGFoeCluster *)cluster;
+
+@end
+
 @interface SGFoeCluster : CCNode
 
 +(SGFoeStats *)getStats;
@@ -25,6 +34,8 @@
 
 @property(nonatomic, readonly)NSUInteger health;
 @property(nonatomic, readonly)NSUInteger damage;
+
+@property(nonatomic, unsafe_unretained)NSObject <SGFoeClusterOwner> *owner;
 
 -(BOOL)memberStruck:(SGEnemy *)member withWeapon:(SGWeapon *)weaponStriking;
 -(void)memberDied:(SGEnemy *)member;
@@ -42,6 +53,7 @@
     int damage;
     int moveSpeed;
 }
+
 
 -(id)initWithKeyPath:(NSString *)keyPath;
 

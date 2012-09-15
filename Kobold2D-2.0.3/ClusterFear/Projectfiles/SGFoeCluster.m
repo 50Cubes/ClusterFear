@@ -113,6 +113,7 @@ static NSMutableDictionary *statDict=nil;
     uint damage = (uint) [weaponStriking damageInflicted];
     if (_health <= damage) {
         _health = 0;
+        [_owner foeClusterDestroyed:self];
         return YES;
     }
     // else
@@ -168,8 +169,16 @@ static NSMutableDictionary *statDict=nil;
 {
     float randomDirection = 2 * PI * CCRANDOM_0_1();
     
+    CGPoint playerPosition = [_owner foeClusterRequestsPlayerLocation:self];
+    
+    playerPosition = ccpSub(playerPosition, position_);
+    
+    ccpMult(playerPosition, 0.005f);
+    
     float speed = [[[self class] minionClass] speed];
     CGPoint moveDirection = CGPointMake(speed * sinf(randomDirection), speed * cosf(randomDirection));
+    
+    moveDirection = ccpAdd(moveDirection, playerPosition);
     
     [self faceRelativePoint:moveDirection];
     

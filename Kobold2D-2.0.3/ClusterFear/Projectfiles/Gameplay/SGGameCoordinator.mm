@@ -9,7 +9,9 @@
 #import "SGGameCoordinator.hh"
 
 #import "SGRandomization.h"
+#import "SGFoeCluster.h"
 
+#import "SGBatCluster.h"
 #import "SGBugCluster.h"
 #import "SGBug.h"
 #import "TileMapLayer.h"
@@ -22,7 +24,6 @@
 #import "SGObstacle.h"
 
 #import "SGBat.h"
-#import "../GameNodes/SGBatCluster.h"
 
 #define PTM_RATIO 32
 
@@ -160,6 +161,8 @@
 
 -(void)addCluster:(SGFoeCluster *)newCluster
 {
+    [newCluster setOwner:self];
+    
     [self addChild:newCluster];
 }
 
@@ -190,8 +193,7 @@
 
 -(void)moverPerished:(SGMover *)mover
 {
-    if( [mover isEnemy] )
-        _enemyCount--;
+    
 }
 
 -(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile
@@ -219,6 +221,18 @@
 -(void)playerMovedToPoint:(CGPoint)newPoint
 {
 //    [[self tileLayer] set]
+}
+
+#pragma mark - Cluster Tracking
+
+-(void)foeClusterDestroyed:(SGFoeCluster *)cluster
+{
+    _enemyCount--;
+}
+
+-(CGPoint)foeClusterRequestsPlayerLocation:(SGFoeCluster *)cluster
+{
+    return [localPlayer position];
 }
 
 #pragma mark physics

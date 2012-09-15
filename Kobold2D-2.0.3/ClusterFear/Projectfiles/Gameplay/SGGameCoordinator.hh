@@ -18,10 +18,12 @@
 #import "MyContactListener.h"
 #import "SGLocalPlayer.h"
 
+#import "SGFoeCluster.h"
+
 @class SGLocalPlayer;
 @class SGRunActivator;
 
-@interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner, SGLocalPlayerOwner>{
+@interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner, SGLocalPlayerOwner, SGFoeClusterOwner>{
     SGLocalPlayer *localPlayer;
     SGRunActivator *runActivator;
     
