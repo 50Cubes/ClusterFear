@@ -93,7 +93,7 @@
         [splatter setPosition:position_];
         [splatter setRotation:rotation_];
         
-        [[self parent] addChild:splatter z:1 tag:0];
+        [[self parent] addChild:splatter z:(int)(seed > -0.5f) tag:0];
     }
     
     if( bounciness_ <= kSGSprayThreshold )

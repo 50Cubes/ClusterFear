@@ -40,6 +40,8 @@
 @property(nonatomic, readonly)CGPoint velocity;
 @property(nonatomic, readonly)CGFloat currentSpeed;
 
+@property(nonatomic, readonly)float radius;
+
 -(void)fireProjectile:(SGProjectile *)projectile;
 
 -(float)facePoint:(CGPoint)pointToFace;

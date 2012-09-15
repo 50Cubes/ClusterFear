@@ -119,7 +119,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [localPlayer setOwner:self];
     
     localPlayer.position = CGPointMake(_tileLayer.contentSize.width/2, _tileLayer.contentSize.height/2);
-    [_tileLayer addChild:localPlayer];
+    [_tileLayer addChild:localPlayer z:1];
 }
 
 -(void)onEnter
@@ -160,7 +160,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnEnemies
 {
-    if( [self enemyCount] < 1 )
+    if( [self enemyCount] < 8 )
     {
         Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
@@ -181,7 +181,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     
     [_clusters addObject:newCluster];
     
-    [_tileLayer addChild:newCluster z:2 tag:0];
+    [_tileLayer addChild:newCluster z:2 tag:1];
 }
 
 -(void)addMover:(SGMover *)newMover
@@ -248,7 +248,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 {
     SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
     
-    [_tileLayer addChild:splatter];
+    [_tileLayer addChild:splatter z:0];
 }
 
 -(void)playerMovedToPoint:(CGPoint)newPoint
@@ -323,10 +323,10 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
         
         CGPoint clusterOffset = clusterBounds.origin;
         
-//        if( ccpDistance(clusterOffset, playeCenter) < kPhysicsCollisionThreashold )
-//        {
+        if( ccpDistance(clusterOffset, playeCenter) < kPhysicsCollisionThreashold )
+        {
 //            [localPlayer getHit
-//        }
+        }
         
 //        clusterOffset.x += clusterBounds.size.width * 0.5f;
 //        clusterOffset.y += clusterBounds.size.height * 0.5f;

@@ -64,7 +64,8 @@
     health_ = newHealth;
 }
 
--(void)die{
+-(void)die
+{
     [self stopAllActions];
     
     //CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:0.5f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
@@ -85,6 +86,11 @@
     
 }
 
+
+-(BOOL)isDead
+{
+    return health_ <= 0;
+}
 
 
 @end
