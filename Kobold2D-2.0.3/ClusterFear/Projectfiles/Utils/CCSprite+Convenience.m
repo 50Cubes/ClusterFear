@@ -15,4 +15,9 @@
     return ccpForAngle(CC_DEGREES_TO_RADIANS(rotation_));
 }
 
+-(CGPoint)backwardDirection{
+    return ccpForAngle(CC_DEGREES_TO_RADIANS(rotation_) + 180);
+}
+
+
 @end

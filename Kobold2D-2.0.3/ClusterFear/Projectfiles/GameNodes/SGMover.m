@@ -27,36 +27,6 @@
     return YES;
 }
 
-//-(void)setPosition:(CGPoint)position
-//{
-//    float xDirection = position.x;
-//    float yDirection = position.y;
-//    
-//    xDirection -= position_.x;
-//    yDirection -= position_.y;
-//    
-//    if( isnan(xDirection) || isnan(yDirection) )
-//        NSLog(@"Invalid position");
-//    
-//    float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
-//    
-//    xDirection /= magnitude;
-//    yDirection /= magnitude;
-//    
-//    float rotation = atan2f(yDirection,-xDirection);
-//    
-//    CCLOG(@"rotation is: %f with yDIrection %f xDir %f", rotation, xDirection, yDirection);
-//    
-////    [super setPosition:position];
-//    
-//    rotation = CC_RADIANS_TO_DEGREES(rotation) - 90.0f;
-//    if( rotation != rotation_ )
-//    {
-//        [self setRotation:rotation];
-////        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
-//    }
-//}
-
 -(void)fireProjectile:(SGProjectile *)projectile
 {
     [projectile setPosition:position_];
@@ -111,12 +81,47 @@
 {
     [[self owner] moverPerished:self];
     
-    [super die];
+    //[super die];
+    [self stopAllActions];
+    
+    //CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:0.5f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
+    //[self runAction:dieSequence];
+    [self removeFromParentAndDoCleanup];
 }
 
 -(void)didDestroy:(SGDestroyable *)destroyable
 {
     //yay i killed something
+}
+
+-(void)collideWithDestroyable:(SGDestroyable *)other{
+    //return;
+    if([other respondsToSelector:@selector(weapon)]){
+        SGWeapon *w = [other performSelector:@selector(weapon)];
+        [self getHitFromWeapon:w];
+    }else{
+        //return;
+
+        health_ -= [other damage];
+        
+        [self stopAllActions];
+        
+        if(health_ <= 0){
+            [self die];
+        }else{
+            [healthLabel setString:[NSString stringWithFormat:@"%d", health_]];
+        }
+    }
+}
+
+-(void)getHitFromWeapon:(SGWeapon *)weapon{
+    if([[weapon owner] isEqual:self]){
+        return;
+    }
+    [super getHitFromWeapon:weapon];
+    if(health_ > 0){
+        [healthLabel setString:[NSString stringWithFormat:@"%d", health_]];
+    }
 }
 
 #pragma mark initialization
@@ -125,6 +130,30 @@
     SGMover *m = [self spriteWithFile:file];
     [m initializeHealth:startingHealth];
     return m;
+}
+
+-(void)initializeHealth:(int)health{
+    [super initializeHealth:health];
+    healthLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", health_]
+                                   dimensions:CGSizeMake(64, 24)
+                                   hAlignment:kCCTextAlignmentCenter
+                                lineBreakMode:kCCLineBreakModeWordWrap
+                                     fontName:@"Arial"
+                                     fontSize:24];
+    healthLabel.position = CGPointMake(0, 0);
+    healthLabel.color = ccRED;
+    [self addChild:healthLabel];
+}
+
+#pragma mark - collision
+
+-(void)bounce{
+    CCAction *bounceAction = [CCSequence actionOne:[CCMoveTo actionWithDuration:0.2 position:[self backwardDirection]] two:[CCCallFunc actionWithTarget:self selector:@selector(afterBounce)]];
+    [self runAction:bounceAction];
+}
+
+-(void)afterBounce{
+    
 }
 
 @end

@@ -15,7 +15,7 @@
 #import "SpaceManagerCocos2d.h"
 #import "chipmunk.h"
 #import "Box2D.h"
-#import "MyContactListener.h"
+//#import "MyContactListener.h"
 #import "SGLocalPlayer.h"
 
 #import "SGFoeCluster.h"
@@ -28,8 +28,8 @@
     SGRunActivator *runActivator;
     
     //cpSpace *physicalSpace;
-    b2World *physicalSpace;
-    MyContactListener *listener;
+    //b2World *physicalSpace;
+    //MyContactListener *listener;
 }
 
 @property (nonatomic, strong)TileMapLayer *tileLayer;

@@ -27,7 +27,8 @@
 
 +(SGEnemy *)enemy
 {
-    return [self spriteWithFile:[self imagePath]];
+    //return [self spriteWithFile:[self imagePath]];
+    return [self moverWithFile:[self imagePath] andHealth:20];
 }
 
 +(SGEnemy *)enemyAtSize
@@ -86,6 +87,10 @@
     [[self cluster] memberDied:self];
     
     [super die];
+}
+
+-(void)afterBounce{
+    [self crawl];
 }
 
 @end

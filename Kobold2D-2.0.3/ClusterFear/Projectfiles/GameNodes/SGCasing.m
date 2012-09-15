@@ -66,7 +66,7 @@
     casingDirection.x = casingDirection.y + (CCRANDOM_MINUS1_1() * distance * bounciness_);
     casingDirection.y = oldX + (CCRANDOM_MINUS1_1() * distance * bounciness_);
     
-//    NSLog(@"Casing bounce angle %f and direction %@", bounceAngle, NSStringFromCGPoint(casingDirection));
+    //CCLOG(@"Casing bounce angle %f and direction %@", bounceAngle, NSStringFromCGPoint(casingDirection));
     
     CCMoveBy *moveAction = [CCMoveBy actionWithDuration:0.21f + squareBounciness position:casingDirection];
     CCFiniteTimeAction *lastAction = nil;

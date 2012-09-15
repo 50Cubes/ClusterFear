@@ -29,15 +29,15 @@
 
 @interface SGGameCoordinator ()
 {
-    NSMutableArray *_moverList;
+    NSMutableArray *_moverList, *_projectileList;
     
     CCArray *_enemyTypes;
 }
 
--(void)physicsSetup;
+//-(void)physicsSetup;
 -(void)physicsTick:(ccTime)dt;
 
--(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
+//-(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
 
 @end
 
@@ -51,8 +51,10 @@
     self = [super init];
     if( self != nil )
     {
-        [self physicsSetup];
+        _enemyCount = 0;
+        //[self physicsSetup];
         _moverList = [NSMutableArray new];
+        _projectileList = [NSMutableArray new];
         
         TileMapLayer *tileMapLayer = [TileMapLayer node];
         
@@ -67,7 +69,7 @@
         [localPlayer setOwner:self];
         
         localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
-        [self addPhysicalBodyToSprite:localPlayer];
+        //[self addPhysicalBodyToSprite:localPlayer];
         [self addChild:localPlayer];
         
         runActivator = [SGRunActivator node];
@@ -84,6 +86,7 @@
         
         [self generateRandomObstacles];
         [self schedule:@selector(spawnEnemies) interval:1.0f];
+        [self schedule:@selector(physicsTick:)];
     }
     return self;
 }
@@ -94,7 +97,6 @@
     [localPlayer setOwner:self];
     
     localPlayer.position = CGPointMake([self tileLayer].contentSize.width/2, [self tileLayer].contentSize.height/2);
-    [self addPhysicalBodyToSprite:localPlayer];
     [self addChild:localPlayer];
 }
 
@@ -116,7 +118,7 @@
         
         [newObstacle setPosition:SGRandomScreenPoint()];
         
-        [self addPhysicalBodyToSprite:newObstacle];
+        //[self addPhysicalBodyToSprite:newObstacle];
         [self addChild:newObstacle];
     }
 }
@@ -131,31 +133,25 @@
 
 -(void)spawnEnemies
 {
-    if( _enemyCount < 10 )
+    if( _enemyCount < 100 )
     {
         _enemyCount++;
         
-        //Class enemyClass = [_enemyTypes randomObject];
-        //SGEnemy *testBug = [enemyClass enemy];
+
         Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
         
         CGPoint spawnPoint = SGRandomScreenPoint();
 
-        //[testBug setPosition:spawnPoint];
         [spawnedCluster setPosition:spawnPoint];
         
         for (SGEnemy* minion in [spawnedCluster children])
         {
-            [self addPhysicalBodyToSprite:minion];
             [self addMover:minion];
-        }
+        }//*/
         
         if( spawnedCluster != nil )
             [self addCluster:spawnedCluster];
-        
-        //[self addPhysicalBodyToSprite:testBug];
-        //[self addMover:testBug];
     }
 }
 
@@ -193,7 +189,7 @@
 
 -(void)moverPerished:(SGMover *)mover
 {
-    
+    [_moverList removeObject:mover];
 }
 
 -(void)mover:(SGMover *)mover firedProjectile:(SGProjectile *)projectile
@@ -205,6 +201,8 @@
         [self addChild:casing];
     }
     
+    //[self addPhysicalBodyToSprite:projectile];
+    [_projectileList addObject:projectile];
     [self addChild:projectile];
     [projectile fired];
 }
@@ -236,68 +234,50 @@
 }
 
 #pragma mark physics
-
+/*
 -(void)physicsSetup{
     //physicalSpace = cpSpaceNew();
     //physicalSpace = new b2World(b2Vec2(0.0, 0.0), false);
-    physicalSpace = new b2World(b2Vec2(0.0, 0.0));
-    listener = new MyContactListener();
-    physicalSpace->SetContactListener(listener);
-    [self schedule:@selector(physicsTick:)];
-}
+    //physicalSpace = new b2World(b2Vec2(0.0, 0.0));
+    //listener = new MyContactListener();
+    //physicalSpace->SetContactListener(listener);
+}//*/
 
 -(void)physicsTick:(ccTime)dt{
-    @synchronized(self){
-        physicalSpace->Step(dt, 10, 10);
-        for(b2Body *b = physicalSpace->GetBodyList(); b; b=b->GetNext()) {
-            if (b->GetUserData() != NULL) {
-                CCSprite *sprite = (__bridge CCSprite *)b->GetUserData();
-                
-                b2Vec2 b2Position = b2Vec2(sprite.position.x/PTM_RATIO,
-                                           sprite.position.y/PTM_RATIO);
-                float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
-                
-                b->SetTransform(b2Position, b2Angle);
-            }
-        }
-        
-        std::vector<b2Body *>toDestroy;
-        std::vector<MyContact>::iterator pos;
-        for(pos = listener->_contacts.begin();
-            pos != listener->_contacts.end(); ++pos) {
-            MyContact contact = *pos;
-            
-            b2Body *bodyA = contact.fixtureA->GetBody();
-            b2Body *bodyB = contact.fixtureB->GetBody();
-            if (bodyA->GetUserData() != NULL && bodyB->GetUserData() != NULL) {
-                CCSprite *spriteA = (__bridge CCSprite *) bodyA->GetUserData();
-                CCSprite *spriteB = (__bridge CCSprite *) bodyB->GetUserData();
-                
-                //CCLOG(@"collision between %@ and %@", spriteA, spriteB);
-                
-//                toDestroy.push_back(bodyA);
-//                toDestroy.push_back(bodyB);
+    CCArray *collisionObjects = [[CCArray alloc] initWithCapacity:[_moverList count]];
+    CCArray *projectileSets =   [[CCArray alloc] initWithCapacity:[_moverList count]];
 
-                /*
-                if (spriteA.tag == 1 && spriteB.tag == 2) {
-                    toDestroy.push_back(bodyA);
-                } else if (spriteA.tag == 2 && spriteB.tag == 1) {
-                    toDestroy.push_back(bodyA);
-                }//*/
+    for(SGMover *m in _moverList){
+        NSMutableSet *s = [NSMutableSet new];
+        for(SGProjectile *p in _projectileList){
+            if(CGRectIntersectsRect(m.boundingBox, p.boundingBox)){
+                [s addObject:p];
             }
         }
         
-        //*
-        std::vector<b2Body *>::iterator pos2;
-        for(pos2 = toDestroy.begin(); pos2 != toDestroy.end(); ++pos2) {
-            b2Body *body = *pos2;
-            if (body->GetUserData() != NULL) {
-                CCSprite *sprite = (__bridge CCSprite *) body->GetUserData();
-                [[sprite parent] removeChild:sprite cleanup:YES];
-            }else{
-                physicalSpace->DestroyBody(body);
+        if([s count] > 0){
+            [collisionObjects addObject:m];
+            [projectileSets addObject:s];
+        }else{
+            [collisionObjects addObject:[NSNull null]];
+            [projectileSets addObject:[NSNull null]];
+        }
+    }
+    
+    int index = 0;
+    if([collisionObjects count] > 0){
+        for(id item in collisionObjects){
+            if(![item isKindOfClass:[NSNull class]]){
+                SGMover *m = (SGMover *)item;
+                NSSet *projectileSet = [projectileSets objectAtIndex:index];
+                for(SGProjectile *p in projectileSet){
+                    [m collideWithDestroyable:p];
+                    [p collideWithDestroyable:m];
+                }
             }
-        }//*/
+            
+            index++;
+        }
     }
 }
 
@@ -324,7 +304,7 @@
     }
     
     [super addChild:node];
-}//*/
+}
 
 -(void)removeChild:(CCNode *)node cleanup:(BOOL)cleanup{
     if([node isKindOfClass:[SGDestroyable class]]){
@@ -362,6 +342,6 @@
     spriteShapeDef.density = 10.0;
     spriteShapeDef.isSensor = true;
     spriteBody->CreateFixture(&spriteShapeDef);
-}
+}//*/
 
 @end

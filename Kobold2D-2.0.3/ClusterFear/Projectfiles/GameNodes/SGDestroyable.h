@@ -14,18 +14,21 @@
 @interface SGDestroyable : CCSprite
 {
     int health_;
-    //cpShape *destroyableShape;
 }
 
-//@property(nonatomic, readonly) cpShape *destroyableShape;
+@property(nonatomic, readonly) int damage;
 
 +(NSString *)imagePath;
 +(int)startingHealth;
++(int)damageCapability;
 +(SGDestroyable *)destroyable;
 
 -(void)initializeHealth:(int)health;
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon;
 -(void)die;
+
+-(void)collideWithDestroyable:(SGDestroyable *)other;
+-(void)removeFromParentAndDoCleanup;
 
 @end
