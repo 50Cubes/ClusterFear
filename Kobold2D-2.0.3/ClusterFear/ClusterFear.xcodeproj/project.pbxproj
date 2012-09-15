@@ -122,6 +122,7 @@
 		DCC1A3AD13A94F1A005BD75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A39113A94F1A005BD75D /* main.m */; };
 		DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
 		DFD528B91603B9E8001D09D3 /* SGRunActivator.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD528B81603B9E8001D09D3 /* SGRunActivator.m */; };
+		DFD5291516051E93001D09D3 /* blast.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD5291416051E92001D09D3 /* blast.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -271,6 +272,7 @@
 		DFD528AA16039BBA001D09D3 /* SGWeapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGWeapon.h; path = Gameplay/SGWeapon.h; sourceTree = "<group>"; };
 		DFD528B71603B9E8001D09D3 /* SGRunActivator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGRunActivator.h; path = Gameplay/SGRunActivator.h; sourceTree = "<group>"; };
 		DFD528B81603B9E8001D09D3 /* SGRunActivator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGRunActivator.m; path = Gameplay/SGRunActivator.m; sourceTree = "<group>"; };
+		DFD5291416051E92001D09D3 /* blast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blast.png; path = "Projectfiles-iOS/blast.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +347,7 @@
 		7C6ED4AF16050BEF00246FD2 /* weapons */ = {
 			isa = PBXGroup;
 			children = (
+				DFD5291416051E92001D09D3 /* blast.png */,
 				7C6ED4B116050C2400246FD2 /* grenade_large.png */,
 				7C6ED4B216050C2400246FD2 /* grenade_medium.png */,
 			);
@@ -746,6 +749,7 @@
 				7C6ED4B316050C2400246FD2 /* grenade_large.png in Resources */,
 				7C6ED4B416050C2400246FD2 /* grenade_medium.png in Resources */,
 				C17470891605027300D5274E /* weaponicons.png in Resources */,
+				DFD5291516051E93001D09D3 /* blast.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
