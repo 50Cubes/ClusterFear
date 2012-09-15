@@ -19,7 +19,8 @@
 
 +(SGEnemy *)enemy
 {
-    return [self spriteWithFile:[self imagePath]];
+    //return [self spriteWithFile:[self imagePath]];
+    return [self moverWithFile:[self imagePath] andHealth:20];
 }
 
 +(SGEnemy *)enemyAtSize

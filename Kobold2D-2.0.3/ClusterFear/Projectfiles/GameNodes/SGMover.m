@@ -84,8 +84,9 @@
     //[super die];
     [self stopAllActions];
     
-    CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:0.5f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
-    [self runAction:dieSequence];
+    //CCFiniteTimeAction *dieSequence = [CCSequence actionOne:[CCFadeOut actionWithDuration:0.5f] two:[CCCallFunc actionWithTarget:self selector:@selector(removeFromParentAndDoCleanup)]];
+    //[self runAction:dieSequence];
+    [self removeFromParentAndDoCleanup];
 }
 
 -(void)didDestroy:(SGDestroyable *)destroyable
@@ -94,10 +95,13 @@
 }
 
 -(void)collideWithDestroyable:(SGDestroyable *)other{
+    //return;
     if([other respondsToSelector:@selector(weapon)]){
         SGWeapon *w = [other performSelector:@selector(weapon)];
         [self getHitFromWeapon:w];
     }else{
+        //return;
+
         health_ -= [other damage];
         
         [self stopAllActions];
@@ -111,6 +115,9 @@
 }
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon{
+    if([[weapon owner] isEqual:self]){
+        return;
+    }
     [super getHitFromWeapon:weapon];
     if(health_ > 0){
         [healthLabel setString:[NSString stringWithFormat:@"%d", health_]];
