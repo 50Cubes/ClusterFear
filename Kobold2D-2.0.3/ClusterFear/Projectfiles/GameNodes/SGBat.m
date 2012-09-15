@@ -16,9 +16,9 @@
     
     float roll = CCRANDOM_0_1();
     
-    if( roll > 0.95f )
+    if( roll > 0.98f )
         asset = kSGBatAssetLarge;
-    else if( roll > 0.7f )
+    else if( roll > 0.8f )
         asset = kSGBatAssetMedium;
     
     return asset;

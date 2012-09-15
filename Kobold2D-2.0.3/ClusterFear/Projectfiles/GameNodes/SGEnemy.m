@@ -7,6 +7,7 @@
 //
 
 #import "SGEnemy.h"
+#import "SGFoeCluster.h"
 
 #import "SGRandomization.h"
 
@@ -15,6 +16,13 @@
 +(NSString *)imagePath
 {
     return @"spider_small.png";
+}
+
++(SGEnemy *)enemyForCluster:(SGFoeCluster *)cluster
+{
+    SGEnemy *rtnEnemy = [self enemy];
+    [rtnEnemy setCluster:cluster];
+    return rtnEnemy;
 }
 
 +(SGEnemy *)enemy
@@ -63,7 +71,21 @@
     
     [self faceRelativePoint:moveDirection];
     
-    return [CCMoveBy actionWithDuration:1.25f position:moveDirection];
+    return [CCMoveTo actionWithDuration:1.25f position:moveDirection];
+}
+
+-(void)getHitFromWeapon:(SGWeapon *)weapon
+{
+    [_cluster memberStruck:self withWeapon:weapon];
+    
+    [super getHitFromWeapon:weapon];
+}
+
+-(void)die
+{
+    [[self cluster] memberDied:self];
+    
+    [super die];
 }
 
 @end

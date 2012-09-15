@@ -10,6 +10,7 @@
 
 #import "SGRandomization.h"
 
+#import "SGBugCluster.h"
 #import "SGBug.h"
 #import "TileMapLayer.h"
 #import "SGLocalPlayer.h"
@@ -77,13 +78,23 @@
         
         
         _enemyTypes = [CCArray arrayWithCapacity:2];
-        [_enemyTypes addObject:[SGBat class]];
-        [_enemyTypes addObject:[SGBug class]];
+        [_enemyTypes addObject:[SGBatCluster class]];
+        [_enemyTypes addObject:[SGBugCluster class]];
         
         [self generateRandomObstacles];
         [self schedule:@selector(spawnEnemies) interval:1.0f];
     }
     return self;
+}
+
+-(void)spawnPlayer
+{
+    localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+    [localPlayer setOwner:self];
+    
+    localPlayer.position = CGPointMake([self tileLayer].contentSize.width/2, [self tileLayer].contentSize.height/2);
+    [self addPhysicalBodyToSprite:localPlayer];
+    [self addChild:localPlayer];
 }
 
 -(void)onEnter
@@ -125,7 +136,7 @@
         
         //Class enemyClass = [_enemyTypes randomObject];
         //SGEnemy *testBug = [enemyClass enemy];
-        Class clusterClass = [SGBatCluster class];//TODO randomize
+        Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
         
         CGPoint spawnPoint = SGRandomScreenPoint();
@@ -200,7 +211,9 @@
 
 -(void)playerHasDied:(SGLocalPlayer *)player
 {
+    localPlayer = nil;
     
+    [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
 }
 
 -(void)playerMovedToPoint:(CGPoint)newPoint
@@ -248,8 +261,8 @@
                 
                 //CCLOG(@"collision between %@ and %@", spriteA, spriteB);
                 
-                toDestroy.push_back(bodyA);
-                toDestroy.push_back(bodyB);
+//                toDestroy.push_back(bodyA);
+//                toDestroy.push_back(bodyB);
 
                 /*
                 if (spriteA.tag == 1 && spriteB.tag == 2) {
