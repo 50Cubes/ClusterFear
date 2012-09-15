@@ -18,6 +18,7 @@
 
 -(void)playerMovedToPoint:(CGPoint)newPoint;
 -(void)playerHit:(SGLocalPlayer *)player fromProjectile:(SGProjectile *)projectile;
+-(void)playerHit:(SGLocalPlayer *)player forDamage:(int)damage;
 -(void)playerHasDied:(SGLocalPlayer *)player;
 
 @end

@@ -18,8 +18,6 @@
 
 @implementation SGDestroyable
 
-@synthesize damage;
-
 +(NSString *)imagePath
 {
     return @"rock.png";
@@ -30,7 +28,7 @@
 }
 
 +(int)damageCapability{
-    return 5;
+    return 0;
 }
 
 
@@ -40,6 +38,11 @@
     SGDestroyable *d = [self spriteWithFile:[self imagePath]];
     [d initializeHealth:[self startingHealth]];
     return d;
+}
+
+-(int)damage
+{
+    return [[self class] damageCapability];
 }
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon{

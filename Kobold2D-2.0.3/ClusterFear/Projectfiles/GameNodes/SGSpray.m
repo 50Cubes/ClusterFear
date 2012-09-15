@@ -43,6 +43,11 @@
     return 2.0f;
 }
 
++(SGSpray *)sprayOnCharacter:(SGMover *)character forDamage:(int)damage andIntensity:(float)intensity
+{
+    
+}
+
 +(SGSpray *)sprayFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity
 {
     SGSpray *newSplat = (SGSpray *)[self casingForProjectile:projectile];

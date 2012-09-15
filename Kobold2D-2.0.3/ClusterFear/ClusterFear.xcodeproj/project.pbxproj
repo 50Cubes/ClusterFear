@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */; };
 		4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB521603DE1F005E91DF /* SGBatCluster.m */; };
-		4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB561603E492005E91DF /* SGLocustCluster.m */; };
 		4C6E46A61604D63800ABBA43 /* SGCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E46A51604D63700ABBA43 /* SGCollectable.m */; };
 		7C0D3F35160460020095CA39 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D3F34160460020095CA39 /* coin.png */; };
 		7C3DF6531604484D003E922B /* blood_splatter1_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */; };
@@ -102,8 +101,6 @@
 		4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBugCluster.m; path = GameNodes/SGBugCluster.m; sourceTree = "<group>"; };
 		4C5CDB511603DE1F005E91DF /* SGBatCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBatCluster.h; path = GameNodes/SGBatCluster.h; sourceTree = "<group>"; };
 		4C5CDB521603DE1F005E91DF /* SGBatCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBatCluster.m; path = GameNodes/SGBatCluster.m; sourceTree = "<group>"; };
-		4C5CDB551603E491005E91DF /* SGLocustCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGLocustCluster.h; path = GameNodes/SGLocustCluster.h; sourceTree = "<group>"; };
-		4C5CDB561603E492005E91DF /* SGLocustCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGLocustCluster.m; path = GameNodes/SGLocustCluster.m; sourceTree = "<group>"; };
 		4C6E46A41604D63700ABBA43 /* SGCollectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGCollectable.h; path = Gameplay/SGCollectable.h; sourceTree = "<group>"; };
 		4C6E46A51604D63700ABBA43 /* SGCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGCollectable.m; path = Gameplay/SGCollectable.m; sourceTree = "<group>"; };
 		7C0D3F34160460020095CA39 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
@@ -377,8 +374,6 @@
 				C11713561603DBF900208448 /* SGBat.m */,
 				4C5CDB511603DE1F005E91DF /* SGBatCluster.h */,
 				4C5CDB521603DE1F005E91DF /* SGBatCluster.m */,
-				4C5CDB551603E491005E91DF /* SGLocustCluster.h */,
-				4C5CDB561603E492005E91DF /* SGLocustCluster.m */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -650,7 +645,6 @@
 				C117135A1603DC3A00208448 /* SGObstacle.m in Sources */,
 				C117135D1603DC8000208448 /* SGDestroyable.m in Sources */,
 				4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */,
-				4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */,
 				C117136E1603EED800208448 /* SGCasing.m in Sources */,
 				C1171379160409C300208448 /* CCSprite+Convenience.m in Sources */,
 				C18091BE16044E6C00E43876 /* SGSpray.m in Sources */,
