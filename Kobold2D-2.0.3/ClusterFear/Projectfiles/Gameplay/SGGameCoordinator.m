@@ -202,7 +202,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 {
     if( localPlayer == nil )
     {
-        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGShotgun alloc] init]];
+        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
         [localPlayer setOwner:self];
         
         localPlayer.position = [self playerPoint];
@@ -253,7 +253,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnEnemies
 {
-    if( [self enemyCount] < 4 )
+    if( [self enemyCount] < 7 )
     {
         Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
