@@ -743,12 +743,9 @@
 				C17470821604FF1500D5274E /* ZombieBreath.mp3 in Resources */,
 				C17470841604FF1500D5274E /* ZombieCough.mp3 in Resources */,
 				C17470861604FF1500D5274E /* ZombieHissS.mp3 in Resources */,
-<<<<<<< HEAD
 				7C6ED4B316050C2400246FD2 /* grenade_large.png in Resources */,
 				7C6ED4B416050C2400246FD2 /* grenade_medium.png in Resources */,
-=======
 				C17470891605027300D5274E /* weaponicons.png in Resources */,
->>>>>>> 60823358864e1101ce992c8f9a0fd9cd89f082a8
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
