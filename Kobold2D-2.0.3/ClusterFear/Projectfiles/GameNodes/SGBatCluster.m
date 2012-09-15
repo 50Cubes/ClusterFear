@@ -13,7 +13,6 @@ SGFoeStats * batStats=nil;
 
 @interface SGBatCluster (){
     uint health;
-    CGPoint center;
 }
 @end
 
@@ -27,8 +26,6 @@ SGFoeStats * batStats=nil;
     self = batStats.stats.maxHealth ? [super init] : nil;
     if(nil!=self){
         health=batStats.stats.maxHealth;
-        center.x=0;
-        center.y=0;
         for (int i=0; i<batStats.stats.maxCritters; ++i) {
             [self addChild:[SGBat enemy]];
         }
@@ -37,7 +34,6 @@ SGFoeStats * batStats=nil;
 }
 
 @synthesize health;
-@synthesize center;
 
 -(NSUInteger)damage{
     return batStats.stats.damage;

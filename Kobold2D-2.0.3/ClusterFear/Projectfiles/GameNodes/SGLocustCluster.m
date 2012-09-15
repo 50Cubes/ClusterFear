@@ -12,7 +12,6 @@ SGFoeStats * locustStats=nil;
 
 @interface SGLocustCluster (){
     uint health;
-    CGPoint center;
 }
 @end
 
@@ -26,14 +25,11 @@ SGFoeStats * locustStats=nil;
     self = locustStats.stats.maxHealth ? [super init] : nil;
     if(nil!=self){
         health=locustStats.stats.maxHealth;
-        center.x=0;
-        center.y=0;
     }
     return self;
 }
 
 @synthesize health;
-@synthesize center;
 
 -(NSUInteger)damage{
     return locustStats.stats.damage;

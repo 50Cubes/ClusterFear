@@ -13,7 +13,6 @@ SGFoeStats * bugStats=nil;
 
 @interface SGBugCluster (){
     uint health;
-    CGPoint center;
 }
 @end
 
@@ -27,8 +26,6 @@ SGFoeStats * bugStats=nil;
     self = bugStats.stats.maxHealth ? [super init] : nil;
     if(nil!=self){
         health=bugStats.stats.maxHealth;
-        center.x=0;
-        center.y=0;
         for (int x=0; x<bugStats.stats.maxCritters; ++x) {
             [self addChild:[SGBug enemy]];
         }
@@ -37,7 +34,6 @@ SGFoeStats * bugStats=nil;
 }
 
 @synthesize health;
-@synthesize center;
 
 -(NSUInteger)damage{
     return bugStats.stats.damage;

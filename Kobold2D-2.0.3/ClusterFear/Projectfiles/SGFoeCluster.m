@@ -43,6 +43,10 @@ static NSMutableDictionary *statDict=nil;
 -(BOOL) strike:(NSUInteger)damage{
     return NO;
 }
+
+-(CGPoint)center{
+    return [self position];
+}
 @end
 
 @implementation SGFoeStats
