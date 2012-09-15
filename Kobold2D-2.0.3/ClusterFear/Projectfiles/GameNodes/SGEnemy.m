@@ -50,7 +50,7 @@
         [self runAction:[CCFadeIn actionWithDuration:1.0f]];
         [self scheduleOnce:@selector(crawl) delay:1.0f];
         
-        [self scheduleOnce:@selector(die) delay:12.0f];
+        [self scheduleOnce:@selector(die) delay:1200.0f];
     }
     return self;
 }
