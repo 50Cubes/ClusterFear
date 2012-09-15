@@ -76,6 +76,9 @@ static NSMutableDictionary *statDict=nil;
         self = [super init];
         if( self != nil )
         {
+            
+            
+            _minions = [CCArray arrayWithCapacity:[self minionLimit]];
             _health = myStats->maxHealth;
             [self populate];
         }

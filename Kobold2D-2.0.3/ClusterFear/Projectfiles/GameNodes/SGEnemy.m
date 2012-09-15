@@ -75,6 +75,7 @@
     {
         //        actionManager_ = [[CCActionManager alloc] init];
         //        speed_ = 50.0f;
+        [self setOpacityModifyRGB:NO];
         
         currentSpeed_ = 1.0f;
         
@@ -124,11 +125,12 @@
     float speed = [self speed];
     
     float distance = radius * CCRANDOM_0_1();
-    CGPoint moveDirection = CGPointMake(distance * sinf(randomDirection), distance * cosf(randomDirection));
+    CGPoint moveDirection = CGPointMake(distance * cosf(randomDirection), distance * sinf(randomDirection));
     
-    
-    speed *= (0.5f + (0.5f * CCRANDOM_0_1()));
     ccTime flyTime = distance / speed;
+    
+    if( flyTime < 0.75f )
+        flyTime = 0.75f;
     
     currentSpeed_ = speed;
     

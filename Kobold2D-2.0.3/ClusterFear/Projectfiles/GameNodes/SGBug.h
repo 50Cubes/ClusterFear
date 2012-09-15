@@ -10,6 +10,7 @@
 
 @interface SGBug : SGEnemy
 {
+    int crawlPhase;
 }
 
 //@property (nonatomic, assign)float speed;

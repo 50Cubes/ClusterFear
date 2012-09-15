@@ -158,7 +158,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnEnemies
 {
-    if( [self enemyCount] < 4 )
+    if( [self enemyCount] < 1 )
     {
         Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
@@ -218,12 +218,12 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     
     if( casing != nil )
     {
-        [self addChild:casing];
+        [[self tileLayer] addChild:casing];
     }
     
     //[self addPhysicalBodyToSprite:projectile];
     [_projectileList addObject:projectile];
-    [self addChild:projectile];
+    [[self tileLayer] addChild:projectile];
     [projectile fired];
 }
 
@@ -285,30 +285,57 @@ static inline void DoCollision(SGDestroyable *destroyable, SGProjectile *project
 
 #define kPhysicsCollisionThreashold 64.0f
 
+static inline BOOL TestPoints(CGRect bounds, CGPoint *points)
+{
+    for( int count = 0; count < 4; count++ )
+    {
+        if( CGRectContainsPoint(bounds, points[count]) )
+            return YES;
+    }
+    return NO;
+}
+
+//static inline BOOL TransformPointsIntersectionTest
+
 static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles )
 {
     BOOL hasDebug = NO;
     for( SGFoeCluster *cluster in clusters )
     {
-        CGRect clusterBounds = [cluster boundingBoxInWorldSpace];
+        CGRect clusterBounds = (CGRect){.origin=[cluster boundingBoxCenter],.size=CGSizeZero};
         float radius = [cluster radius];
-        clusterBounds.origin.x -= radius;
-        clusterBounds.origin.y -= radius;
+//        clusterBounds.origin.x -= radius;
+//        clusterBounds.origin.y -= radius;
         radius *= 2.0f;
         clusterBounds.size.width = radius;
         clusterBounds.size.height = radius;
         
         for( SGProjectile *bullet in projectiles )
         {
-            CGRect bulletBounds = [bullet boundingBoxInWorldSpace];
-            if(CGRectIntersectsRect(clusterBounds, bulletBounds))
+            CGRect bulletBounds = [bullet boundingBox];
+            
+//            float leftEdge = CGRectGetMinX(bulletBounds);
+//            float topEdge = CGRectGetMinX(bulletBounds);
+//            CGPoint bulletBoundsPoints[4];
+//            bulletBoundsPoints[0] = CGPointMake(leftEdge, topEdge);
+            
+            
+            if(  CGRectIntersectsRect(clusterBounds, bulletBounds) ) //TestPoints(clusterBounds, bulletBounds))
             {
-                CGPoint clusterOffset = [cluster boundingBoxCenter];
+                CGPoint clusterOffset = clusterBounds.origin;
+                clusterOffset.x += clusterBounds.size.width * 0.5f;
+                clusterOffset.y += clusterBounds.size.height * 0.5f;
                 for( SGEnemy *enemy in [cluster minions] )
                 {
-                    if( ccpDistance(clusterOffset, [enemy boundingBoxCenter]) < kPhysicsCollisionThreashold )
+                    static float maxDist = 0.0f;
+                    float distance = ccpDistance(clusterOffset, [enemy boundingBoxCenter]);
+                    
+                    if( maxDist < distance )
+                        maxDist = distance;
+                    
+                    if( maxDist < kPhysicsCollisionThreashold )
                    {
-                       if( CGRectIntersectsRect(bulletBounds, [enemy boundingBoxInWorldSpace]))
+                       if( CGRectIntersectsRect(bulletBounds, [enemy boundingBox]))
                        {
                            DoCollision(enemy, bullet);
                        }
