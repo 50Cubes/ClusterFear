@@ -12,6 +12,10 @@
 #import "TileMapLayer.h"
 
 #import "SGMover.h"
+#import "SpaceManagerCocos2d.h"
+#import "chipmunk.h"
+#import "Box2D.h"
+#import "MyContactListener.h"
 
 @class SGLocalPlayer;
 @class SGRunActivator;
@@ -19,6 +23,10 @@
 @interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner>{
     SGLocalPlayer *localPlayer;
     SGRunActivator *runActivator;
+    
+    //cpSpace *physicalSpace;
+    b2World *physicalSpace;
+    MyContactListener *listener;
 }
 
 @property (nonatomic, strong)TileMapLayer *tileLayer;

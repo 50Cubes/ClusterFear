@@ -9,16 +9,32 @@
 #import "SGDestroyable.h"
 #import "SGWeapon.h"
 
+@interface SGDestroyable ()
+
+//-(void)initializeShape;
+
+@end
+
 @implementation SGDestroyable
+
+//@synthesize destroyableShape;
 
 +(NSString *)imagePath
 {
     return @"rock.png";
 }
 
++(int)startingHealth{
+    return 100;
+}
+
+
 +(SGDestroyable *)destroyable
 {
-    return [self spriteWithFile:[self imagePath]];
+    SGDestroyable *d = [self spriteWithFile:[self imagePath]];
+    [d initializeHealth:[self startingHealth]];
+    //[d initializeShape];
+    return d;
 }
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon{
@@ -46,5 +62,23 @@
 {
     [self removeFromParentAndCleanup:YES];
 }
+
+/*
+-(void)initializeShape{
+    destroyableShape = cpCircleShapeNew(cpBodyNew(25, INFINITY), 20.0, cpvzero);
+    destroyableShape->e = 0.5;
+    destroyableShape->u = 0.8;
+    destroyableShape->collision_type = 1;
+    destroyableShape->data = (__bridge void *)self;
+}
+
+#pragma mark - physics
+
+-(void)setPosition:(CGPoint)position{
+    [super setPosition:position];
+    destroyableShape->body->p.x = position.x;
+    destroyableShape->body->p.y = position.y;
+}//*/
+
 
 @end

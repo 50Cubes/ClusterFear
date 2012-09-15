@@ -37,6 +37,7 @@
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection;
 -(void)moveToPoint:(CGPoint)targetPoint;
 
+
 -(void)didDestroy:(SGDestroyable *)destroyable;
 
 @end

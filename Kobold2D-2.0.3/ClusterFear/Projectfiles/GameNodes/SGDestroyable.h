@@ -7,15 +7,20 @@
 //
 
 #import "CCSprite.h"
+#import "chipmunk.h"
 
 @class SGWeapon;
 
 @interface SGDestroyable : CCSprite
 {
     int health_;
+    //cpShape *destroyableShape;
 }
 
+//@property(nonatomic, readonly) cpShape *destroyableShape;
+
 +(NSString *)imagePath;
++(int)startingHealth;
 +(SGDestroyable *)destroyable;
 
 -(void)initializeHealth:(int)health;

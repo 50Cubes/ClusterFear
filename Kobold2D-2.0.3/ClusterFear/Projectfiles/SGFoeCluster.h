@@ -21,7 +21,7 @@ typedef struct {
 -(id)init:(SGFoeStats_ const *)stat;
 @end
 
-@interface FoeCluster : CCNode
+@interface SGFoeCluster : CCNode
 
 @property(nonatomic, readonly)CGPoint center;
 
@@ -31,5 +31,6 @@ typedef struct {
 @property(nonatomic, readonly)NSUInteger damage;
 
 +(SGFoeStats*) getStatsByClassName:(NSString*)name;
+-(BOOL) strike:(NSUInteger)damage;
 @end
 

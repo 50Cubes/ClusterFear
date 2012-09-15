@@ -6,8 +6,8 @@
 //
 //
 
-#import "FoeCluster.h"
+#import "SGFoeCluster.h"
 
-@interface SGBugCluster : FoeCluster
+@interface SGBugCluster : SGFoeCluster
 
 @end
