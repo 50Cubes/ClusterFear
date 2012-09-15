@@ -244,6 +244,13 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
 }
 
+-(void)playerHit:(SGLocalPlayer *)player forDamage:(int)damage
+{
+    SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
+    
+    [_tileLayer addChild:splatter z:0];
+}
+
 -(void)playerHit:(SGLocalPlayer *)player fromProjectile:(SGProjectile *)projectile
 {
     SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
@@ -272,7 +279,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 {
     SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.9f];
     
-    [_tileLayer addChild:splatter];
+    [_tileLayer addChild:splatter z:0];
     
     if( CCRANDOM_0_1() > 0.9f )
     {
