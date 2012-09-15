@@ -7,7 +7,8 @@
 // Abstract base class for enemy clusters in ClusterFear. Could be a protocol?
 
 #import <Foundation/Foundation.h>
-
+#import "GameNodes/SGEnemy.h"
+#import "Gameplay/SGWeapon.h"
 typedef struct {
     int maxHealth;
     int maxCritters;
@@ -31,6 +32,6 @@ typedef struct {
 @property(nonatomic, readonly)NSUInteger damage;
 
 +(SGFoeStats*) getStatsByClassName:(NSString*)name;
--(BOOL) strike:(NSUInteger)damage;
+-(BOOL) strike:(SGEnemy*)memberStruck:(SGWeapon*)weaponStriking;
 @end
 

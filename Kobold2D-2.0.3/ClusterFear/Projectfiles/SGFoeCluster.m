@@ -40,7 +40,7 @@ static NSMutableDictionary *statDict=nil;
 -(NSUInteger) minionCount{
     return [[self children] count];
 }
--(BOOL) strike:(NSUInteger)damage{
+-(BOOL)strike:(SGEnemy*)memberStruck :(SGWeapon*)weaponStriking{
     return NO;
 }
 
