@@ -71,7 +71,7 @@ local config =
 	{
 		SGBatCluster =
 		{
-			MaxHealh = 20,
+			MaxHealth = 20,
 			MaxCritters = 4,
 			Damage = 1,
 			MoveSpeed = 20,
@@ -79,7 +79,7 @@ local config =
 
 		SGLocustCluster =
 		{
-			MaxHealh = 30,
+			MaxHealth = 30,
 			MaxCritters = 5,
 			Damage = 2,
 			MoveSpeed = 15,
@@ -87,7 +87,7 @@ local config =
 
 		SGBugCluster =
 		{
-			MaxHealh = 10,
+			MaxHealth = 10,
 			MaxCritters = 7,
 			Damage = 1,
 			MoveSpeed = 10,

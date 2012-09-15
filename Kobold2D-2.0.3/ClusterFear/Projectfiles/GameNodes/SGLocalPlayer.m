@@ -48,4 +48,11 @@
     [weapon fire];
 }
 
+-(void)die
+{
+    [[self owner] playerHasDied:self];
+    
+    [super die];
+}
+
 @end

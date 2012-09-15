@@ -10,6 +10,7 @@
 
 #import "SGRandomization.h"
 
+#import "SGBugCluster.h"
 #import "SGBug.h"
 #import "TileMapLayer.h"
 #import "SGLocalPlayer.h"
@@ -79,14 +80,23 @@
         
         
         _enemyTypes = [CCArray arrayWithCapacity:2];
-        [_enemyTypes addObject:[SGBat class]];
-        [_enemyTypes addObject:[SGBug class]];
+        [_enemyTypes addObject:[SGBatCluster class]];
+        [_enemyTypes addObject:[SGBugCluster class]];
         
         [self generateRandomObstacles];
         [self schedule:@selector(spawnEnemies) interval:1.0f];
         [self schedule:@selector(physicsTick:)];
     }
     return self;
+}
+
+-(void)spawnPlayer
+{
+    localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+    [localPlayer setOwner:self];
+    
+    localPlayer.position = CGPointMake([self tileLayer].contentSize.width/2, [self tileLayer].contentSize.height/2);
+    [self addChild:localPlayer];
 }
 
 -(void)onEnter
@@ -126,25 +136,27 @@
     {
         _enemyCount++;
         
-        Class enemyClass = [_enemyTypes randomObject];
-        SGEnemy *testBug = [enemyClass enemy];
-        //Class clusterClass = [SGBatCluster class];//TODO randomize
-        //SGFoeCluster *spawnedCluster = [[clusterClass alloc] init];
+
+        Class clusterClass = [_enemyTypes randomObject];//TODO randomize
+        SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
         
         CGPoint spawnPoint = SGRandomScreenPoint();
 
-        [testBug setPosition:spawnPoint];
-        //[spawnedCluster setPosition:spawnPoint];
+        [spawnedCluster setPosition:spawnPoint];
         
-        /*
-        for (SGEnemy* minion in [spawnedCluster children]) {
-            [self addPhysicalBodyToSprite:minion];
+        for (SGEnemy* minion in [spawnedCluster children])
+        {
             [self addMover:minion];
         }//*/
         
-        //[self addPhysicalBodyToSprite:testBug];
-        [self addMover:testBug];
+        if( spawnedCluster != nil )
+            [self addCluster:spawnedCluster];
     }
+}
+
+-(void)addCluster:(SGFoeCluster *)newCluster
+{
+    [self addChild:newCluster];
 }
 
 -(void)addMover:(SGMover *)newMover
@@ -153,7 +165,7 @@
     
     [newMover setOwner:self];
     
-    [self addChild:newMover];
+//    [self addChild:newMover];
 }
 
 
@@ -197,6 +209,13 @@
 }
 
 #pragma mark - Local Player Delegates
+
+-(void)playerHasDied:(SGLocalPlayer *)player
+{
+    localPlayer = nil;
+    
+    [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
+}
 
 -(void)playerMovedToPoint:(CGPoint)newPoint
 {
@@ -249,40 +268,6 @@
             index++;
         }
     }
-    
-    /*
-    @synchronized(self){
-        physicalSpace->Step(dt, 10, 10);
-        for(b2Body *b = physicalSpace->GetBodyList(); b; b=b->GetNext()) {
-            if (b->GetUserData() != NULL) {
-                CCSprite *sprite = (__bridge CCSprite *)b->GetUserData();
-                
-                b2Vec2 b2Position = b2Vec2(sprite.position.x/PTM_RATIO,
-                                           sprite.position.y/PTM_RATIO);
-                float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
-                
-                b->SetTransform(b2Position, b2Angle);
-            }
-        }
-        
-        std::vector<b2Body *>toDestroy;
-        std::vector<MyContact>::iterator pos;
-        for(pos = listener->_contacts.begin();
-            pos != listener->_contacts.end(); ++pos) {
-            MyContact contact = *pos;
-            
-            b2Body *bodyA = contact.fixtureA->GetBody();
-            b2Body *bodyB = contact.fixtureB->GetBody();
-            if (bodyA->GetUserData() != NULL && bodyB->GetUserData() != NULL) {
-                SGDestroyable *spriteA = (__bridge SGDestroyable *) bodyA->GetUserData();
-                SGDestroyable *spriteB = (__bridge SGDestroyable *) bodyB->GetUserData();
-                
-                [spriteA collideWithDestroyable:spriteB];
-                [spriteB collideWithDestroyable:spriteA];
-            }
-        }
-
-    }//*/
 }
 
 /*

@@ -7,31 +7,42 @@
 // Abstract base class for enemy clusters in ClusterFear. Could be a protocol?
 
 #import <Foundation/Foundation.h>
-#import "GameNodes/SGEnemy.h"
-#import "Gameplay/SGWeapon.h"
-typedef struct {
-    int maxHealth;
-    int maxCritters;
-    int damage;
-    int moveSpeed;
-} SGFoeStats_;
+#import "CCNode.h"
+#import "SGEnemy.h"
+#import "SGWeapon.h"
 
-@interface SGFoeStats : NSObject
-@property(nonatomic, readwrite)SGFoeStats_ stats;
-
--(id)init:(SGFoeStats_ const *)stat;
-@end
+@class SGFoeStats;
 
 @interface SGFoeCluster : CCNode
 
-@property(nonatomic, readonly)CGPoint center;
++(SGFoeStats *)getStats;
++(SGFoeStats *)findStats;
++(SGFoeCluster *)foeCluster;
++(Class)minionClass;
 
+@property(nonatomic, readonly)NSUInteger minionLimit;
 @property(nonatomic, readonly)NSUInteger minionCount;
 
 @property(nonatomic, readonly)NSUInteger health;
 @property(nonatomic, readonly)NSUInteger damage;
 
-+(SGFoeStats*) getStatsByClassName:(NSString*)name;
--(BOOL) strike:(SGEnemy*)memberStruck:(SGWeapon*)weaponStriking;
+-(BOOL)memberStruck:(SGEnemy *)member withWeapon:(SGWeapon *)weaponStriking;
+-(void)memberDied:(SGEnemy *)member;
+
+-(void)populate;
+
 @end
 
+
+
+@interface SGFoeStats : NSObject{
+@public
+    int maxHealth;
+    int maxCritters;
+    int damage;
+    int moveSpeed;
+}
+
+-(id)initWithKeyPath:(NSString *)keyPath;
+
+@end
