@@ -88,6 +88,9 @@
 }
 
 -(void)collideWithDestroyable:(SGDestroyable *)other{
+    if([self isDead]){
+        return;
+    }
     int damage = [other damage];
     if( damage > 0 )
     {

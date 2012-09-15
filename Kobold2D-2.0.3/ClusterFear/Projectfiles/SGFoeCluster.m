@@ -231,7 +231,7 @@ static NSMutableDictionary *statDict=nil;
         [self scheduleOnce:@selector(die) delay:1.5f];
     }
     
-    [[SimpleAudioEngine sharedEngine] playEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
+    //[[SimpleAudioEngine sharedEngine] playEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
 }
 
 

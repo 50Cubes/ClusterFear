@@ -39,6 +39,7 @@
     CCArray *_clusters;
     
     CCArray *_turrets;
+    CCArray *_destroyedTurrets;
 }
 
 
@@ -75,10 +76,11 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         _moverList = [CCArray new];
         _projectileList = [CCArray new];
         _turrets = [CCArray new];
+        _destroyedTurrets = [CCArray new];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"Gun_Shot2.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.aif"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
+        //[[SimpleAudioEngine sharedEngine] preloadEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
 
         TileMapLayer *tileMapLayer = [TileMapLayer node];
     
@@ -556,6 +558,8 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 #pragma mark - turet
 
 -(void)spawnTurrets{
+    [_destroyedTurrets removeAllObjects];
+
     CGPoint points[] = {CGPointMake(200, 100), CGPointMake(200, 700), CGPointMake(800, 700), CGPointMake(800, 100)};
     for(int i = 0; i < 4; i++){
         SGTurret *t = [SGTurret turretWithAmmo:1000];
@@ -587,6 +591,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 
 -(void)getDestroyed:(SGTurret *)turret{
     [[SimpleAudioEngine sharedEngine] playEffect:@"boom.aif"];
+    [_destroyedTurrets addObject:turret];
     [_turrets removeObject:turret];
     if([_turrets count] <= 0){
         [self performSelector:@selector(spawnTurrets) withObject:nil afterDelay:4.0];
