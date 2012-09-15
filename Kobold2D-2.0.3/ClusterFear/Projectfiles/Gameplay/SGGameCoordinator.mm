@@ -310,9 +310,14 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
         clusterBounds.size.width = radius;
         clusterBounds.size.height = radius;
         
+        
+        CGPoint clusterOffset = clusterBounds.origin;
+        clusterOffset.x += clusterBounds.size.width * 0.5f;
+        clusterOffset.y += clusterBounds.size.height * 0.5f;
         for( SGProjectile *bullet in projectiles )
         {
             CGRect bulletBounds = [bullet boundingBox];
+            CGPoint bulletCenter = [bullet boundingBoxCenter];
             
 //            float leftEdge = CGRectGetMinX(bulletBounds);
 //            float topEdge = CGRectGetMinX(bulletBounds);
@@ -320,18 +325,18 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
 //            bulletBoundsPoints[0] = CGPointMake(leftEdge, topEdge);
             
             
-            if(  CGRectIntersectsRect(clusterBounds, bulletBounds) ) //TestPoints(clusterBounds, bulletBounds))
+            if(  ccpDistance(bulletCenter, clusterOffset) < (kPhysicsCollisionThreashold + radius) ) //TestPoints(clusterBounds, bulletBounds))
             {
-                CGPoint clusterOffset = clusterBounds.origin;
-                clusterOffset.x += clusterBounds.size.width * 0.5f;
-                clusterOffset.y += clusterBounds.size.height * 0.5f;
                 for( SGEnemy *enemy in [cluster minions] )
                 {
                     static float maxDist = 0.0f;
-                    float distance = ccpDistance(clusterOffset, [enemy boundingBoxCenter]);
+                    float distance = ccpDistance(bulletBounds.origin, [enemy boundingBoxCenter]);
                     
                     if( maxDist < distance )
+                    {
+                        NSLog(@"Max distance = %f", distance);
                         maxDist = distance;
+                    }
                     
                     if( maxDist < kPhysicsCollisionThreashold )
                    {
