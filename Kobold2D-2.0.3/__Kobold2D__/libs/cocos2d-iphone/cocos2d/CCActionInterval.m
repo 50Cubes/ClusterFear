@@ -153,8 +153,6 @@
 
 -(id) initOne: (CCFiniteTimeAction*) one two: (CCFiniteTimeAction*) two
 {
-    if( one == nil || two == nil )
-        NSLog(@"Help meH");
 	NSAssert( one!=nil && two!=nil, @"Sequence: arguments must be non-nil");
 	NSAssert( one!=actions_[0] && one!=actions_[1], @"Sequence: re-init using the same parameters is not supported");
 	NSAssert( two!=actions_[1] && two!=actions_[0], @"Sequence: re-init using the same parameters is not supported");

@@ -78,7 +78,7 @@
     [self runAction:[CCSequence actionOne:flapDown two:[flapDown reverse]]];
 }
 
-#define skewLimit 4.0f
+#define skewLimit 12.0f
 
 -(void)update:(ccTime)dT
 {
@@ -89,6 +89,8 @@
     float currentY = skewY_;
     
     int count = 2;
+    
+//    float adjustedSkewLimit = skewLimit * dT;
     
     switch( crawlPhase )
     {
@@ -156,10 +158,11 @@
     if( count <= 0 )
         crawlPhase = ((crawlPhase + 1) % 2);
     
-    float adjust = dT * 0.005f;
-    xTarget = xTarget + (xTarget - currentX) * adjust;
-    yTarget = yTarget + (yTarget - currentY) * adjust;
+    float adjust = dT * 7.65f;
+    xTarget = currentX + ((xTarget - currentX) * adjust);
+    yTarget = currentY + ((yTarget - currentY) * adjust);
     
+//    NSLog(@"Skewing bugs with x %f and y %f", xTarget, yTarget);
     [self setSkewX:xTarget];
     [self setSkewY:yTarget];
 }
