@@ -10,6 +10,10 @@
 		4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */; };
 		4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB521603DE1F005E91DF /* SGBatCluster.m */; };
 		4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB561603E492005E91DF /* SGLocustCluster.m */; };
+		7C3DF6531604484D003E922B /* blood_splatter1_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */; };
+		7C3DF6541604484D003E922B /* blood_splatter1_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF6501604484D003E922B /* blood_splatter1_small.png */; };
+		7C3DF6551604484D003E922B /* blood_splatter2_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF6511604484D003E922B /* blood_splatter2_medium.png */; };
+		7C3DF6561604484D003E922B /* blood_splatter2_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF6521604484D003E922B /* blood_splatter2_small.png */; };
 		7C4A3A9616043DE20071035E /* chemical_spill.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C4A3A9516043DE20071035E /* chemical_spill.png */; };
 		7C616EB61603B5C800B9D0A2 /* soldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C616EB51603B5C800B9D0A2 /* soldier.png */; };
 		7C631C5E1603D4CA004AA439 /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C631C5D1603D4CA004AA439 /* rock.png */; };
@@ -87,6 +91,10 @@
 		4C5CDB521603DE1F005E91DF /* SGBatCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBatCluster.m; path = GameNodes/SGBatCluster.m; sourceTree = "<group>"; };
 		4C5CDB551603E491005E91DF /* SGLocustCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGLocustCluster.h; path = GameNodes/SGLocustCluster.h; sourceTree = "<group>"; };
 		4C5CDB561603E492005E91DF /* SGLocustCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGLocustCluster.m; path = GameNodes/SGLocustCluster.m; sourceTree = "<group>"; };
+		7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter1_medium.png; sourceTree = "<group>"; };
+		7C3DF6501604484D003E922B /* blood_splatter1_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter1_small.png; sourceTree = "<group>"; };
+		7C3DF6511604484D003E922B /* blood_splatter2_medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter2_medium.png; sourceTree = "<group>"; };
+		7C3DF6521604484D003E922B /* blood_splatter2_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter2_small.png; sourceTree = "<group>"; };
 		7C4A3A9516043DE20071035E /* chemical_spill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chemical_spill.png; sourceTree = "<group>"; };
 		7C616EB51603B5C800B9D0A2 /* soldier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier.png; sourceTree = "<group>"; };
 		7C631C5D1603D4CA004AA439 /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock.png; sourceTree = "<group>"; };
@@ -233,6 +241,10 @@
 		7C631C461603C1FD004AA439 /* enemies */ = {
 			isa = PBXGroup;
 			children = (
+				7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */,
+				7C3DF6501604484D003E922B /* blood_splatter1_small.png */,
+				7C3DF6511604484D003E922B /* blood_splatter2_medium.png */,
+				7C3DF6521604484D003E922B /* blood_splatter2_small.png */,
 				7CD0C6971604183100F64E85 /* bat_large.png */,
 				7CD0C6981604183100F64E85 /* bat_medium.png */,
 				7CD0C6991604183100F64E85 /* bat_small.png */,
@@ -528,6 +540,10 @@
 				7CD0C6A21604183100F64E85 /* spider_small.png in Resources */,
 				7CB6BB931604332B007E316A /* hazardSuit.png in Resources */,
 				7C4A3A9616043DE20071035E /* chemical_spill.png in Resources */,
+				7C3DF6531604484D003E922B /* blood_splatter1_medium.png in Resources */,
+				7C3DF6541604484D003E922B /* blood_splatter1_small.png in Resources */,
+				7C3DF6551604484D003E922B /* blood_splatter2_medium.png in Resources */,
+				7C3DF6561604484D003E922B /* blood_splatter2_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
