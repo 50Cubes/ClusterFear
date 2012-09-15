@@ -34,23 +34,24 @@ SGFoeStats * locustStats=nil;
 -(NSUInteger)damage{
     return locustStats.stats.damage;
 }
--(BOOL) strike:(NSUInteger)damage{
+-(BOOL)strike:(SGEnemy*)memberStruck :(SGWeapon*)weaponStriking{
+    uint damage = (uint) [weaponStriking damageInflicted];
     if (health < damage) {
         health = 0;
         return YES;
     }
     // else
     health-=damage;
-    [self killMinions];
+    [self checkForMinion:memberStruck];
     return NO;
 }
 
--(void)killMinions{
+-(void)checkForMinion:(SGEnemy*)memberStruck{
     float ratio = health/((float)locustStats.stats.maxHealth);
     float fractionalMinions = ratio * locustStats.stats.maxCritters;
     uint numMinions = (uint)fractionalMinions;
-    while ([self minionCount] > numMinions) {
-        [self removeChild:[[self children] objectAtIndex:0] cleanup:YES];
+    if ([self minionCount] > numMinions) {
+        [self removeChild:memberStruck cleanup:YES];
     }
 }
 @end
