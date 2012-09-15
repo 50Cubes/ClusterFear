@@ -10,11 +10,19 @@
 
 @class SGWeapon;
 
+@protocol SGLocalPlayerOwner <NSObject>
+
+-(void)playerMovedToPoint:(CGPoint)newPoint;
+
+@end
+
 @interface SGLocalPlayer : SGMover{
     SGWeapon *weapon;
 }
 
 +(id)playerWithFile:(NSString *)file health:(int)startingHealth andWeapon:(SGWeapon *)weapon;
+
+@property(nonatomic, unsafe_unretained)NSObject <SGLocalPlayerOwner, SGMoverOwner> *owner;
 
 -(void)fireWeapon;
 

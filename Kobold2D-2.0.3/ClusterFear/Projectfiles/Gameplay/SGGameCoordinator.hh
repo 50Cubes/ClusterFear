@@ -16,11 +16,12 @@
 #import "chipmunk.h"
 #import "Box2D.h"
 #import "MyContactListener.h"
+#import "SGLocalPlayer.h"
 
 @class SGLocalPlayer;
 @class SGRunActivator;
 
-@interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner>{
+@interface SGGameCoordinator : CCScene <TileMapLayerDelegate, SGMoverOwner, SGLocalPlayerOwner>{
     SGLocalPlayer *localPlayer;
     SGRunActivator *runActivator;
     

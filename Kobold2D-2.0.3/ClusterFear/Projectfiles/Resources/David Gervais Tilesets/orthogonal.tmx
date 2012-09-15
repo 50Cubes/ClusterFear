@@ -21,12 +21,12 @@
    </properties>
   </tile>
  </tileset>
- <layer name="Background" width="34" height="24">
-  <properties>
-   <property name="Chapter" value="10"/>
-  </properties>
+ <tileset firstgid="175" name="JM_tileSet" tilewidth="64" tileheight="64">
+  <image source="tileSet.png" width="256" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 2" width="34" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMBKHrX+OLLsdAwVVTVVV98AAUOwev
+   eJztlDEOQCEIQ73/Zfx6wj+5NDFQIdoYu3QhhL4ApWjoS/IKbtV3cBWxOVm3OKjxwLmi+YfPcqvzwPl35VfncWovWB7VLgnJe/fsP/FyGH1VxP7DrH3BvirKvpdVLio6xUGVR3P64+HzKIfbeMy4sDx+2nCNGg==
   </data>
  </layer>
 </map>
