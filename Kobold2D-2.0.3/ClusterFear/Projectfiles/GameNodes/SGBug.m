@@ -20,7 +20,15 @@
 
 +(NSString *)imagePath
 {
-    return @"spider.png";
+    NSString *spiderSize = @"spider_small.png";
+    
+    float roll = CCRANDOM_0_1();
+    if( roll > 0.95f )
+        spiderSize = @"spider_large.png";
+    else if( roll > 0.5f )
+        spiderSize = @"spider_medium.png";
+    
+    return spiderSize;
 }
 
 //@synthesize speed = speed_;

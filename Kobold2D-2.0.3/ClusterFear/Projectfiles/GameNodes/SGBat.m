@@ -12,7 +12,16 @@
 
 +(NSString *)imagePath
 {
-    return @"bat_large.png";
+    NSString *asset = kSGBatAssetSmall;
+    
+    float roll = CCRANDOM_0_1();
+    
+    if( roll > 0.95f )
+        asset = kSGBatAssetLarge;
+    else if( roll > 0.7f )
+        asset = kSGBatAssetMedium;
+    
+    return asset;
 }
 
 +(float)speed

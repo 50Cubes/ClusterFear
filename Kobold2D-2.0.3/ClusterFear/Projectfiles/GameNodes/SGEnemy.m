@@ -14,12 +14,17 @@
 
 +(NSString *)imagePath
 {
-    return @"spider.png";
+    return @"spider_small.png";
 }
 
 +(SGEnemy *)enemy
 {
     return [self spriteWithFile:[self imagePath]];
+}
+
++(SGEnemy *)enemyAtSize
+{
+    return [self enemy];
 }
 
 
