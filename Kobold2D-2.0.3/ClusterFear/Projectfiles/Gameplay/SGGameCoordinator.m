@@ -76,7 +76,10 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         _projectileList = [CCArray new];
         _turrets = [CCArray new];
         
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"alien-sfx.caf"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Gun_Shot2.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"boom.aif"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
+
         TileMapLayer *tileMapLayer = [TileMapLayer node];
     
         
@@ -176,7 +179,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnEnemies
 {
-    if( [self enemyCount] < 8 )
+    if( [self enemyCount] < 4 )
     {
         Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
@@ -243,7 +246,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [_projectileList addObject:projectile];
     [_tileLayer addChild:projectile z:2 tag:0];
     [projectile fired];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"alien-sfx.caf"];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"Gun_Shot2.wav"];
 }
 
 -(void)removeProjectile:(SGProjectile *)projectile
@@ -408,6 +411,9 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
         }
         
         for(SGTurret *tur in turrets){
+            if([tur isDead]){
+                continue;
+            }
             CGPoint turretCenter = [tur boundingBoxCenter];
             
             float turretRadius = [tur radius];
@@ -580,6 +586,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 }
 
 -(void)getDestroyed:(SGTurret *)turret{
+    [[SimpleAudioEngine sharedEngine] playEffect:@"boom.aif"];
     [_turrets removeObject:turret];
     if([_turrets count] <= 0){
         [self performSelector:@selector(spawnTurrets) withObject:nil afterDelay:4.0];
