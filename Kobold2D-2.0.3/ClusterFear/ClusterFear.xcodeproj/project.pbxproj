@@ -10,6 +10,7 @@
 		4C5CDB3B1603CC4A005E91DF /* SGBugCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB3A1603CC4A005E91DF /* SGBugCluster.m */; };
 		4C5CDB531603DE1F005E91DF /* SGBatCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB521603DE1F005E91DF /* SGBatCluster.m */; };
 		4C5CDB571603E492005E91DF /* SGLocustCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CDB561603E492005E91DF /* SGLocustCluster.m */; };
+		7C0D3F35160460020095CA39 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D3F34160460020095CA39 /* coin.png */; };
 		7C3DF6531604484D003E922B /* blood_splatter1_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */; };
 		7C3DF6541604484D003E922B /* blood_splatter1_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF6501604484D003E922B /* blood_splatter1_small.png */; };
 		7C3DF6551604484D003E922B /* blood_splatter2_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF6511604484D003E922B /* blood_splatter2_medium.png */; };
@@ -91,6 +92,7 @@
 		4C5CDB521603DE1F005E91DF /* SGBatCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGBatCluster.m; path = GameNodes/SGBatCluster.m; sourceTree = "<group>"; };
 		4C5CDB551603E491005E91DF /* SGLocustCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGLocustCluster.h; path = GameNodes/SGLocustCluster.h; sourceTree = "<group>"; };
 		4C5CDB561603E492005E91DF /* SGLocustCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGLocustCluster.m; path = GameNodes/SGLocustCluster.m; sourceTree = "<group>"; };
+		7C0D3F34160460020095CA39 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
 		7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter1_medium.png; sourceTree = "<group>"; };
 		7C3DF6501604484D003E922B /* blood_splatter1_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter1_small.png; sourceTree = "<group>"; };
 		7C3DF6511604484D003E922B /* blood_splatter2_medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_splatter2_medium.png; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 		7C631C461603C1FD004AA439 /* enemies */ = {
 			isa = PBXGroup;
 			children = (
+				7C0D3F34160460020095CA39 /* coin.png */,
 				7C3DF64F1604484D003E922B /* blood_splatter1_medium.png */,
 				7C3DF6501604484D003E922B /* blood_splatter1_small.png */,
 				7C3DF6511604484D003E922B /* blood_splatter2_medium.png */,
@@ -543,6 +546,7 @@
 				7C3DF6561604484D003E922B /* blood_splatter2_small.png in Resources */,
 				7C3DF65816044F9B003E922B /* chemical_spill.png in Resources */,
 				7C3DF65A1604524A003E922B /* tileSet2.png in Resources */,
+				7C0D3F35160460020095CA39 /* coin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
