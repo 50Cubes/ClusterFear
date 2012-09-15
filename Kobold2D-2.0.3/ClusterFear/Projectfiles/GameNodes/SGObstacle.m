@@ -12,12 +12,16 @@
 
 +(NSString *)filePath
 {
-    return @"rock.png";
+    return CCRANDOM_MINUS1_1() < 0.9f ? @"rock.png" : @"chemical_spill.png" ;
 }
 
 +(SGObstacle *)obstacle
 {
-    return [self spriteWithFile:[self filePath]];
+    SGObstacle *newObst = [self spriteWithFile:[self filePath]];
+    
+    [newObst setRotation:15.0f * CCRANDOM_MINUS1_1()];
+    
+    return newObst;
 }
 
 @end
