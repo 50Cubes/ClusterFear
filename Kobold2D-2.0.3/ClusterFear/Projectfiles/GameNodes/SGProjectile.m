@@ -9,7 +9,7 @@
 #import "SGProjectile.h"
 #import "CCSprite+Convenience.h"
 
-#import "SGGameCoordinator.hh"
+#import "SGGameCoordinator.h"
 #import "SGCasing.h"
 
 #import "SGWeapon.h"

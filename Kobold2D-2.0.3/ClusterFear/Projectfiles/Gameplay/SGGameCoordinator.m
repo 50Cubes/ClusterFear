@@ -6,7 +6,7 @@
 //
 //
 
-#import "SGGameCoordinator.hh"
+#import "SGGameCoordinator.h"
 
 #import "SGRandomization.h"
 #import "SGFoeCluster.h"
@@ -41,7 +41,7 @@
 
 
 //-(void)physicsSetup;
--(void)physicsTick:(ccTime)dt;
+//-(void)physicsTick:(ccTime)dt;
 
 //-(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
 
@@ -283,14 +283,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 }
 
 #pragma mark physics
-/*
--(void)physicsSetup{
-    //physicalSpace = cpSpaceNew();
-    //physicalSpace = new b2World(b2Vec2(0.0, 0.0), false);
-    //physicalSpace = new b2World(b2Vec2(0.0, 0.0));
-    //listener = new MyContactListener();
-    //physicalSpace->SetContactListener(listener);
-}//*/
+
 
 static inline void DoCollision(SGDestroyable *destroyable, SGProjectile *projectile)
 {
@@ -401,6 +394,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 //    } while( dT > 0.0f );
 }
 
+/*
 -(void)physicsTick:(ccTime)dt{
     @synchronized(self){
         CCArray *collisionObjects = [[CCArray alloc] initWithCapacity:[_moverList count]];
@@ -443,7 +437,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
             }
         }
     }
-}
+}//*/
 
 /*
 -(void)addChild:(CCNode *)node{
