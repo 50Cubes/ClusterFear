@@ -31,6 +31,7 @@
 @interface SGFoeCluster : CCNode
 {
 //    float velocity_;
+    BOOL dying;
 }
 
 +(SGFoeStats *)getStats;

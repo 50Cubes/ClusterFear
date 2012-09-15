@@ -189,7 +189,7 @@ static NSMutableDictionary *statDict=nil;
 
 -(BOOL)dead
 {
-    CCLOG(@"Health == %u, minionCount = %u", _health, [self minionCount]);
+//    CCLOG(@"Health == %u, minionCount = %u", _health, [self minionCount]);
     return _health <= 0 || (_minions != nil && [self minionCount] == 0);
 }
 
@@ -207,8 +207,7 @@ static NSMutableDictionary *statDict=nil;
         
         if( dead )
         {
-            [self clearMinions];
-            [self scheduleOnce:@selector(die) delay:1.5f];
+            [self makeArrangements];
         }
         else
             [self checkForMinion:member];
@@ -216,6 +215,18 @@ static NSMutableDictionary *statDict=nil;
         return dead;
     }
     return dead;
+}
+
+-(void)makeArrangements
+{
+    if( !dying )
+    {
+        dying = YES;
+        
+        [self clearMinions];
+        
+        [self scheduleOnce:@selector(die) delay:1.5f];
+    }
 }
 
 -(void)memberDied:(SGEnemy *)member
@@ -227,7 +238,7 @@ static NSMutableDictionary *statDict=nil;
     
     if( [self dead] )
     {
-        [self scheduleOnce:@selector(die) delay:1.5f];
+        [self makeArrangements];
     }
 }
 

@@ -98,7 +98,7 @@ local config =
             MaxHealth = 10,
             MaxCritters = 7,
             Damage = 1,
-            MoveSpeed = 75,
+            MoveSpeed = 150,
         },
 	},
 }

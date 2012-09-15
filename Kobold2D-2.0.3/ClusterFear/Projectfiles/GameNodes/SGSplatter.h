@@ -11,6 +11,10 @@
 #import "SGSpray.h"
 
 @interface SGSplatter : SGDecal
+{
+//    float lifeTime;
+}
+
 
 +(SGSplatter *)splatterFromSpray:(SGSpray *)spray;
 
