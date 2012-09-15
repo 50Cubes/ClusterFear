@@ -9,8 +9,8 @@
 #import "SGSpray.h"
 #import "SGSplatter.h"
 
-#define kSGSprayThreshold 0.2f
-#define kSGSprayDelay 0.07f
+#define kSGSprayThreshold 0.25f
+#define kSGSprayDelay 0.12f
 
 @implementation SGSpray
 
@@ -26,6 +26,7 @@
     return [NSString stringWithFormat:@"%ublood%u.png", size, seed < 0.0f ? 1 : 2];
 //    return CCRANDOM_MINUS1_1() >= 0.0f ? @"blood_splatter1_medium.png" : @"blood_splatter2_medium.png";
 }
+
 
 +(float)bounceThreshold
 {
@@ -59,22 +60,41 @@
 
 -(float)ejectionIntensity
 {
-    return 0.01f;
+    return 75.0f;
 }
 
 -(CGPoint)findPrimaryDirection
 {
-    return ccpMult([self forwardDirection], [self ejectionIntensity]);
+    float distance = [self ejectionIntensity];
+    
+    CGPoint casingDirection = ccpMult([self forwardDirection], distance);
+    
+    CGFloat oldX = casingDirection.x;
+    
+    distance *= 0.1f;
+    //    casingDirection.x = casingDirection.y + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+    //    casingDirection.y = oldX + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+    
+    casingDirection.y = casingDirection.y + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+    casingDirection.x = -1.0f *(oldX + (CCRANDOM_MINUS1_1() * distance * bounciness_));
+    
+    return casingDirection;
 }
 
 -(void)splatter
 {
-    SGSplatter *splatter = [SGSplatter splatterFromSpray:self];
+    float seed = CCRANDOM_MINUS1_1();
+    BOOL flip = seed <= -0.1f;
     
-    [splatter setPosition:position_];
-    [splatter setRotation:rotation_];
-    
-    [[self parent] addChild:splatter z:1 tag:0];
+    if( flip )
+    {
+        SGSplatter *splatter = [SGSplatter splatterFromSpray:self];
+        
+        [splatter setPosition:position_];
+        [splatter setRotation:rotation_];
+        
+        [[self parent] addChild:splatter z:1 tag:0];
+    }
     
     if( bounciness_ <= kSGSprayThreshold )
     {
@@ -82,26 +102,27 @@
     }
     else
     {
-        SGSpray *newSpray = [SGSpray sprayFromProjectile:[self projectile] andIntensity:bounciness_ * 0.6f];
+        bounciness_ *= bounciness_ * 0.8f;
         
-        float seed = CCRANDOM_MINUS1_1();
-        if( seed >= 0.0f )
+        SGSpray *newSpray = [SGSpray sprayFromProjectile:[self projectile] andIntensity:bounciness_ * (flip) ? 0.25f : 0.55f];
+        
+        if( flip )
+        {
             newSpray->rotation_ += 180.0f;
+        }
         
         seed = CCRANDOM_MINUS1_1();
         
-        newSpray->rotation_ += seed * 25.0f;
+        newSpray->rotation_ += (seed * 15.0f) / bounciness_;
         
         [[self parent] addChild:newSpray];
-        
-        bounciness_ *= bounciness_ * 0.8f;
     }
 }
 
 -(CCFiniteTimeAction *)ejectionAction
 {
     [self runAction:[CCScaleBy actionWithDuration:0.247f scale:1.5f * bounciness_]];
-    [self runAction:[CCMoveBy actionWithDuration:0.327 position:ccpMult([self forwardDirection], 100.0f * bounciness_)]];
+    [self runAction:[CCMoveBy actionWithDuration:0.327 position:[self findPrimaryDirection]]];
     return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.137f] two:[CCFadeOut actionWithDuration:0.227f]];
 }
 

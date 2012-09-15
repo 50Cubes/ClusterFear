@@ -242,6 +242,13 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
 }
 
+-(void)playerHit:(SGLocalPlayer *)player fromProjectile:(SGProjectile *)projectile
+{
+    SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.8f];
+    
+    [[self tileLayer] addChild:splatter];
+}
+
 -(void)playerMovedToPoint:(CGPoint)newPoint
 {
 //    [[self tileLayer] set]
@@ -313,8 +320,8 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
         
         
         CGPoint clusterOffset = clusterBounds.origin;
-        clusterOffset.x += clusterBounds.size.width * 0.5f;
-        clusterOffset.y += clusterBounds.size.height * 0.5f;
+//        clusterOffset.x += clusterBounds.size.width * 0.5f;
+//        clusterOffset.y += clusterBounds.size.height * 0.5f;
         for( SGProjectile *bullet in projectiles )
         {
 //            CGRect bulletBounds = [bullet boundingBox];

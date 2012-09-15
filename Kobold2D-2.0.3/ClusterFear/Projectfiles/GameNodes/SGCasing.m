@@ -37,7 +37,7 @@
 
 +(SGCasing *)casingForProjectile:(SGProjectile *)projectile
 {
-    SGCasing *rtnCasing = [self spriteWithFile:[self casingPath]];
+    SGCasing *rtnCasing = [self spriteWithTexture:[self textureForCasingWithPath:[self casingPath]]];
     
     rtnCasing->position_ = [projectile position];
     rtnCasing->rotation_ = [projectile rotation];
@@ -48,6 +48,30 @@
     
     [rtnCasing setProjectile:projectile];
     return rtnCasing;
+}
+
+
+static NSMutableDictionary *textureCache = nil;
++(CCTexture2D *)textureForCasingWithPath:(NSString *)casingPath
+{
+    CCTexture2D *rtnText = nil;
+    
+    if( textureCache == nil )
+        textureCache = [NSMutableDictionary new];
+    else
+        rtnText = [textureCache objectForKey:casingPath];
+    
+    if( rtnText == nil )
+    {
+        rtnText = [[CCTextureCache sharedTextureCache] addImage:casingPath];
+        
+        if( rtnText != nil )
+        {
+            [textureCache setObject:rtnText forKey:casingPath];
+        }
+    }
+    
+    return rtnText;
 }
 
 -(id)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated
@@ -73,6 +97,9 @@
     distance *= 0.1f;
     casingDirection.x = casingDirection.y + (CCRANDOM_MINUS1_1() * distance * bounciness_);
     casingDirection.y = oldX + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+    
+//    casingDirection.y = casingDirection.y + (CCRANDOM_MINUS1_1() * distance * bounciness_);
+//    casingDirection.x = -1.0f *(oldX + (CCRANDOM_MINUS1_1() * distance * bounciness_));
     
     return casingDirection;
 }

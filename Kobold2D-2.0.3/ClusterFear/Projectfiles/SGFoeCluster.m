@@ -76,10 +76,10 @@ static NSMutableDictionary *statDict=nil;
         self = [super init];
         if( self != nil )
         {
-            
+            destination_ = CGPointZero;
             
             _minions = [CCArray arrayWithCapacity:[self minionLimit]];
-            _health = myStats->maxHealth;
+            _health = myStats->maxCritters * myStats->maxHealth;
             [self populate];
         }
     }
@@ -189,13 +189,14 @@ static NSMutableDictionary *statDict=nil;
 }
 
 -(void)checkForMinion:(SGEnemy*)memberStruck{
-    SGFoeStats *myStats = [[self class] getStats];
-    float ratio = _health/((float)myStats->maxHealth);
-    float fractionalMinions = ratio * myStats->maxCritters;
-    uint numMinions = (uint)fractionalMinions;
-    if ([self minionCount] > numMinions) {
-        [self removeChild:memberStruck cleanup:YES];
-    }
+//    SGFoeStats *myStats = [[self class] getStats];
+//    int maxCritters = myStats->maxCritters;
+//    float ratio = _health/(maxCritters * (float)myStats->maxHealth);
+//    float fractionalMinions = ratio * maxCritters;
+//    uint numMinions = (uint)fractionalMinions;
+//    if ([self minionCount] > numMinions) {
+//        [self removeChild:memberStruck cleanup:YES];
+//    }
 }
 
 
@@ -208,6 +209,7 @@ static NSMutableDictionary *statDict=nil;
 
 -(void)crawl
 {
+    return;
     CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
     
     

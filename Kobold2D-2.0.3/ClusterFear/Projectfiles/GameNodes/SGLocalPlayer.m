@@ -11,6 +11,8 @@
 
 #import "SGFoeCluster.h"
 
+#import "SGProjectile.h"
+
 @interface SGLocalPlayer ()
 
 -(void)initializeWeapon:(SGWeapon *)newWeapon;
@@ -61,6 +63,11 @@ static SGFoeStats *playerStats = nil;
 -(void)fireWeapon
 {
     [weapon fire];
+}
+
+-(void)getHitFromProjectile:(SGProjectile *)projectile
+{
+    [[self owner] playerHit:self fromProjectile:projectile];
 }
 
 -(void)die

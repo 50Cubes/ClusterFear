@@ -42,7 +42,7 @@
 
 -(id)init{
     if((self = [super init])){
-        damageInflicted = 10;
+        damageInflicted = 5;
     }
     
     return self;

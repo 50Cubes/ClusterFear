@@ -15,6 +15,7 @@
 @protocol SGLocalPlayerOwner <NSObject>
 
 -(void)playerMovedToPoint:(CGPoint)newPoint;
+-(void)playerHit:(SGLocalPlayer *)player fromProjectile:(SGProjectile *)projectile;
 -(void)playerHasDied:(SGLocalPlayer *)player;
 
 @end

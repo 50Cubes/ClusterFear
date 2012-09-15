@@ -102,14 +102,14 @@
     SGFoeCluster *myCluster = [self cluster];
     CGPoint parentDirection = [myCluster destination];
     
-    parentDirection = ccpNormalize(ccpSub(ccpAdd(parentDirection, destination_), position_));
+    parentDirection = ccpNormalize(ccpSub(ccpAdd(parentDirection, normalizedRelativeDirection), position_));
     
     [super faceRelativePoint:parentDirection];
 }
 
 -(void)reorient
 {
-    [self faceRelativePoint:[self forwardDirection]];
+    [self faceRelativePoint:destination_];
 }
 
 -(float)speed
