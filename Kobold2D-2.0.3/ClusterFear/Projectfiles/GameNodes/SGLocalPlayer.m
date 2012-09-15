@@ -30,7 +30,7 @@ static SGFoeStats *playerStats = nil;
 
 +(float)speed
 {
-    return playerStats == nil ? 50.0f : playerStats->moveSpeed;
+    return playerStats == nil ? 100.0f : playerStats->moveSpeed;
 }
 
 

@@ -132,7 +132,7 @@
         float delta = fabsf(rotation - rotation_);
         //[self setRotation:rotation];
         //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
-        rtnAction = [CCRotateTo actionWithDuration:0.0075f * delta angle:rotation];
+        rtnAction = [CCRotateTo actionWithDuration:0.0045f * delta angle:rotation];
     }
     return rtnAction;
 }

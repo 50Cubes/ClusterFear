@@ -18,8 +18,8 @@ static CCArray *_roster = nil;
 {
     if( self == [SGSplatter class] )
     {
-        _pool = [CCArray arrayWithCapacity:64];
-        _roster = [CCArray arrayWithCapacity:64];
+        _pool = [CCArray arrayWithCapacity:16];
+        _roster = [CCArray arrayWithCapacity:128];
     }
 }
 
@@ -38,7 +38,7 @@ static CCArray *_roster = nil;
         fromPool = [_pool lastObject];
         [_pool removeLastObject];
     }
-    else if( [_roster count] >= 64 )
+    else if( [_roster count] >= 128 )
     {
         fromPool = [_roster objectAtIndex:0];
         [_roster removeObjectAtIndex:0];

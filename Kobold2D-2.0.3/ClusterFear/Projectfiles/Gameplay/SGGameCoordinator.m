@@ -94,7 +94,6 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
         [self spawnPlayer];
         
-//        [self runAction:[CCFollow actionWithTarget:localPlayer]];
         
 //        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
 //        [localPlayer setOwner:self];
@@ -108,7 +107,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         [runActivator setup];
         runActivator.isTouchEnabled = YES;
         //runActivator.position = CGPointMake(runActivator.contentSize.width/2, runActivator.contentSize.height/2);
-        [self addChild:runActivator];
+        [_tileLayer addChild:runActivator];
         
         
         _enemyTypes = [CCArray arrayWithCapacity:2];
@@ -138,7 +137,10 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [localPlayer setOwner:self];
     
     localPlayer.position = CGPointMake(_tileLayer.contentSize.width/2, _tileLayer.contentSize.height/2);
-    [_tileLayer addChild:localPlayer z:1];
+    
+    
+    [self runAction:[CCFollow actionWithTarget:localPlayer]];
+    [_tileLayer addChild:localPlayer z:2];
 }
 
 
