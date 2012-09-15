@@ -28,8 +28,8 @@
 #import "SGCollectable.h"
 
 #import "SGBat.h"
+#import "SimpleAudioEngine.h"
 
-#define PTM_RATIO 32
 
 @interface SGGameCoordinator ()
 {
@@ -44,6 +44,7 @@
 //-(void)physicsTick:(ccTime)dt;
 
 //-(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
+-(void)replay;
 
 @end
 
@@ -72,6 +73,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         _moverList = [CCArray new];
         _projectileList = [CCArray new];
         
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"alien-sfx.caf"];
         TileMapLayer *tileMapLayer = [TileMapLayer node];
     
         
@@ -104,6 +106,12 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         _enemyTypes = [CCArray arrayWithCapacity:2];
         [_enemyTypes addObject:[SGBatCluster class]];
         [_enemyTypes addObject:[SGBugCluster class]];
+        
+        
+        CCMenuItemSprite *replay = [CCMenuItemSprite itemWithTarget:self selector:@selector(replay)];
+        [replay setNormalImage:[CCSprite spriteWithFile:@"game-events.png"]];
+        replay.isEnabled = NO;
+        replay.position = CGPointMake(0, 700);
         
         [self generateRandomObstacles];
         [self schedule:@selector(spawnEnemies) interval:1.0f];
@@ -160,7 +168,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 
 -(void)spawnEnemies
 {
-    if( [self enemyCount] < 1 )
+    if( [self enemyCount] < 10 )
     {
         Class clusterClass = [_enemyTypes randomObject];//TODO randomize
         SGFoeCluster *spawnedCluster = [clusterClass foeCluster];
@@ -227,6 +235,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     [_projectileList addObject:projectile];
     [_tileLayer addChild:projectile z:2 tag:0];
     [projectile fired];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"alien-sfx.caf"];
 }
 
 -(void)removeProjectile:(SGProjectile *)projectile
@@ -240,8 +249,8 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 -(void)playerHasDied:(SGLocalPlayer *)player
 {
     localPlayer = nil;
-    
     [self scheduleOnce:@selector(spawnPlayer) delay:4.0f];
+    
 }
 
 -(void)playerHit:(SGLocalPlayer *)player fromProjectile:(SGProjectile *)projectile
@@ -501,5 +510,11 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
     spriteShapeDef.isSensor = true;
     spriteBody->CreateFixture(&spriteShapeDef);
 }//*/
+
+#pragma mark - new game
+
+-(void)replay{
+    
+}
 
 @end
