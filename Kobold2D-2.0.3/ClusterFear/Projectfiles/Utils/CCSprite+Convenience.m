@@ -8,7 +8,7 @@
 
 #import "CCSprite+Convenience.h"
 
-@implementation CCSprite (Convenience)
+@implementation CCNode (Convenience)
 
 -(CGPoint)forwardDirection
 {

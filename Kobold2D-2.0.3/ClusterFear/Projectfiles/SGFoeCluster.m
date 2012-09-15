@@ -182,7 +182,7 @@ static NSMutableDictionary *statDict=nil;
     
     [self faceRelativePoint:moveDirection];
     
-    return [CCMoveBy actionWithDuration:3.25f position:moveDirection];
+    return [CCMoveBy actionWithDuration:8.25f position:moveDirection];
 }
 @end
 

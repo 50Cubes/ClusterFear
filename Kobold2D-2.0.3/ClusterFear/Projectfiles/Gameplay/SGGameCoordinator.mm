@@ -57,6 +57,7 @@
         _projectileList = [NSMutableArray new];
         
         TileMapLayer *tileMapLayer = [TileMapLayer node];
+    
         
         [tileMapLayer setDelegate:self];
         [self setTileLayer:tileMapLayer];
@@ -64,13 +65,16 @@
         
         [self addChild:tileMapLayer];
         
+
+        [self spawnPlayer];
         
-        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
-        [localPlayer setOwner:self];
-        
-        localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
-        //[self addPhysicalBodyToSprite:localPlayer];
-        [self addChild:localPlayer];
+        [tileMapLayer runAction:[CCFollow actionWithTarget:localPlayer]];
+//        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
+//        [localPlayer setOwner:self];
+//        
+//        localPlayer.position = CGPointMake(tileMapLayer.contentSize.width/2, tileMapLayer.contentSize.height/2);
+//        //[self addPhysicalBodyToSprite:localPlayer];
+//        [self addChild:localPlayer];
         
         runActivator = [SGRunActivator node];
         [runActivator setContentSize:CGSizeMake(150, 60)];
@@ -97,7 +101,7 @@
     [localPlayer setOwner:self];
     
     localPlayer.position = CGPointMake([self tileLayer].contentSize.width/2, [self tileLayer].contentSize.height/2);
-    [self addChild:localPlayer];
+    [[self tileLayer] addChild:localPlayer];
 }
 
 -(void)onEnter
@@ -119,7 +123,7 @@
         [newObstacle setPosition:SGRandomScreenPoint()];
         
         //[self addPhysicalBodyToSprite:newObstacle];
-        [self addChild:newObstacle];
+        [[self tileLayer] addChild:newObstacle];
     }
 }
 
@@ -159,7 +163,7 @@
 {
     [newCluster setOwner:self];
     
-    [self addChild:newCluster];
+    [[self tileLayer] addChild:newCluster];
 }
 
 -(void)addMover:(SGMover *)newMover
@@ -174,7 +178,7 @@
 
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
-    if([runActivator isPressed]){
+    if( NO && [runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
     }
     else

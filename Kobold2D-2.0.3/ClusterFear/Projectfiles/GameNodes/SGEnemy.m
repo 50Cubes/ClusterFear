@@ -6,6 +6,8 @@
 //
 //
 
+#import "CCSprite+Convenience.h"
+
 #import "SGEnemy.h"
 #import "SGFoeCluster.h"
 
@@ -61,6 +63,13 @@
 {
     CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
     [self runAction:sequencedAction];
+}
+
+-(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection
+{
+    CGPoint parentDirection = [[self cluster] forwardDirection];
+    
+    [super faceRelativePoint:ccpNormalize(ccpAdd(parentDirection, normalizedRelativeDirection))];
 }
 
 -(CCFiniteTimeAction *)nextAction

@@ -24,6 +24,7 @@
 
 @interface SGMover : SGDestroyable{
     CCLabelTTF *healthLabel;
+    CGFloat velocity_;
 }
 
 +(float)speed;
@@ -35,9 +36,10 @@
 
 -(void)fireProjectile:(SGProjectile *)projectile;
 
--(void)facePoint:(CGPoint)pointToFace;
+-(float)facePoint:(CGPoint)pointToFace;
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection;
 -(void)moveToPoint:(CGPoint)targetPoint;
+-(void)moveByAmount:(CGPoint)movementVector;
 
 
 -(void)didDestroy:(SGDestroyable *)destroyable;

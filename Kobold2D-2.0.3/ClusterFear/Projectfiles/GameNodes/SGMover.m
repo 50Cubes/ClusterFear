@@ -36,7 +36,7 @@
 }
 
 
--(void)facePoint:(CGPoint)pointToFace
+-(float)facePoint:(CGPoint)pointToFace
 {
     float xDirection = pointToFace.x;
     float yDirection = pointToFace.y;
@@ -51,10 +51,13 @@
     
     float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
     
-    xDirection /= magnitude;
-    yDirection /= magnitude;
+    float normXDirection = xDirection / magnitude;
+    float normYDirection = yDirection / magnitude;
     
-    [self faceRelativePoint:(CGPoint){.x=xDirection,.y=yDirection}];
+    [self faceRelativePoint:(CGPoint){.x=normXDirection,.y=normYDirection}];
+    
+    return magnitude;
+//    return (CGPoint){.x=xDirection, .y=yDirection};
 }
 
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection
@@ -72,9 +75,27 @@
 
 -(void)moveToPoint:(CGPoint)targetPoint
 {
-    [self facePoint:targetPoint];
+    float distance = [self facePoint:targetPoint];
     
-    [self runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
+    ccTime moveTime = 1.0f;
+    
+    float mySpeed = [[self class] speed];
+    
+    
+    velocity_ = distance / moveTime;
+    
+    if( velocity_ > mySpeed )
+    {
+        moveTime *= (velocity_ / mySpeed);
+        velocity_ = mySpeed;
+    }
+    
+    [self runAction:[CCMoveTo actionWithDuration:moveTime position:targetPoint]];
+}
+
+-(void)moveByAmount:(CGPoint)movementVector
+{
+    [self moveToPoint:ccpAdd(position_, movementVector)];
 }
 
 -(void)die
@@ -148,7 +169,7 @@
 #pragma mark - collision
 
 -(void)bounce{
-    CCAction *bounceAction = [CCSequence actionOne:[CCMoveTo actionWithDuration:0.2 position:[self backwardDirection]] two:[CCCallFunc actionWithTarget:self selector:@selector(afterBounce)]];
+    CCAction *bounceAction = [CCSequence actionOne:[CCMoveBy actionWithDuration:0.2 position:[self backwardDirection]] two:[CCCallFunc actionWithTarget:self selector:@selector(afterBounce)]];
     [self runAction:bounceAction];
 }
 

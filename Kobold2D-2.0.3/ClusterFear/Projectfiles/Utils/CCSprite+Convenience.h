@@ -8,7 +8,7 @@
 
 #import "CCSprite.h"
 
-@interface CCSprite (Convenience)
+@interface CCNode (Convenience)
 
 -(CGPoint)forwardDirection;
 -(CGPoint)backwardDirection;

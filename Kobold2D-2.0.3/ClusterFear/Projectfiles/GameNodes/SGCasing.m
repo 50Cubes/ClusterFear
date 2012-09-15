@@ -53,6 +53,8 @@
         }
     }
     
+//    CCFiniteTimeAction *scaleUp = [CCBezierTo]
+    
     float bounceAngle = squareBounciness * 5280.0f * randSeed;
     [self runAction:[CCRotateBy actionWithDuration:0.32f + squareBounciness angle:bounceAngle]];
     
