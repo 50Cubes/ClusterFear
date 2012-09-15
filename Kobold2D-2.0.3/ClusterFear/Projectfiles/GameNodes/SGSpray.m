@@ -9,7 +9,7 @@
 #import "SGSpray.h"
 #import "SGSplatter.h"
 
-#define kSGSprayThreshold 0.1f
+#define kSGSprayThreshold 0.4f
 #define kSGSprayDelay 0.07f
 
 @implementation SGSpray
@@ -49,7 +49,7 @@
 
 -(float)ejectionIntensity
 {
-    return 0.25f;
+    return 0.01f;
 }
 
 -(CGPoint)findPrimaryDirection
@@ -59,9 +59,12 @@
 
 -(void)splatter
 {
-    SGSpray *splatter = [[self class] sprayFromProjectile:[self projectile] andIntensity:bounciness_ * 0.15f];
+    SGSpray *splatter = [[self class] sprayFromProjectile:[self projectile] andIntensity:bounciness_ * 0.25f];
     
-    [self addChild:splatter];
+    [splatter setPosition:position_];
+    [splatter setRotation:rotation_];
+    
+    [[self parent] addChild:splatter];
     
     if( bounciness_ <= kSGSprayThreshold )
     {
@@ -73,13 +76,24 @@
         bounciness_ *= bounciness_ * 0.8f;
 }
 
+-(CCFiniteTimeAction *)ejectionAction
+{
+    [self runAction:[CCScaleBy actionWithDuration:0.47f scale:1.3f]];
+    return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.237f] two:[CCFadeOut actionWithDuration:0.327f]];
+}
+
 -(void)onEnter
 {
     [super onEnter];
     
-    [self schedule:@selector(splatter) interval:0.17f repeat:kCCRepeatForever delay:0.07f];
+    [self schedule:@selector(splatter) interval:0.017f repeat:kCCRepeatForever delay:0.07f];
     
     [self runAction:[CCFadeOut actionWithDuration:1.27f]];
 }
 
+     
+-(void)bounceAround
+{
+    [self setOpacity:0];
+}
 @end

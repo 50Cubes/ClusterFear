@@ -25,4 +25,6 @@
 -(float)ejectionIntensity;
 -(CGPoint)findPrimaryDirection;
 
+-(CCFiniteTimeAction *)ejectionAction;
+
 @end

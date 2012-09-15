@@ -164,4 +164,11 @@
     [self setSkewY:yTarget];
 }
 
+-(void)die
+{
+    [self unscheduleUpdate];
+    
+    [super die];
+}
+
 @end

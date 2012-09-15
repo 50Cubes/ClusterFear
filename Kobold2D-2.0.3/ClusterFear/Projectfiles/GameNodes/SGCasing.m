@@ -124,16 +124,21 @@
     [self scheduleOnce:@selector(bounceAround) delay:0.0167f];
 }
 
--(void)onEnter
+-(CCFiniteTimeAction *)ejectionAction
 {
-    [super onEnter];
-    
     CCFiniteTimeAction *scaleUp = [CCEaseOut actionWithAction:[CCScaleBy actionWithDuration:0.187f scale:1.4f]];
     
     CCFiniteTimeAction *scaleDown = [CCEaseBounceIn actionWithAction:[CCScaleTo actionWithDuration:0.24f scale:[[self class] fadeScale]]];
     
     
-    [self runAction:[CCSequence actionOne:scaleUp two:scaleDown]];
+    return [CCSequence actionOne:scaleUp two:scaleDown];
+}
+
+-(void)onEnter
+{
+    [super onEnter];
+    
+    [self runAction:[self ejectionAction]];
                                    
     [self bounceAround];
 }

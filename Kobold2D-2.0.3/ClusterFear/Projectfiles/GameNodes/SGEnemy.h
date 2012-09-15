@@ -32,6 +32,8 @@ typedef enum {
 
 @property (nonatomic, unsafe_unretained)SGFoeCluster *cluster;
 
+@property (nonatomic, readonly)float radius;
+
 -(CCFiniteTimeAction *)nextAction;
 
 -(void)crawl;

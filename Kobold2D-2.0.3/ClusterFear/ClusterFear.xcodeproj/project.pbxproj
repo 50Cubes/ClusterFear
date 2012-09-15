@@ -55,6 +55,8 @@
 		C174700E160485BE00D5274E /* 32blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1747009160485BE00D5274E /* 32blood1.png */; };
 		C174700F160485BE00D5274E /* 32blood2.png in Resources */ = {isa = PBXBuildFile; fileRef = C174700A160485BE00D5274E /* 32blood2.png */; };
 		C1747010160485BE00D5274E /* 64blood2.png in Resources */ = {isa = PBXBuildFile; fileRef = C174700B160485BE00D5274E /* 64blood2.png */; };
+		C17470131604B58A00D5274E /* base.png in Resources */ = {isa = PBXBuildFile; fileRef = C17470111604B58A00D5274E /* base.png */; };
+		C17470141604B58A00D5274E /* rotateTop.png in Resources */ = {isa = PBXBuildFile; fileRef = C17470121604B58A00D5274E /* rotateTop.png */; };
 		C18091BE16044E6C00E43876 /* SGSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = C18091BD16044E6C00E43876 /* SGSpray.m */; };
 		C18091CE1604812200E43876 /* 64blood1.png in Resources */ = {isa = PBXBuildFile; fileRef = C18091CD1604812200E43876 /* 64blood1.png */; };
 		C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* SGFoeCluster.m */; };
@@ -161,6 +163,8 @@
 		C1747009160485BE00D5274E /* 32blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32blood1.png; sourceTree = "<group>"; };
 		C174700A160485BE00D5274E /* 32blood2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32blood2.png; sourceTree = "<group>"; };
 		C174700B160485BE00D5274E /* 64blood2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64blood2.png; sourceTree = "<group>"; };
+		C17470111604B58A00D5274E /* base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base.png; sourceTree = "<group>"; };
+		C17470121604B58A00D5274E /* rotateTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotateTop.png; sourceTree = "<group>"; };
 		C18091BC16044E6C00E43876 /* SGSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSpray.h; path = GameNodes/SGSpray.h; sourceTree = "<group>"; };
 		C18091BD16044E6C00E43876 /* SGSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGSpray.m; path = GameNodes/SGSpray.m; sourceTree = "<group>"; };
 		C18091CD1604812200E43876 /* 64blood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64blood1.png; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 		7C616EAF1603B10200B9D0A2 /* player */ = {
 			isa = PBXGroup;
 			children = (
+				C17470111604B58A00D5274E /* base.png */,
+				C17470121604B58A00D5274E /* rotateTop.png */,
 				7CB6BB921604332B007E316A /* hazardSuit.png */,
 				7CD0C6821604032700F64E85 /* bullet2.png */,
 				7CD0C6831604032700F64E85 /* bullet3.png */,
@@ -602,6 +608,8 @@
 				C174700E160485BE00D5274E /* 32blood1.png in Resources */,
 				C174700F160485BE00D5274E /* 32blood2.png in Resources */,
 				C1747010160485BE00D5274E /* 64blood2.png in Resources */,
+				C17470131604B58A00D5274E /* base.png in Resources */,
+				C17470141604B58A00D5274E /* rotateTop.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

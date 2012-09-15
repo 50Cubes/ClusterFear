@@ -302,6 +302,7 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
     BOOL hasDebug = NO;
     for( SGFoeCluster *cluster in clusters )
     {
+        CGPoint clusterCenter = [cluster boundingBoxCenter];
         CGRect clusterBounds = (CGRect){.origin=[cluster boundingBoxCenter],.size=CGSizeZero};
         float radius = [cluster radius];
 //        clusterBounds.origin.x -= radius;
@@ -329,21 +330,28 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
             {
                 for( SGEnemy *enemy in [cluster minions] )
                 {
-                    static float maxDist = 0.0f;
-                    float distance = ccpDistance(bulletBounds.origin, [enemy boundingBoxCenter]);
+//                    static float maxDist = 0.0f;
                     
-                    if( maxDist < distance )
-                    {
-                        NSLog(@"Max distance = %f", distance);
-                        maxDist = distance;
-                    }
+                    CGPoint enemyCenter = [enemy boundingBoxCenter];
+                    enemyCenter.x += clusterCenter.x;
+                    enemyCenter.y += clusterCenter.y;
                     
-                    if( maxDist < kPhysicsCollisionThreashold )
+                    float distance = ccpDistance(bulletCenter, enemyCenter);
+                    
+//                    if( maxDist < distance )
+//                    {
+//                        NSLog(@"Max distance = %f", distance);
+//                        maxDist = distance;
+//                    }
+                    
+                    float radius = [enemy radius];
+                    
+                    if( distance < (kPhysicsCollisionThreashold + radius) )
                    {
-                       if( CGRectIntersectsRect(bulletBounds, [enemy boundingBox]))
-                       {
+//                       if( CGRectIntersectsRect(bulletBounds, [enemy boundingBox]))
+//                       {
                            DoCollision(enemy, bullet);
-                       }
+//                       }
                    }
                 }
             }
