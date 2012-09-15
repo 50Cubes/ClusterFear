@@ -116,7 +116,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
 //        [self addChild:localPlayer];
         
         
-        CCLayerColor *layerColor = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 96)];
+        CCLayerColor *layerColor = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 48)];
         
         [self addChild:layerColor z:4];
         
