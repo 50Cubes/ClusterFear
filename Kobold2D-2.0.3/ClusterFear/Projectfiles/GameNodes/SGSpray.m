@@ -9,7 +9,7 @@
 #import "SGSpray.h"
 #import "SGSplatter.h"
 
-#define kSGSprayThreshold 0.25f
+#define kSGSprayThreshold 0.285f
 #define kSGSprayDelay 0.12f
 
 @implementation SGSpray
@@ -58,7 +58,7 @@
 
 +(float)maxRotation
 {
-    return 2.0f;
+    return 5.0f;
 }
 
 +(SGSpray *)sprayOnCharacter:(SGMover *)character forDamage:(int)damage andIntensity:(float)intensity
@@ -113,7 +113,7 @@
 -(void)splatter
 {
     float seed = CCRANDOM_MINUS1_1();
-    BOOL flip = seed <= -0.1f;
+    BOOL flip = seed <= -0.2f;
     
     if( flip )
     {
@@ -133,7 +133,7 @@
     {
         bounciness_ *= bounciness_ * 0.8f;
         
-        SGSpray *newSpray = [SGSpray sprayFromProjectile:[self projectile] andIntensity:bounciness_ * (flip) ? 0.25f : 0.55f];
+        SGSpray *newSpray = [SGSpray sprayFromProjectile:[self projectile] andIntensity:bounciness_ * (flip) ? 0.25f : 0.58f];
         
         if( flip )
         {
@@ -142,7 +142,7 @@
         
         seed = CCRANDOM_MINUS1_1();
         
-        newSpray->rotation_ += (seed * 3.25f) / bounciness_;
+        newSpray->rotation_ += (seed * 8.25f) / bounciness_;
         
         [[self parent] addChild:newSpray];
     }

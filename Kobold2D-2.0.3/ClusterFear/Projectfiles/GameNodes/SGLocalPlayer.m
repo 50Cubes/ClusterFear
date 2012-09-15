@@ -40,12 +40,12 @@ static SGFoeStats *playerStats = nil;
     return p;
 }
 
-//-(void)setPosition:(CGPoint)position
-//{
-//    [super setPosition:position];
-//    
-//    [[self owner] playerMovedToPoint:position];
-//}
+-(void)setPosition:(CGPoint)position
+{
+    [super setPosition:position];
+    
+    [[self owner] playerMovedToPoint:position];
+}
 
 
 -(BOOL)isEnemy
@@ -63,6 +63,19 @@ static SGFoeStats *playerStats = nil;
 -(void)fireWeapon
 {
     [weapon fire];
+}
+
+-(void)fireWeaponAtPoint:(CGPoint)target
+{
+    [self stopAllActions];
+    
+    CCFiniteTimeAction *rotateAction = [self actionToFacePoint:target];
+    CCFiniteTimeAction *shootAction = [CCCallFunc actionWithTarget:weapon selector:@selector(fire)];
+    
+    if( rotateAction == nil )
+        [self runAction:shootAction];
+    else
+        [self runAction:[CCSequence actionOne:rotateAction two:shootAction]];
 }
 
 -(void)getHitByEnemy:(SGEnemy *)enemy

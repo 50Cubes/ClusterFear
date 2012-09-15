@@ -17,7 +17,7 @@
 @synthesize isPressed = _isPressed;
 
 -(void)setup{
-    ccColor4B mg = {ccMAGENTA.r, ccMAGENTA.g, ccMAGENTA.b, 16};
+    ccColor4B mg = {ccMAGENTA.r, ccMAGENTA.g, ccMAGENTA.b, 128};
     
     
     CCLayerColor *color = [CCLayerColor layerWithColor:mg width:self.contentSize.width height:self.contentSize.height];

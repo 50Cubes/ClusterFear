@@ -130,9 +130,11 @@
     if( rotation != rotation_ )
     {
         float delta = fabsf(rotation - rotation_);
+        if( delta > 180.0f )
+            delta = 180.0f;
         //[self setRotation:rotation];
         //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
-        rtnAction = [CCRotateTo actionWithDuration:0.0045f * delta angle:rotation];
+        rtnAction = [CCRotateTo actionWithDuration:0.00175f * delta angle:rotation];
     }
     return rtnAction;
 }
@@ -156,7 +158,10 @@
     
     destination_ = targetPoint;
     
-    return [CCSequence actionOne:faceAction two:[CCMoveTo actionWithDuration:moveTime position:targetPoint]];
+    CCFiniteTimeAction *moveAction = [CCMoveTo actionWithDuration:moveTime position:targetPoint];
+    CCFiniteTimeAction *rtnAction = (faceAction == nil) ? moveAction : [CCSequence actionOne:faceAction two:moveAction];
+
+    return rtnAction;
 }
 
 -(void)moveToPoint:(CGPoint)targetPoint

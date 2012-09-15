@@ -27,6 +27,8 @@ static CCArray *_roster = nil;
 {
     [_pool addObject:splatter];
     [_roster removeObject:splatter];
+    
+    return YES;
 }
 
 +(SGSplatter *)pooledSplatter
@@ -37,6 +39,8 @@ static CCArray *_roster = nil;
     {
         fromPool = [_pool lastObject];
         [_pool removeLastObject];
+        
+        
     }
     else if( [_roster count] >= 128 )
     {
@@ -48,6 +52,10 @@ static CCArray *_roster = nil;
         
         [fromPool removeFromParentAndCleanup:NO];
     }
+    
+    if( fromPool != nil )
+        [_roster addObject:fromPool];
+    
     return fromPool;
 }
 

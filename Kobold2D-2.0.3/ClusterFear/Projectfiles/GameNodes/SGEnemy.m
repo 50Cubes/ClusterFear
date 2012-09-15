@@ -158,12 +158,17 @@
     
     [self stopAllActions];
     
-    CCFiniteTimeAction *defalteAction = [CCScaleTo actionWithDuration:0.327f scaleX:0.35f scaleY:0.78f];
+    CCFiniteTimeAction *defalteAction = [CCScaleTo actionWithDuration:0.427f scaleX:0.15f scaleY:0.38f];
     
     [self runAction:[CCSequence actionOne:defalteAction two:[CCCallFunc actionWithTarget:self selector:@selector(fadeAway)]]];
 }
 
 -(void)fadeAway
+{
+    [self runAction:[CCSequence actionOne:[CCFadeOut actionWithDuration:0.357f] two:[CCCallFunc actionWithTarget:self selector:@selector(die)]]];
+}
+
+-(void)reallyDie
 {
     [super die];
 }
