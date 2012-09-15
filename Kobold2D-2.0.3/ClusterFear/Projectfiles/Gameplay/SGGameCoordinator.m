@@ -290,13 +290,15 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     return [localPlayer position];
 }
 
--(void)foeCluster:(SGFoeCluster *)cluster hitByProjectile:(SGProjectile *)projectile
+-(void)foeCluster:(SGFoeCluster *)cluster minion:(SGEnemy *)enemy hitByProjectile:(SGProjectile *)projectile
 {
     SGSpray *splatter = [SGSpray sprayFromProjectile:projectile andIntensity:0.9f];
     
+//    [splatter setPosition:[sp]]
+    
     [_tileLayer addChild:splatter z:0];
     
-    if( CCRANDOM_0_1() > 0.9f )
+    if( CCRANDOM_0_1() > 0.8f )
     {
         SGCollectable *collectable = [SGCollectable collectable];
         
