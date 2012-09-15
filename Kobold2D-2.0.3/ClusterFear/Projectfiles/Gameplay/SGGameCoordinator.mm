@@ -23,6 +23,8 @@
 
 #import "SGObstacle.h"
 
+#import "SGSplatter.h"
+
 #import "SGBat.h"
 
 #define PTM_RATIO 32
@@ -138,7 +140,7 @@
 
 -(void)spawnEnemies
 {
-    if( _enemyCount < 100 )
+    if( _enemyCount < 4 )
     {
         _enemyCount++;
         
@@ -213,6 +215,8 @@
     [projectile fired];
 }
 
+
+
 #pragma mark - Local Player Delegates
 
 -(void)playerHasDied:(SGLocalPlayer *)player
@@ -237,6 +241,13 @@
 -(CGPoint)foeClusterRequestsPlayerLocation:(SGFoeCluster *)cluster
 {
     return [localPlayer position];
+}
+
+-(void)foeCluster:(SGFoeCluster *)cluster hitByProjectile:(SGProjectile *)projectile
+{
+    SGSplatter *splatter = [SGSplatter splatterFromProjectile:projectile andIntensity:0.8f];
+    
+    [[self tileLayer] addChild:splatter];
 }
 
 #pragma mark physics

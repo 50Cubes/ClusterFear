@@ -9,6 +9,8 @@
 #import "SGFoeCluster.h"
 #import "SGRandomization.h"
 
+#import "SGProjectile.h"
+
 #define EXPECTED_NUM_CLUSTER_TYPES 5
 static NSMutableDictionary *statDict=nil;
 
@@ -61,6 +63,8 @@ static NSMutableDictionary *statDict=nil;
     return newStats;
 }
 
+//@synthesize velocity = velocity_;
+
 -(id)init
 {
     SGFoeStats *myStats = [[self class] getStats];
@@ -76,6 +80,11 @@ static NSMutableDictionary *statDict=nil;
         self = nil;
 
     return self;
+}
+
+-(float)velocity
+{
+    return [[self class] getStats]->moveSpeed;
 }
 
 -(void)populate
@@ -109,22 +118,28 @@ static NSMutableDictionary *statDict=nil;
     return [[self children] count];
 }
 
--(BOOL)memberStruck:(SGEnemy *)member withWeapon:(SGWeapon *)weaponStriking{
-    uint damage = (uint) [weaponStriking damageInflicted];
-    if (_health <= damage) {
-        _health = 0;
-        [_owner foeClusterDestroyed:self];
-        return YES;
+-(BOOL)memberStruck:(SGEnemy *)member withProjectile:(SGProjectile *)projectile
+{
+    if( _health > 0 )
+    {
+        [_owner foeCluster:self hitByProjectile:projectile];
+        uint damage = (uint) [[projectile weapon] damageInflicted];
+        if (_health <= damage) {
+            _health = 0;
+            [_owner foeClusterDestroyed:self];
+            return YES;
+        }
+        // else
+        _health-=damage;
+        
+        [self checkForMinion:member];
     }
-    // else
-    _health-=damage;
-    [self checkForMinion:member];
     return NO;
 }
 
 -(void)memberDied:(SGEnemy *)member
 {
-    
+    [[self children] removeObject:member];
 }
 
 -(void)checkForMinion:(SGEnemy*)memberStruck{
@@ -194,10 +209,10 @@ static NSMutableDictionary *statDict=nil;
             self->damage = [KKConfig intForKey:@"Damage"];
             self->maxCritters = [KKConfig intForKey:@"MaxCritters"];
             self->maxHealth = [KKConfig intForKey:@"MaxHealth"];
-            self->moveSpeed = [KKConfig floatForKey:@"Damage"];
+            self->moveSpeed = [KKConfig floatForKey:@"MoveSpeed"];
         }
         else{
-            NSLog(@"SGFoeStats.getStatsByClassName: %@ not found by KKConfig.selectKeyPath.",self);
+            NSLog(@"SGFoeStats.getStatsByClassName: %@ not found by KKConfig.selectKeyPath.",keyPath);
 //            [self release];
             self = nil;
         }

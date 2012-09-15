@@ -15,7 +15,11 @@
 
 @class SGFoeCluster;
 
+@class SGProjectile;
+
 @protocol SGFoeClusterOwner <NSObject>
+
+-(void)foeCluster:(SGFoeCluster *)cluster hitByProjectile:(SGProjectile *)projectile;
 
 -(CGPoint)foeClusterRequestsPlayerLocation:(SGFoeCluster *)cluster;
 -(void)foeClusterDestroyed:(SGFoeCluster *)cluster;
@@ -23,11 +27,16 @@
 @end
 
 @interface SGFoeCluster : CCNode
+{
+//    float velocity_;
+}
 
 +(SGFoeStats *)getStats;
 +(SGFoeStats *)findStats;
 +(SGFoeCluster *)foeCluster;
 +(Class)minionClass;
+
+@property(nonatomic, readonly)float velocity;
 
 @property(nonatomic, readonly)NSUInteger minionLimit;
 @property(nonatomic, readonly)NSUInteger minionCount;
@@ -37,7 +46,7 @@
 
 @property(nonatomic, unsafe_unretained)NSObject <SGFoeClusterOwner> *owner;
 
--(BOOL)memberStruck:(SGEnemy *)member withWeapon:(SGWeapon *)weaponStriking;
+-(BOOL)memberStruck:(SGEnemy *)member withProjectile:(SGProjectile *)projectile;
 -(void)memberDied:(SGEnemy *)member;
 
 -(void)populate;

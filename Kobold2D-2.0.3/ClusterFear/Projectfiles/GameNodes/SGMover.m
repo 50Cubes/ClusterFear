@@ -13,6 +13,17 @@
 
 #import "SGSplatter.h"
 
+@implementation SGProjectile (SkeazePosition)
+
+-(void)hackForGameJam
+{
+    float radRot = CC_DEGREES_TO_RADIANS(self->rotation_);
+    self->position_.x += 12.0f * cosf(-radRot);
+    self->position_.y -= 1.0f * sinf(radRot);
+}
+
+@end
+
 @interface SGMover ()
 
 @end
@@ -24,6 +35,9 @@
     return 10.0f;
 }
 
+
+@synthesize velocity = velocity_;
+
 -(BOOL)isEnemy
 {
     return YES;
@@ -33,6 +47,8 @@
 {
     [projectile setPosition:position_];
     [projectile setRotation:rotation_];
+    
+    [projectile hackForGameJam];
     
     [[self owner] mover:self firedProjectile:projectile];
 }
@@ -62,17 +78,72 @@
 //    return (CGPoint){.x=xDirection, .y=yDirection};
 }
 
+-(CCFiniteTimeAction *)actionToFacePoint:(CGPoint)pointToFace
+{
+    float xDirection = pointToFace.x;
+    float yDirection = pointToFace.y;
+    
+    xDirection -= position_.x;
+    yDirection -= position_.y;
+    
+#ifdef DEBUG
+    if( isnan(xDirection) || isnan(yDirection) )
+        NSLog(@"Invalid position");
+#endif
+    
+    float magnitude = sqrtf(xDirection * xDirection + yDirection * yDirection);
+    
+    float normXDirection = xDirection / magnitude;
+    float normYDirection = yDirection / magnitude;
+    
+    return [self actionToFaceRelativePoint:(CGPoint){.x=normXDirection,.y=normYDirection}];
+}
+
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection
 {
-    float rotation = atan2f(normalizedRelativeDirection.y,-normalizedRelativeDirection.x);
+    CCFiniteTimeAction *rotateAction = [self actionToFaceRelativePoint:normalizedRelativeDirection];
+    if( rotateAction != nil )
+    {
+        //[self setRotation:rotation];
+        //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
+        [self runAction:rotateAction];
+    }
+}
+
+-(CCFiniteTimeAction *)actionToFaceRelativePoint:(CGPoint)normalizedVector
+{
+    float rotation = atan2f(normalizedVector.y,-normalizedVector.x);
     
     rotation = CC_RADIANS_TO_DEGREES(rotation);
+    
+    CCFiniteTimeAction *rtnAction = nil;
     if( rotation != rotation_ )
     {
         //[self setRotation:rotation];
         //        NSLog(@"Rotated to %f degress with x: %f y: %f", CC_RADIANS_TO_DEGREES(rotation), xDirection, yDirection);
-        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:rotation]];
+        rtnAction = [CCRotateTo actionWithDuration:0.2 angle:rotation];
     }
+    return rtnAction;
+}
+
+-(CCFiniteTimeAction *)moveToPointActions:(CGPoint)targetPoint
+{
+    CCFiniteTimeAction *faceAction = [self actionToFacePoint:targetPoint];
+    
+    ccTime moveTime = 1.0f;
+    
+    float mySpeed = [[self class] speed];
+    
+    
+    velocity_ = ccpDistance(position_, targetPoint) / moveTime;
+    
+    if( velocity_ > mySpeed )
+    {
+        moveTime *= (velocity_ / mySpeed);
+        velocity_ = mySpeed;
+    }
+    
+    return [CCSequence actionOne:faceAction two:[CCMoveTo actionWithDuration:moveTime position:targetPoint]];
 }
 
 -(void)moveToPoint:(CGPoint)targetPoint
@@ -117,24 +188,41 @@
     //yay i killed something
 }
 
+-(void)hitForDamage:(int)damage
+{
+    health_ -= damage;
+    
+    NSString *string = nil;
+    if(health_ <= 0){
+        [self die];
+        string = @"DEAD";
+    }else{
+        string = [NSString stringWithFormat:@"%d", health_];
+    }
+    
+    if( string != nil )
+        [healthLabel setString:string];
+}
+
 -(void)collideWithDestroyable:(SGDestroyable *)other{
     //return;
-    if([other respondsToSelector:@selector(weapon)]){
-        SGProjectile *p = (SGProjectile *)other;
-        if(![p spent]){
-            [self getHitFromWeapon:[p weapon]];
-        }
-    }else{
-        //return;
-
-        health_ -= [other damage];
-        
+    
+    if( health_ > 0 )
+    {
         [self stopAllActions];
         
-        if(health_ <= 0){
-            [self die];
+        if( [other isKindOfClass:[SGProjectile class]] )
+        {
+            [self getHitFromProjectile:(SGProjectile *)other];
+        }
+        if([other respondsToSelector:@selector(weapon)]){
+            SGProjectile *p = (SGProjectile *)other;
+            if(![p spent]){
+                [self getHitFromWeapon:[p weapon]];
+            }
         }else{
-            [healthLabel setString:[NSString stringWithFormat:@"%d", health_]];
+            //return;
+            [self hitForDamage:[other damage]];
         }
     }
 }

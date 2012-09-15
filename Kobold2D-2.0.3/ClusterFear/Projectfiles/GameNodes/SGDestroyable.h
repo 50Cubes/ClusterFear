@@ -10,6 +10,7 @@
 #import "chipmunk.h"
 
 @class SGWeapon;
+@class SGProjectile;
 
 @interface SGDestroyable : CCSprite
 {
@@ -26,6 +27,7 @@
 -(void)initializeHealth:(int)health;
 
 -(void)getHitFromWeapon:(SGWeapon *)weapon;
+-(void)getHitFromProjectile:(SGProjectile *)projectile;
 -(void)die;
 
 -(void)collideWithDestroyable:(SGDestroyable *)other;

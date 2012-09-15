@@ -47,6 +47,8 @@
         //        actionManager_ = [[CCActionManager alloc] init];
         //        speed_ = 50.0f;
         
+        velocity_ = 1.0f;
+        
         [self setOpacity:0];
         
         [self runAction:[CCFadeIn actionWithDuration:1.0f]];
@@ -67,9 +69,12 @@
 
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection
 {
-    CGPoint parentDirection = [[self cluster] forwardDirection];
+    SGFoeCluster *myCluster = [self cluster];
+    CGPoint parentDirection = [myCluster forwardDirection];
     
-    [super faceRelativePoint:ccpNormalize(ccpAdd(parentDirection, normalizedRelativeDirection))];
+    parentDirection = ccpNormalize(ccpAdd(ccpMult(parentDirection, [myCluster velocity]), ccpMult(normalizedRelativeDirection, velocity_)));
+    
+    [super faceRelativePoint:parentDirection];
 }
 
 -(CCFiniteTimeAction *)nextAction
@@ -81,14 +86,16 @@
     
     [self faceRelativePoint:moveDirection];
     
+    velocity_ = speed;
+    
     return [CCMoveTo actionWithDuration:1.25f position:moveDirection];
 }
 
--(void)getHitFromWeapon:(SGWeapon *)weapon
+-(void)getHitFromProjectile:(SGProjectile *)projectile
 {
-    [_cluster memberStruck:self withWeapon:weapon];
+    [super getHitFromProjectile:projectile];
     
-    [super getHitFromWeapon:weapon];
+    [_cluster memberStruck:self withProjectile:projectile];
 }
 
 -(void)die

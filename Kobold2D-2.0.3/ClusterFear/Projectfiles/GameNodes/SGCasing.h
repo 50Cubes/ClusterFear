@@ -17,6 +17,8 @@
 
 +(SGCasing *)casingForProjectile:(SGProjectile *)projectile;
 
++(float)maxRotation;
+
 @property(nonatomic, strong)SGProjectile *projectile;
 
 

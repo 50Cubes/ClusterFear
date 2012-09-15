@@ -25,9 +25,22 @@
     return 0.75f;
 }
 
++(float)maxRotation
+{
+    return 5280.0f;
+}
+
 +(SGCasing *)casingForProjectile:(SGProjectile *)projectile
 {
     SGCasing *rtnCasing = [self spriteWithFile:[self casingPath]];
+    
+    rtnCasing->position_ = [projectile position];
+    rtnCasing->rotation_ = [projectile rotation];
+    
+    float radRot = CC_DEGREES_TO_RADIANS(rtnCasing->rotation_);
+    rtnCasing->position_.x -= 2.0f * sinf(radRot);
+    rtnCasing->position_.x -= 1.0f * cosf(radRot);
+    
     [rtnCasing setProjectile:projectile];
     return rtnCasing;
 }
@@ -65,7 +78,7 @@
     
     float randSeed = (CCRANDOM_MINUS1_1());
     
-    ccTime flyTime = 0.21f + squareBounciness;
+    ccTime flyTime = 0.167f + squareBounciness;
     
     if( randSeed == 0.0f )
     {
@@ -81,8 +94,8 @@
     }
     
     
-    float bounceAngle = squareBounciness * 5280.0f * randSeed;
-    [self runAction:[CCRotateBy actionWithDuration:0.32f + squareBounciness angle:bounceAngle]];
+    float bounceAngle = squareBounciness * [[self class] maxRotation] * randSeed;
+    [self runAction:[CCRotateBy actionWithDuration:0.26f + squareBounciness angle:bounceAngle]];
     
     CGPoint casingDirection = [self findPrimaryDirection];
     
@@ -108,16 +121,16 @@
 
 -(void)bounce
 {
-    [self scheduleOnce:@selector(bounceAround) delay:0.01f];
+    [self scheduleOnce:@selector(bounceAround) delay:0.0167f];
 }
 
 -(void)onEnter
 {
     [super onEnter];
     
-    CCFiniteTimeAction *scaleUp = [CCEaseOut actionWithAction:[CCScaleBy actionWithDuration:0.09f scale:1.2f]];
+    CCFiniteTimeAction *scaleUp = [CCEaseOut actionWithAction:[CCScaleBy actionWithDuration:0.187f scale:1.4f]];
     
-    CCFiniteTimeAction *scaleDown = [CCEaseBounceIn actionWithAction:[CCScaleTo actionWithDuration:0.47f scale:[[self class] fadeScale]]];
+    CCFiniteTimeAction *scaleDown = [CCEaseBounceIn actionWithAction:[CCScaleTo actionWithDuration:0.24f scale:[[self class] fadeScale]]];
     
     
     [self runAction:[CCSequence actionOne:scaleUp two:scaleDown]];

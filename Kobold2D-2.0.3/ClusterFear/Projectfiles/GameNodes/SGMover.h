@@ -34,13 +34,22 @@
 @property(nonatomic, readonly)BOOL isEnemy;
 @property(nonatomic, unsafe_unretained)NSObject <SGMoverOwner> *owner;
 
+@property(nonatomic, readonly)float velocity;
+
 -(void)fireProjectile:(SGProjectile *)projectile;
 
 -(float)facePoint:(CGPoint)pointToFace;
+-(CCFiniteTimeAction *)actionToFacePoint:(CGPoint)normalizedVector;
+
+
 -(void)faceRelativePoint:(CGPoint)normalizedRelativeDirection;
+-(CCFiniteTimeAction *)actionToFaceRelativePoint:(CGPoint)normalizedVector;
+
+
+
+-(CCFiniteTimeAction *)moveToPointActions:(CGPoint)targetPoint;
 -(void)moveToPoint:(CGPoint)targetPoint;
 -(void)moveByAmount:(CGPoint)movementVector;
-
 
 -(void)didDestroy:(SGDestroyable *)destroyable;
 

@@ -23,6 +23,11 @@
     return 0.24f;
 }
 
++(float)maxRotation
+{
+    return 350.0f;
+}
+
 +(SGSplatter *)splatterFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity
 {
     SGSplatter *newSplat = (SGSplatter *)[self casingForProjectile:projectile];
@@ -31,6 +36,11 @@
     newSplat->bounciness_ = intensity;
     
     return newSplat;
+}
+
+-(float)ejectionIntensity
+{
+    return 25.0f;
 }
 
 -(CGPoint)findPrimaryDirection
@@ -48,6 +58,8 @@
     {
         [self unschedule:@selector(splatter)];
     }
+    else
+        bounciness_ *= bounciness_ * 0.8f;
 }
 
 -(void)onEnter
