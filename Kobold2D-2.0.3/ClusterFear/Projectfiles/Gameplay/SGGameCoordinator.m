@@ -40,6 +40,9 @@
     
     CCArray *_turrets;
     CCArray *_destroyedTurrets;
+    
+    CCSprite *turretExplosion;
+    CCAnimation *turretAnim;
 }
 
 
@@ -48,6 +51,9 @@
 
 //-(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
 -(void)spawnTurrets;
+-(void)setupTurretExplosion;
+-(void)turretExplosionAtPoint:(CGPoint)p;
+-(void)endExplosion;
 
 @end
 
@@ -83,7 +89,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         //[[SimpleAudioEngine sharedEngine] preloadEffect:@"Bullet-ImpactWithBloodSplatter.mp3"];
 
         TileMapLayer *tileMapLayer = [TileMapLayer node];
-    
+        [self setupTurretExplosion];
         
         [tileMapLayer setDelegate:self];
         [self setTileLayer:tileMapLayer];
@@ -627,11 +633,46 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
 
 -(void)getDestroyed:(SGTurret *)turret{
     [[SimpleAudioEngine sharedEngine] playEffect:@"boom.aif"];
+    [self turretExplosionAtPoint:turret.position];
     [_destroyedTurrets addObject:turret];
     [_turrets removeObject:turret];
     if([_turrets count] <= 0){
         [self performSelector:@selector(spawnTurrets) withObject:nil afterDelay:4.0];
     }
 }
+
+-(void)turretExplosionAtPoint:(CGPoint)p{
+    //turretExplosion = [CCSprite spriteWithSpriteFrame:[[turretAnim frames] objectAtIndex:0]];
+    turretExplosion = [CCSprite spriteWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ex0"]];
+
+    turretExplosion.position = p;
+    CCAction *a = [CCSequence actionOne:[CCAnimate actionWithAnimation:turretAnim] two:[CCCallFunc actionWithTarget:self selector:@selector(endExplosion)]];
+
+    [_tileLayer addChild:turretExplosion];
+    [turretExplosion runAction:a];
+}
+
+-(void)setupTurretExplosion{
+    //CCTexture2D *texture = [[CCTexture2D alloc] initWithCGImage:[UIImage imageNamed:@"blast.png"].CGImage resolutionType:kCCResolutioniPad];
+    NSMutableArray *frames = [NSMutableArray new];
+    for(int i = 0; i < 26; i++){
+        //CCSpriteFrame *f = [CCSpriteFrame frameWithTexture:texture rect:CGRectMake(i*182, 0, 182, 166)];
+        CCSpriteFrame *f = [CCSpriteFrame frameWithTextureFilename:[NSString stringWithFormat:@"blast%d.png", i] rect:CGRectMake(0, 0, 182, 166)];
+        /*
+        if(i == 0){
+            turretExplosion = [CCSprite spriteWithSpriteFrame:f];
+        }//*/
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:f name:[NSString stringWithFormat:@"ex%d", i]];
+        [frames addObject:f];
+    }
+    
+    turretAnim = [CCAnimation animationWithSpriteFrames:frames delay:0.1];
+}
+
+-(void)endExplosion{
+    [turretExplosion stopAllActions];
+    [turretExplosion removeFromParentAndCleanup:YES];
+}
+
 
 @end
