@@ -163,6 +163,24 @@ static NSMutableDictionary *statDict=nil;
     return [[self children] count];
 }
 
+-(void)clearMinions
+{
+    CCArray *minions = [CCArray arrayWithArray:[self minions]];
+    for( SGEnemy *minion in minions )
+        [self memberDied:minion];
+}
+
+-(void)die
+{
+    _health = 0;
+    
+    [self clearMinions];
+    
+    [_owner foeClusterDestroyed:self];
+    
+    [self removeFromParentAndCleanup:YES];
+}
+
 -(BOOL)memberStruck:(SGEnemy *)member withProjectile:(SGProjectile *)projectile
 {
     if( _health > 0 )
@@ -171,8 +189,8 @@ static NSMutableDictionary *statDict=nil;
         uint damage = (uint) [[projectile weapon] damageInflicted];
         if (_health <= damage)
         {
-            _health = 0;
-            [_owner foeClusterDestroyed:self];
+            [self clearMinions];
+            [self scheduleOnce:@selector(die) delay:1.5f];
             return YES;
         }
         // else
@@ -185,7 +203,15 @@ static NSMutableDictionary *statDict=nil;
 
 -(void)memberDied:(SGEnemy *)member
 {
+    if( ![member isDead] )
+        [member scheduleOnce:@selector(die) delay:0.1f];
+        
     [_minions removeObject:member];
+    
+    if( [self minionCount] == 0 )
+    {
+        [self scheduleOnce:@selector(die) delay:1.5f];
+    }
 }
 
 -(void)checkForMinion:(SGEnemy*)memberStruck{
@@ -209,9 +235,7 @@ static NSMutableDictionary *statDict=nil;
 
 -(void)crawl
 {
-    return;
     CCSequence *sequencedAction = [CCSequence actionOne:[self nextAction] two:[CCCallFunc actionWithTarget:self selector:@selector(crawl)]];
-    
     
     [self notifyMinionsOfPathChange];
     

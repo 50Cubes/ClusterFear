@@ -34,6 +34,8 @@
 
 @property(nonatomic, readonly)int damage;
 
+@property(nonatomic, readonly)float radius;
+
 //@property(nonatomic, readonly)CGRect physicsBounds;
 
 -(void)projectileDidHitTarget:(SGDestroyable *)target;

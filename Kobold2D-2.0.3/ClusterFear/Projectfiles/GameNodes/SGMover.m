@@ -35,6 +35,10 @@
     return 10.0f;
 }
 
+-(float)radius
+{
+    return 16.0f;
+}
 
 //@synthesize velocity = velocity_;
 @synthesize currentSpeed = currentSpeed_;

@@ -49,6 +49,11 @@
     return aProj;
 }
 
+-(float)radius
+{
+    return 8.0f;
+}
+
 -(void)onEnter
 {
     [super onEnter];

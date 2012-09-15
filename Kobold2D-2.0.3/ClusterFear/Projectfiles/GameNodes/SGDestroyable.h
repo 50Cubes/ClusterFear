@@ -19,6 +19,8 @@
 
 @property(nonatomic, readonly) int damage;
 
+@property(nonatomic, readonly)BOOL isDead;
+
 +(NSString *)imagePath;
 +(int)startingHealth;
 +(int)damageCapability;

@@ -11,12 +11,15 @@
 @class SGFoeCluster;
 
 typedef enum {
-    SGEnemyTier_Grunt = 0,
-    SGEnemyTier_Elite = 1,
-    SGEnemyTier_Boss = 2
+    SGEnemyTier_Grunt = 4,
+    SGEnemyTier_Elite = 5,
+    SGEnemyTier_Boss = 6
 } SGEnemyTier;
 
 @interface SGEnemy : SGMover
+{
+    SGEnemyTier tier;
+}
 
 +(SGEnemy *)enemyWithStrength:(float)strength;
 
