@@ -9,6 +9,8 @@
 #import "SGLocalPlayer.h"
 #import "SGWeapon.h"
 
+#import "SGFoeCluster.h"
+
 @interface SGLocalPlayer ()
 
 -(void)initializeWeapon:(SGWeapon *)newWeapon;
@@ -16,6 +18,14 @@
 @end
 
 @implementation SGLocalPlayer
+
+static SGFoeStats *playerStats = nil;
+
++(void)initialize
+{
+    
+}
+
 
 +(id)playerWithFile:(NSString *)file health:(int)startingHealth andWeapon:(SGWeapon *)weapon{
     SGLocalPlayer *p = [self moverWithFile:file andHealth:startingHealth];

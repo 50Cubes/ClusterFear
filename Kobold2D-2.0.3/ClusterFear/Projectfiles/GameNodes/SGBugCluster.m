@@ -11,20 +11,17 @@
 
 SGFoeStats * bugStats=nil;
 
-@interface SGBugCluster (){
-    uint health;
-}
-@end
-
 @implementation SGBugCluster
 
-+(SGFoeStats*)getStats
++(void)initialize
 {
-    if (nil==bugStats) {
-        bugStats=[self findStats];
-    }
+    bugStats = [self findStats];
+}
++(SGFoeStats *)getStats
+{
     return bugStats;
 }
+
 +(Class)minionClass
 {
     return [SGBug class];

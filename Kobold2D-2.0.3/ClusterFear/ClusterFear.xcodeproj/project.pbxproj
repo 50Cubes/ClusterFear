@@ -42,6 +42,7 @@
 		C117135D1603DC8000208448 /* SGDestroyable.m in Sources */ = {isa = PBXBuildFile; fileRef = C117135C1603DC8000208448 /* SGDestroyable.m */; };
 		C117136E1603EED800208448 /* SGCasing.m in Sources */ = {isa = PBXBuildFile; fileRef = C117136D1603EED700208448 /* SGCasing.m */; };
 		C1171379160409C300208448 /* CCSprite+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = C1171378160409C200208448 /* CCSprite+Convenience.m */; };
+		C18091BE16044E6C00E43876 /* SGSplatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C18091BD16044E6C00E43876 /* SGSplatter.m */; };
 		C18411D01602D906007F06A6 /* SGFoeCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = C18411CF1602D906007F06A6 /* SGFoeCluster.m */; };
 		DC3C6FB514B8A9BA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FB414B8A9BA00DAD281 /* fps_images-hd.png */; };
 		DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615013A969B600A7AC53 /* libbox2d-ios.a */; };
@@ -131,6 +132,8 @@
 		C1171377160409C200208448 /* CCSprite+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCSprite+Convenience.h"; path = "Utils/CCSprite+Convenience.h"; sourceTree = "<group>"; };
 		C1171378160409C200208448 /* CCSprite+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCSprite+Convenience.m"; path = "Utils/CCSprite+Convenience.m"; sourceTree = "<group>"; };
 		C117137B160412F100208448 /* MFDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDebug.h; sourceTree = "<group>"; };
+		C18091BC16044E6C00E43876 /* SGSplatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSplatter.h; path = GameNodes/SGSplatter.h; sourceTree = "<group>"; };
+		C18091BD16044E6C00E43876 /* SGSplatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGSplatter.m; path = GameNodes/SGSplatter.m; sourceTree = "<group>"; };
 		C18411CE1602D906007F06A6 /* SGFoeCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFoeCluster.h; sourceTree = "<group>"; };
 		C18411CF1602D906007F06A6 /* SGFoeCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFoeCluster.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 				4C5CDB561603E492005E91DF /* SGLocustCluster.m */,
 				C117136C1603EED700208448 /* SGCasing.h */,
 				C117136D1603EED700208448 /* SGCasing.m */,
+				C18091BC16044E6C00E43876 /* SGSplatter.h */,
+				C18091BD16044E6C00E43876 /* SGSplatter.m */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -554,6 +559,7 @@
 				C117136E1603EED800208448 /* SGCasing.m in Sources */,
 				DFD528DA1603F558001D09D3 /* MyContactListener.mm in Sources */,
 				C1171379160409C300208448 /* CCSprite+Convenience.m in Sources */,
+				C18091BE16044E6C00E43876 /* SGSplatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

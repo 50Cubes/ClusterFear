@@ -11,19 +11,15 @@
 
 SGFoeStats * batStats=nil;
 
-@interface SGBatCluster (){
-    uint health;
-}
-@end
-
 @implementation SGBatCluster
 
 
++(void)initialize
+{
+    batStats = [self findStats];
+}
 +(SGFoeStats*) getStats
 {
-    if (nil==batStats) {
-        batStats=[self findStats];
-    }
     return batStats;
 }
 

@@ -68,7 +68,8 @@
 
         [self spawnPlayer];
         
-        [tileMapLayer runAction:[CCFollow actionWithTarget:localPlayer]];
+//        [self runAction:[CCFollow actionWithTarget:localPlayer]];
+        
 //        localPlayer = [SGLocalPlayer playerWithFile:@"soldier.png" health:100 andWeapon:[[SGWeapon alloc] init]];
 //        [localPlayer setOwner:self];
 //        
@@ -178,7 +179,7 @@
 
 -(void)touchAtPoint:(CGPoint)touchPoint inTile:(CGPoint)tilePos
 {
-    if( NO && [runActivator isPressed]){
+    if( YES || [runActivator isPressed]){
         [localPlayer moveToPoint:touchPoint];
     }
     else
