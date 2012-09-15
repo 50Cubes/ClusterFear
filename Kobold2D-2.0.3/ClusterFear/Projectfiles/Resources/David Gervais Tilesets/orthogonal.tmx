@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="34" height="24" tilewidth="30" tileheight="32">
- <tileset firstgid="1" name="dg_grounds32" tilewidth="30" tileheight="32">
-  <image source="dg_grounds32.png" width="288" height="608"/>
+<map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="30" tileheight="32">
+ <tileset firstgid="1" name="JM_tileSet" tilewidth="64" tileheight="64">
+  <image source="tileSet.png" width="256" height="64"/>
  </tileset>
- <tileset firstgid="172" name="game-events" tilewidth="30" tileheight="32">
-  <image source="game-events.png" width="96" height="32"/>
-  <tile id="0">
-   <properties>
-    <property name="isCloseToWater" value="1"/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="isWater" value="1"/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="isDesert" value="1"/>
-   </properties>
-  </tile>
- </tileset>
- <tileset firstgid="175" name="JM_tileSet" tilewidth="64" tileheight="64">
-  <image source="../tileSet.png" width="256" height="64"/>
- </tileset>
- <layer name="Tile Layer 2" width="34" height="24">
+ <layer name="Tile Layer 1" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztlDEOQCEIQ73/Zfx6wj+5NDFQIdoYu3QhhL4ApWjoS/IKbtV3cBWxOVm3OKjxwLmi+YfPcqvzwPl35VfncWovWB7VLgnJe/fsP/FyGH1VxP7DrH3BvirKvpdVLio6xUGVR3P64+HzKIfbeMy4sDx+2nCNGg==
+   eJxjZmBgYB7Fo3gUj+JRTBZmwcEeKDcMhN0gwAjFA+GGgbJ3FI/iUTyKhyoGAAgqCPw=
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="32" height="24"/>
 </map>
