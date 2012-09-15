@@ -17,6 +17,8 @@
     int health_;
 }
 
++(int)damageCapability;
+
 @property(nonatomic, readonly) int damage;
 
 @property(nonatomic, readonly)BOOL isDead;

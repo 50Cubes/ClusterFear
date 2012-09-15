@@ -67,6 +67,12 @@
     return [[CCTextureCache sharedTextureCache] addImage:[self imagePath]];
 }
 
+-(int)damage
+{
+    SGFoeStats *stats = [[self cluster] stats];
+    return (stats != nil) ? stats->damage : [super damage];
+}
+
 
 -(id)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated
 {

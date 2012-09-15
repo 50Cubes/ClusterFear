@@ -78,7 +78,6 @@ static NSMutableDictionary *statDict=nil;
         {
             destination_ = CGPointZero;
             
-            _minions = [CCArray arrayWithCapacity:[self minionLimit]];
             _health = myStats->maxCritters * myStats->maxHealth;
             [self populate];
         }
@@ -87,6 +86,11 @@ static NSMutableDictionary *statDict=nil;
         self = nil;
 
     return self;
+}
+
+-(SGFoeStats *)stats
+{
+    return [[self class] getStats];
 }
 
 -(float)radius
@@ -117,7 +121,8 @@ static NSMutableDictionary *statDict=nil;
     NSUInteger numMinions = [self minionCount];
     NSUInteger limit = [self minionLimit];
     
-    unschedule = numMinions > limit;
+    unschedule = numMinions > limit || [self dead];
+    
     if( !unschedule )
     {
         
@@ -135,9 +140,10 @@ static NSMutableDictionary *statDict=nil;
                 minion = [minionClass enemyWithStrength:CCRANDOM_0_1()];
                 [minion setCluster:self];
             }
-            
+            if( _minions == nil )
+                _minions = [CCArray arrayWithCapacity:[self minionLimit]];
             [_minions addObject:minion];
-            [self addChild:minion];
+            [self addChild:minion z:1];
         }
     }
     
@@ -160,7 +166,7 @@ static NSMutableDictionary *statDict=nil;
     return [[self class] getStats]->maxCritters;
 }
 -(NSUInteger) minionCount{
-    return [[self children] count];
+    return [_minions count];
 }
 
 -(void)clearMinions
@@ -181,24 +187,35 @@ static NSMutableDictionary *statDict=nil;
     [self removeFromParentAndCleanup:YES];
 }
 
+-(BOOL)dead
+{
+    CCLOG(@"Health == %u, minionCount = %u", _health, [self minionCount]);
+    return _health <= 0 || (_minions != nil && [self minionCount] == 0);
+}
+
 -(BOOL)memberStruck:(SGEnemy *)member withProjectile:(SGProjectile *)projectile
 {
+    BOOL dead = NO;
     if( _health > 0 )
     {
         [_owner foeCluster:self hitByProjectile:projectile];
         uint damage = (uint) [[projectile weapon] damageInflicted];
-        if (_health <= damage)
-        {
-            [self clearMinions];
-            [self scheduleOnce:@selector(die) delay:1.5f];
-            return YES;
-        }
         // else
         _health-=damage;
         
-        [self checkForMinion:member];
+        dead = [self dead];
+        
+        if( dead )
+        {
+            [self clearMinions];
+            [self scheduleOnce:@selector(die) delay:1.5f];
+        }
+        else
+            [self checkForMinion:member];
+        
+        return dead;
     }
-    return NO;
+    return dead;
 }
 
 -(void)memberDied:(SGEnemy *)member
@@ -208,11 +225,12 @@ static NSMutableDictionary *statDict=nil;
         
     [_minions removeObject:member];
     
-    if( [self minionCount] == 0 )
+    if( [self dead] )
     {
         [self scheduleOnce:@selector(die) delay:1.5f];
     }
 }
+
 
 -(void)checkForMinion:(SGEnemy*)memberStruck{
 //    SGFoeStats *myStats = [[self class] getStats];

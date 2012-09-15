@@ -45,17 +45,21 @@
 @property(nonatomic, readonly)NSUInteger minionLimit;
 @property(nonatomic, readonly)NSUInteger minionCount;
 
-@property(nonatomic, readonly)NSUInteger health;
+@property(nonatomic, readonly)int health;
 @property(nonatomic, readonly)NSUInteger damage;
 
 @property(nonatomic, readonly)CGPoint velocity;
 
 @property(nonatomic, readonly)float radius;
 
+@property(nonatomic, readonly)BOOL dead;
+
 //In local coordinate system, add to position for global
 @property(nonatomic, readonly)CGPoint destination;
 
 @property(nonatomic, unsafe_unretained)NSObject <SGFoeClusterOwner> *owner;
+
+@property(nonatomic, readonly)SGFoeStats *stats;
 
 -(BOOL)memberStruck:(SGEnemy *)member withProjectile:(SGProjectile *)projectile;
 -(void)memberDied:(SGEnemy *)member;

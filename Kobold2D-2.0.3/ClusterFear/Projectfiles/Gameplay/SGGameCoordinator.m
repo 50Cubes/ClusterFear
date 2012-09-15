@@ -343,18 +343,17 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
         clusterBounds.size.width = radius;
         clusterBounds.size.height = radius;
         
-        CGPoint clusterOffset = clusterBounds.origin;
-        
-        if( ccpDistance(clusterOffset, playeCenter) < kPhysicsCollisionThreashold + playerRadius )
+        if( ccpDistance(clusterCenter, playeCenter) < kPhysicsCollisionThreashold + playerRadius )
         {
-            //            [localPlayer getHit
-//            for( SGEnemy *minion in [cluster minions] )
-//            {
-//                if( SGEnemyCheckCollisionWithPoint )
-//                {
-//                    DoClusterCollision(localPlayer, cluster);
-//                }
-//            }
+            DoClusterCollision(localPlayer, cluster);
+            
+            for( SGEnemy *minion in [cluster minions] )
+            {
+                if( SGEnemyCheckCollisionWithPoint( minion, clusterCenter, playeCenter, kPhysicsCollisionThreashold + playerRadius ) )
+                {
+                    DoDestroyableCollision(localPlayer, minion);
+                }
+            }
         }
         
         for( SGProjectile *bullet in projectiles )
@@ -362,7 +361,7 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
             CGPoint bulletCenter = [bullet boundingBoxCenter];
             
             float bulletRadius = [bullet radius];
-            if(  ccpDistance(bulletCenter, clusterOffset) < (kPhysicsCollisionThreashold + radius + bulletRadius) ) //TestPoints(clusterBounds, bulletBounds))
+            if(  ccpDistance(bulletCenter, clusterCenter) < (kPhysicsCollisionThreashold + radius + bulletRadius) ) //TestPoints(clusterBounds, bulletBounds))
             {
                 for( SGEnemy *enemy in [cluster minions] )
                 {
