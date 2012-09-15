@@ -6,13 +6,29 @@
 //
 //
 
-#import "SGDestroyable.h"
+#import "SGMover.h"
+#import "SGWeapon.h"
 
-@interface SGTurret : SGDestroyable
+@class SGTurret;
+
+@protocol SGTurretOwner <NSObject>
+
+-(CGPoint)directionForClosestEnemy:(SGTurret *)turret;
+
+@end
+
+@interface SGTurret : SGMover
 {
+    SGWeapon *weapon;
     int ammo_;
 }
 
 @property (nonatomic, readonly)int ammo;
+@property(nonatomic, unsafe_unretained)NSObject <SGTurretOwner, SGMoverOwner> *owner;
 
+
++(id)turretWithAmmo:(int)ammo;
+
+-(void)addToParent:(CCNode *)parent atPosition:(CGPoint)position;
+-(void)activate;
 @end

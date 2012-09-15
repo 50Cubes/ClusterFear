@@ -37,6 +37,8 @@
     
     CCArray *_enemyTypes;
     CCArray *_clusters;
+    
+    CCArray *_turrets;
 }
 
 
@@ -45,6 +47,7 @@
 
 //-(void)addPhysicalBodyToSprite:(CCSprite *)sprite;
 -(void)replay;
+-(void)spawnTurrets;
 
 @end
 
@@ -114,6 +117,9 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         replay.position = CGPointMake(0, 700);
         
         [self generateRandomObstacles];
+        
+        [self spawnTurrets];
+        
         [self schedule:@selector(spawnEnemies) interval:1.0f];
 //        [self schedule:@selector(physicsTick:)];
         [self scheduleUpdateWithPriority:1];
@@ -129,6 +135,8 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     localPlayer.position = CGPointMake(_tileLayer.contentSize.width/2, _tileLayer.contentSize.height/2);
     [_tileLayer addChild:localPlayer z:1];
 }
+
+
 
 -(void)onEnter
 {
@@ -519,10 +527,35 @@ static inline void DoPhysics(ccTime dT, SGLocalPlayer *localPlayer, CCArray *clu
     spriteBody->CreateFixture(&spriteShapeDef);
 }//*/
 
-#pragma mark - new game
+#pragma mark - turet
 
--(void)replay{
+-(void)spawnTurrets{
+    CGPoint points[] = {CGPointMake(200, 200), CGPointMake(200, 900), CGPointMake(900, 200), CGPointMake(900, 900)};
+    for(int i = 0; i < 4; i++){
+        SGTurret *t = [SGTurret turretWithAmmo:1000];
+        t.owner = self;
+        [t addToParent:self atPosition:points[i]];
+        [t activate];
+    }
+}
+
+-(CGPoint)directionForClosestEnemy:(SGTurret *)turret{
+    CGPoint p = turret.position;
+    float minDistance = (float)INT32_MAX;
+    SGFoeCluster *target = nil;
+    for(SGFoeCluster *f in _clusters){
+        float dist = ccpDistance(p, f.position);
+        if(dist < minDistance){
+            minDistance = dist;
+            target = f;
+        }
+    }
     
+    if(target){
+        return target.position;
+    }
+    
+    return CGPointZero;
 }
 
 @end
