@@ -180,6 +180,11 @@
 
 #pragma mark - Local Player Delegates
 
+-(void)playerHasDied:(SGLocalPlayer *)player
+{
+    
+}
+
 -(void)playerMovedToPoint:(CGPoint)newPoint
 {
 //    [[self tileLayer] set]
