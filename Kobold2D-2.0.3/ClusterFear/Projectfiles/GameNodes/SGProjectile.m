@@ -17,6 +17,7 @@
 @implementation SGProjectile
 
 @synthesize spent;
+@synthesize damage = damage_;
 
 +(float)range
 {
@@ -48,6 +49,13 @@
     return aProj;
 }
 
+-(void)onEnter
+{
+    [super onEnter];
+    
+    damage_ = [[self weapon] damageInflicted];
+}
+
 -(void)fired
 {
     float myRange = [[self class] range];
@@ -65,8 +73,8 @@
 {
     SGCasing *casing = [SGCasing casingForProjectile:self];
     
-    [casing setPosition:position_];
-    [casing setRotation:rotation_];
+//    [casing setPosition:position_];
+//    [casing setRotation:rotation_];
     
     return casing;
 }
@@ -79,13 +87,16 @@
 
 -(void)projectileDidHitTarget:(SGDestroyable *)target
 {
-    if( target != nil )
+    if( damage_ > 0 )
     {
-        spent = YES;
+        damage_ -= [self damage];
+        
+        if( damage_ <= 0 )
+        {
+            [[SGGameCoordinator sharedCoordinator] removeProjectile:self];
+            [self removeFromParentAndCleanup:YES];
+        }
     }
-    
-    [[SGGameCoordinator sharedCoordinator] removeProjectile:self];
-    [self removeFromParentAndCleanup:YES];
 }
 
 @end

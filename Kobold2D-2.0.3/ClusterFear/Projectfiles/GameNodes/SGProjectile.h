@@ -20,6 +20,9 @@
 @end
 
 @interface SGProjectile : CCSprite
+{
+    int damage_;
+}
 
 +(float)speed;
 
@@ -28,6 +31,8 @@
 
 @property(nonatomic, strong)SGWeapon *weapon;
 @property(nonatomic, readonly) BOOL spent;
+
+@property(nonatomic, readonly)int damage;
 
 //@property(nonatomic, readonly)CGRect physicsBounds;
 

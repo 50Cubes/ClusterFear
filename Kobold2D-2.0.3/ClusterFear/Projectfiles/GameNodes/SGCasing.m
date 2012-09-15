@@ -11,13 +11,18 @@
 
 #import "CCSprite+Convenience.h"
 
-#define kSGCasingMinimumBounceCoefficient 0.1f
+#define kSGCasingMinimumBounceCoefficient 0.15f
 
 @implementation SGCasing
 
 +(NSString *)casingPath
 {
     return @"bullet.png";
+}
+
++(float)bounceThreshold
+{
+    return kSGCasingMinimumBounceCoefficient;
 }
 
 +(float)fadeScale
@@ -39,7 +44,7 @@
     
     float radRot = CC_DEGREES_TO_RADIANS(rtnCasing->rotation_);
     rtnCasing->position_.x -= 2.0f * sinf(radRot);
-    rtnCasing->position_.x -= 1.0f * cosf(radRot);
+    rtnCasing->position_.y -= 1.0f * cosf(radRot);
     
     [rtnCasing setProjectile:projectile];
     return rtnCasing;

@@ -144,7 +144,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
         [newObstacle setPosition:SGRandomScreenPoint()];
         
         //[self addPhysicalBodyToSprite:newObstacle];
-        [[self tileLayer] addChild:newObstacle];
+        [[self tileLayer] addChild:newObstacle z:1 tag:0];
     }
 }
 
@@ -179,7 +179,7 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     
     [_clusters addObject:newCluster];
     
-    [[self tileLayer] addChild:newCluster];
+    [[self tileLayer] addChild:newCluster z:2 tag:0];
 }
 
 -(void)addMover:(SGMover *)newMover
@@ -218,12 +218,12 @@ static SGGameCoordinator *_sharedCoordinator = nil;
     
     if( casing != nil )
     {
-        [[self tileLayer] addChild:casing];
+        [[self tileLayer] addChild:casing z:0 tag:0];
     }
     
     //[self addPhysicalBodyToSprite:projectile];
     [_projectileList addObject:projectile];
-    [[self tileLayer] addChild:projectile];
+    [[self tileLayer] addChild:projectile z:2 tag:0];
     [projectile fired];
 }
 
@@ -299,7 +299,7 @@ static inline BOOL TestPoints(CGRect bounds, CGPoint *points)
 
 static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles )
 {
-    BOOL hasDebug = NO;
+//    BOOL hasDebug = NO;
     for( SGFoeCluster *cluster in clusters )
     {
         CGPoint clusterCenter = [cluster boundingBoxCenter];
@@ -317,7 +317,7 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
         clusterOffset.y += clusterBounds.size.height * 0.5f;
         for( SGProjectile *bullet in projectiles )
         {
-            CGRect bulletBounds = [bullet boundingBox];
+//            CGRect bulletBounds = [bullet boundingBox];
             CGPoint bulletCenter = [bullet boundingBoxCenter];
             
 //            float leftEdge = CGRectGetMinX(bulletBounds);
@@ -355,10 +355,10 @@ static inline void DoPhysics(ccTime dT, CCArray *clusters, CCArray *projectiles 
                    }
                 }
             }
-            else if( !hasDebug )
-            {
-                NSLog(@"Cluster %@ Bullet %@", NSStringFromCGRect(clusterBounds), NSStringFromCGRect(bulletBounds));
-            }
+//            else if( !hasDebug )
+//            {
+//                NSLog(@"Cluster %@ Bullet %@", NSStringFromCGRect(clusterBounds), NSStringFromCGRect(bulletBounds));
+//            }
         }
     }
 }

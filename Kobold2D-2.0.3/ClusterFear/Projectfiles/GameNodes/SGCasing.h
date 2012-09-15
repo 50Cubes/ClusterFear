@@ -19,6 +19,8 @@
 
 +(float)maxRotation;
 
++(float)bounceThreshold;
+
 @property(nonatomic, strong)SGProjectile *projectile;
 
 

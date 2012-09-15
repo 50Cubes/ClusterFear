@@ -52,7 +52,11 @@
 
 -(void)getHitFromProjectile:(SGProjectile *)projectile
 {
-    [self getHitFromWeapon:[projectile weapon]];
+    health_ -= [projectile damage];
+    if(health_ <= 0){
+        [[projectile weapon] didDestroy:self];
+        [self die];
+    }
 }
 
 

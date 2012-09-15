@@ -9,7 +9,7 @@
 #import "SGSpray.h"
 #import "SGSplatter.h"
 
-#define kSGSprayThreshold 0.4f
+#define kSGSprayThreshold 0.2f
 #define kSGSprayDelay 0.07f
 
 @implementation SGSpray
@@ -25,6 +25,11 @@
     
     return [NSString stringWithFormat:@"%ublood%u.png", size, seed < 0.0f ? 1 : 2];
 //    return CCRANDOM_MINUS1_1() >= 0.0f ? @"blood_splatter1_medium.png" : @"blood_splatter2_medium.png";
+}
+
++(float)bounceThreshold
+{
+    return 0.4f;
 }
 
 +(float)fadeScale
@@ -47,6 +52,11 @@
     return newSplat;
 }
 
+-(CCTexture2D *)splatterTexture
+{
+    return [self texture];
+}
+
 -(float)ejectionIntensity
 {
     return 0.01f;
@@ -59,41 +69,53 @@
 
 -(void)splatter
 {
-    SGSpray *splatter = [[self class] sprayFromProjectile:[self projectile] andIntensity:bounciness_ * 0.25f];
+    SGSplatter *splatter = [SGSplatter splatterFromSpray:self];
     
     [splatter setPosition:position_];
     [splatter setRotation:rotation_];
     
-    [[self parent] addChild:splatter];
+    [[self parent] addChild:splatter z:1 tag:0];
     
     if( bounciness_ <= kSGSprayThreshold )
     {
-        [[self parent] addChild:[SGSplatter splatterFromSpray:self]];
-        
         [self unschedule:@selector(splatter)];
     }
     else
+    {
+        SGSpray *newSpray = [SGSpray sprayFromProjectile:[self projectile] andIntensity:bounciness_ * 0.6f];
+        
+        float seed = CCRANDOM_MINUS1_1();
+        if( seed >= 0.0f )
+            newSpray->rotation_ += 180.0f;
+        
+        seed = CCRANDOM_MINUS1_1();
+        
+        newSpray->rotation_ += seed * 25.0f;
+        
+        [[self parent] addChild:newSpray];
+        
         bounciness_ *= bounciness_ * 0.8f;
+    }
 }
 
 -(CCFiniteTimeAction *)ejectionAction
 {
-    [self runAction:[CCScaleBy actionWithDuration:0.47f scale:1.3f]];
-    return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.237f] two:[CCFadeOut actionWithDuration:0.327f]];
+    [self runAction:[CCScaleBy actionWithDuration:0.247f scale:1.5f * bounciness_]];
+    [self runAction:[CCMoveBy actionWithDuration:0.327 position:ccpMult([self forwardDirection], 100.0f * bounciness_)]];
+    return [CCSequence actionOne:[CCFadeIn actionWithDuration:0.137f] two:[CCFadeOut actionWithDuration:0.227f]];
 }
 
 -(void)onEnter
 {
+    [self setOpacity:0];
+    
     [super onEnter];
     
     [self schedule:@selector(splatter) interval:0.017f repeat:kCCRepeatForever delay:0.07f];
-    
-    [self runAction:[CCFadeOut actionWithDuration:1.27f]];
 }
 
      
 -(void)bounceAround
 {
-    [self setOpacity:0];
 }
 @end

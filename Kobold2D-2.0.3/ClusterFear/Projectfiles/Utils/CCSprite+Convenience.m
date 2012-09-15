@@ -16,7 +16,7 @@
 }
 
 -(CGPoint)backwardDirection{
-    return ccpForAngle(CC_DEGREES_TO_RADIANS(rotation_) + 180);
+    return ccpForAngle(CC_DEGREES_TO_RADIANS(rotation_) + 180.0f);
 }
 
 -(CGRect)boundingBoxInWorldSpace{

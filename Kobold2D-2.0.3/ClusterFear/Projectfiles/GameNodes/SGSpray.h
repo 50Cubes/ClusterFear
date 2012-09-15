@@ -14,4 +14,6 @@
 
 +(SGSpray *)sprayFromProjectile:(SGProjectile *)projectile andIntensity:(float)intensity;
 
+@property (nonatomic, readonly)CCTexture2D *splatterTexture;
+
 @end
