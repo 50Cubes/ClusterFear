@@ -24,9 +24,17 @@
  <tileset firstgid="175" name="JM_tileSet" tilewidth="64" tileheight="64">
   <image source="tileSet.png" width="256" height="64"/>
  </tileset>
+ <tileset firstgid="179" name="JM_tileSet2" tilewidth="64" tileheight="64">
+  <image source="tileSet2.png" width="256" height="320"/>
+ </tileset>
  <layer name="Tile Layer 2" width="34" height="24">
   <data encoding="base64" compression="zlib">
-   eJztlDEKQCEMQ73/Zfx4QgdxCUqbb9GAZslSSvNom5KGviDP4FZ9AVcRm5N1i4MaD5xrNX/3WW51Hjj/rvzqPE7tBcsj2yVL8t49+0+8HHpfFbH/MGpfsK+Kou/lLxcVneLweIz9Fh5eDo9HE/KooXCM7g==
+   eJzllkEKgDAMBPv/71i9KCgqvstLc1kImzYqUfcyUGJKxqJNKUaGm7kXZsIo8c7bGesmIHqKEq8HjdY+4idKvHNbyfbxZiG0ptXDAX16oGRVnr/aB+7L1rXU+hAPOD8j8xIltedCm3crHEnd13xo88r7x/MjnljfKGn9frJzkKH+rT5a/6eyzu5dmqcoefoe+hcfc2GrjxNKqJPX
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="34" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztll0OgCAMg3f/CyGczpi4RGeBdYw3mxCUH/vBQBD5delI+k67E+uX5a8Mz9zDsMO/gDLP3KgymZCyWZq842/feyqg34o8fjulY8nysfPJ9ovWz/rujtNIdm95eFD9s6wGOZg4r4x5xFfky9Lz6pVr38g8WA6PX+YeQQyIJeIXjRnr5fXpxac62kQ50Fhme04Z0NnBnCfedjZZH/t8gPKZD1PP/iNZDpQjzybv8a76e4U4GM/MO6nmo3iw62FVlgWt1dkd9QTfbVgr
   </data>
  </layer>
 </map>
